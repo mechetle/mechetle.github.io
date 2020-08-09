@@ -56,26 +56,240 @@
     <!--Styles-->
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/stylesheet.css">
-    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,700,700i|Roboto:900,900i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&family=Source+Code+Pro:ital,wght@0,300;0,400;1,300;1,400,700&display=swap" rel="stylesheet">
     
 </head>
 <body>
-    <div class="grid-x" style="font-family: 'Roboto', sans-serif;">
-        <div class="medium-2">
-            <img src="img/logo-mech.png">
-        </div>
-        <div class="medium-10">
-            <h1 style="font-weight: 900;
-    font-size: 12vw;
-    line-height: 12vw;
-    font-style: italic;
-    margin: 9vw">SOMETHING DESIGN AND WEB IS COMING</h1>
-            <p>BRB, work is done behind the scenes</p>
-        </div>
-    </div>
+    <div class="nav-primary navigation nav-header-main">
+        <div class="grid-container fluid">
+                <div class="logo-space logo-anim-nav"><a href="#" alt="Home">
+                    <img src="img/mechetleweb-svglogo.svg" alt="Mechetle logo">
+                    <h1 class="logo-text">MECHETLE</h1>
+                </a>
+            </div>
+            <div class="navigation-button-wrap">
+                <div class="nav-breaking-percau">
+                    <div class="nav-break">
+                        <div class="nav-break-its-free-real-estate">
+                            <ul class="links-1 nav-link-section">
+                                <li><a href="#" class="nav-button">Home</a></li>
+                                <li><a href="#" class="nav-button">About Me</a></li>
+                                <li><a href="#" class="nav-button">Portfolio</a>
+                                <div class="fix-shadow"></div>
+                                <div class="nav-megaDropdown-bg">
+                                    <div class="grid-container">
+                                        <div class="grid-x">
+                                            <div class="cell medium-9 large-7 navbar-dropdown-wrap">
+                                                <h2>Portfolio</h2>
+                                                <ul class="nav-dropdown">
+                                            
+                                                    <li><a href="#">Graphic design</a></li>
+                                                    <li><a href="#">Motion Design</a></li>
+                                                    <li><a href="#">Web development</a></li>
+                                                    <li><a href="#">School Projects</a></li>
+                                                    
+                                                </ul>
+                                            </div>
+                                            <div class="cell medium-3 large-5">
+                                                <div class="dropdown-image" style="background-image:url(img/Arts-Talk.jpg)">
+                                                </div>
+                                            </div>   
+                                        </div>
+                                    </div>
 
+
+                                </div>                                                                        
+                                </li>
+
+                            </ul>
+                            <ul class="links-2 nav-link-section">
+                                <li><a href="#" class="nav-button">Lab room</a></li>
+                                <li><a href="#" class="nav-button">Contact</a></li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+                <a href="#" class="nav-button search-button"><i class="search-sym"></i></a>
+            </div>
+        </div>
+
+        <!--
+        <div class="fix-blink-temp"></div>
+        -->
+
+    </div> 
+
+
+    <header></header>
+    <section></section>
+
+    <footer>
+        <div class="grid-container">
+            <div class="grid-x">
+                <div class="cell medium-6 large-3 ftr-fst">
+                    <div class="footer-widget">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li>
+                                <a href="#">Uniform Policy</a></li>
+                                <li><a href="#">Technology Policy</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Attendance Policy</a></li>
+                                <li><a href="#">Our Logo & Branding</a></li>
+                                <li><a href="#">Enroll Now</a></li>
+                                <li><a href="#">VCE Results</a></li>
+                                <li><a href="#">Tour Dates</a></li>
+                            
+                        </ul>
+                    </div>
+                    <div class="show-for-medium">
+                            <p>
+                                &copy; <span id="year"></span> Mechetle<br> 
+                                Department of Education and Training CRICOS Provider Code 00861K <br>
+                                Website design & development: <a href="https://mechetle.ml/" alt="Steven B-M Nguyen">Mechetle (Steven B-M Nguyen)</a>
+                            </p>
+                    </div>
+                </div>
+                <div class="cell medium-6 large-3">
+                    <div class="footer-widget">
+                        <h3>For Staff</h3>
+                        <ul>
+                            <li><a href="https://www.edumail.vic.gov.au">EduMail</a></li>
+                            <li><a href="#">Website login</a></li>
+                            <li><a href="#">Employment</a></li>
+
+                            
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="small-12 show-for-small-only">
+                    <p>
+                        &copy; <span id="year"></span> Mechetle<br> 
+                    
+                    </p>                
+                </div>
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/anime.min.js"></script>
+
+    <script>
+    document.getElementById("year").innerHTML = new Date().getFullYear();
     
+    // Wrap every letter in a span
+    var textWrapper = document.querySelector('.logo-text');
+    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+    </script>
+    
+    <script> 
+    
+        $(document).ready(function() {
+            console.log('prepared dropdown nav thingo');
+            $('.navbar-dropdown-wrap').hide();
+            $('.nav-megaDropdown-bg').attr( "style", "display: block !important;" );
+        });  
+    
+    
+         $('.nav-megaDropdown-bg').parent().hover(
+            function(e){ 
+                //console.log('Hovered');
+    
+                    $('.navbar-dropdown-wrap').show( 0, function(){
+                        $(this).addClass("nav-drop-hover");
+                        $('.nav-megaDropdown-bg').attr( "style", "display: block !important;" );
+                        $('.nav-header-main .navigation-button-wrap').attr( "style", "box-shadow: none" );
+                    });
+    
+                    
+                $(this).addClass("nav-drop-hover-wrapper"); //for link underline
+                
+            }, // over
+            
+            function(e){ 
+                $('.nav-megaDropdown-bg').parent().removeClass("nav-drop-hover-wrapper"); //for link underline
+    
+                $('.navbar-dropdown-wrap').removeClass("nav-drop-hover").toggleClass("transition-begone");
+    
+                $('.nav-header-main .navigation-button-wrap').removeAttr("style");
+    
+                $(".transition-begone").on("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd",
+                function(e){
+                    //$(this).fadeOut(200);
+                    //$(this).off(e);
+                });                
+            }  // out
+            
+            
+        );     
+    
+    </script>
+    
+    <script>
+        //animations
+        var textLogo = anime.timeline({
+            easing: "spring(0.7, 100, 10, 0)",
+            duration: 400,
+            delay: anime.stagger(30),
+            loop: false,
+            autoplay: false,
+        });
+        textLogo
+        .add({
+            targets: '.logo-text .letter',
+            opacity: 1,
+            translateY: [-200,0],
+        })
+        
+        let ta = 0;
+            
 
+        function animationToggle() {
+ 
+            if ( 0 == ta) {
+                //console.log("if statment detected")
+                textLogo.play();
+                ta = 1;
+            }else {
+                //do nothing
+            }       
+        };
+
+        $(window).scroll(function() {
+            if ($(this).scrollTop() >= $('section, #main').offset().top) {
+                $('.nav-primary').removeClass("nav-header-main");
+                $('.nav-primary > .grid-container ').removeClass("fluid");
+
+                animationToggle();
+
+                
+                    
+                    //anime.timeline({loop: false})
+                    //.add({
+                    //    targets: '.logo-text .letter',
+                    //    opacity: 1,
+                    //    translateY: [-200,0],
+                    //    //easing: "cubicBezier(1.000, 0.330, 0.020, 0.850)",
+                    //    easing: "spring(0.7, 100, 10, 0)",
+                    //    duration: 400,
+                    //    delay: anime.stagger(30),
+                    //    autoplay: false
+                    //}).delay("400").pause();       
+                
+
+
+            }else {
+                $('.nav-primary').addClass("nav-header-main");
+                $('.nav-primary > .grid-container ').addClass("fluid");
+                ta = 0;
+            }
+        }); 
+    </script>    
 </body>
 </html>
 
