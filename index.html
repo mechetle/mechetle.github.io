@@ -98,7 +98,8 @@
                                     </div>
 
 
-                                </div>                                                                        
+                                </div>
+                                <div class="nav-megaDropdown-bg hover-area"></div>                                                                        
                                 </li>
 
                             </ul>
@@ -195,8 +196,9 @@
             $('.nav-megaDropdown-bg').attr( "style", "display: block !important;" );
         });  
     
-    
-         $('.nav-megaDropdown-bg').parent().hover(
+
+
+        $('.nav-megaDropdown-bg').parent().hover(
             function(e){ 
                 //console.log('Hovered');
     
@@ -204,6 +206,7 @@
                         $(this).addClass("nav-drop-hover");
                         $('.nav-megaDropdown-bg').attr( "style", "display: block !important;" );
                         $('.nav-header-main .navigation-button-wrap').attr( "style", "box-shadow: none" );
+                        $('.nav-header-main .logo-space img').attr( "style", "transform: translateY(-3px) scale(0.5);" );
                     });
     
                     
@@ -217,7 +220,9 @@
                 $('.navbar-dropdown-wrap').removeClass("nav-drop-hover").toggleClass("transition-begone");
     
                 $('.nav-header-main .navigation-button-wrap').removeAttr("style");
-    
+
+                $('.nav-header-main .logo-space img').removeAttr("style");
+
                 $(".transition-begone").on("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd",
                 function(e){
                     //$(this).fadeOut(200);

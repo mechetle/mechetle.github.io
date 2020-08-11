@@ -82,6 +82,7 @@ Navigations  */
 .navigation .grid-container {
     display: flex;
     justify-content: space-between;
+    height: 55px;
 }
 
 .nav-secondary { 
@@ -251,6 +252,24 @@ Navigations  */
     transition-timing-function: cubic-bezier(0.81, 0.01, 0.06, 0.93);
     transition-delay: 0.25s;
 }
+
+.fluid .nav-megaDropdown-bg.hover-area {
+    right: 300px
+}
+
+.nav-megaDropdown-bg.hover-area {
+    z-index: -3 !important;
+    transition-duration: 0s;
+    transition-timing-function: cubic-bezier(0.81, 0.01, 0.06, 0.93);
+    transition-delay: 0s;
+    box-shadow: none !important;
+    background: transparent;
+    opacity: 0;
+    width: 230px;
+    right: 470px;
+    left: unset;
+}
+
 .nav-megaDropdown-bg .grid-container {
     position: relative;
     display: block;
@@ -389,9 +408,14 @@ ul li ul li {
     clear: both;
     width: 100%;
 }
+.nav-header-main .logo-space img {
+    transform: translateY(-3px) scale(1);
+}
 .logo-space {
-    height: 55px;
-    transform: translate(0,0);
+    /*height: 55px;
+    transform: translate(0,0);*/
+    height: 108px;
+    transform: translate(-24px,-22px);
     overflow: visible;
     width: auto;
     float: left;
@@ -403,14 +427,11 @@ ul li ul li {
     border: 0;
     text-decoration: none;
 }
-.nav-header-main .logo-space {
-    height: 108px;
-    transform: translate(-24px,-22px)
-}
+
 .logo-space img, .logo-space svg {
     height: 100%;
     width: auto;
-    transform: translateY(-3px) scale(0.8);
+    transform: scale(0.5);
 }
 .nav-header-main .logo-text {
     opacity: 0;
@@ -418,7 +439,7 @@ ul li ul li {
 .logo-text {
     padding: 0;
     font-weight: 800;
-    transform: translateY(0px);
+    transform: translateX(-29px);
     font-size: 1.3em;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -545,9 +566,9 @@ a.nav-button {
 }
 
 /* Nav header main*/
-.nav-header-main .nav-breaking-percau {
-    width: 690px;
-    max-width: 690px;
+.nav-header-main .nav-breaking-percau  {
+    width: 635px;
+    /* max-width: 690px; */
     position: relative;
     display: inline-grid;
     padding: 0;
