@@ -56,7 +56,7 @@
     <!--Styles-->
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/stylesheet.css">
-    <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&family=Source+Code+Pro:ital,wght@0,300;0,400;1,300;1,400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Sen:wght@700;800&display=swap" rel="stylesheet">
     
 </head>
 <body>
@@ -121,8 +121,11 @@
 
     </div> 
 
+    <header>
+        <div class="border-top-naturalize"></div>
 
-    <header></header>
+    </header>
+
     <section></section>
 
     <footer>
@@ -130,35 +133,30 @@
             <div class="grid-x">
                 <div class="cell medium-6 large-3 ftr-fst">
                     <div class="footer-widget">
-                        <h3>Quick Links</h3>
+                        <h3>Other Pages</h3>
                         <ul>
-                            <li>
-                                <a href="#">Uniform Policy</a></li>
-                                <li><a href="#">Technology Policy</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Attendance Policy</a></li>
-                                <li><a href="#">Our Logo & Branding</a></li>
-                                <li><a href="#">Enroll Now</a></li>
-                                <li><a href="#">VCE Results</a></li>
-                                <li><a href="#">Tour Dates</a></li>
+                            <li><a href="/faq">Frequently asked questions</a></li>
+                            <li><a href="https://web.archive.org/web/20181127191854/https://mechetle.ml/">Old non-functional site</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
                             
                         </ul>
                     </div>
                     <div class="show-for-medium">
-                            <p>
-                                &copy; <span id="year"></span> Mechetle<br> 
-                                Department of Education and Training CRICOS Provider Code 00861K <br>
-                                Website design & development: <a href="https://mechetle.ml/" alt="Steven B-M Nguyen">Mechetle (Steven B-M Nguyen)</a>
+                            <p class="footer-note">
+                                Website by Mechetle.<br>
+                                Steven B-M Nguyen<br>
+                                &copy; <span id="year"></span> Mechetle
                             </p>
                     </div>
                 </div>
                 <div class="cell medium-6 large-3">
                     <div class="footer-widget">
-                        <h3>For Staff</h3>
+                        <h3>Social Media</h3>
                         <ul>
-                            <li><a href="https://www.edumail.vic.gov.au">EduMail</a></li>
-                            <li><a href="#">Website login</a></li>
-                            <li><a href="#">Employment</a></li>
+                            <li><a href="https://www.edumail.vic.gov.au"><i class="fab fa-discord"></i>   Discord</a></li>
+                            <li><a href="#"><i class="fab fa-instagram"></i>   Instagram</a></li>
+                            <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i>  Twitter</a></li>
 
                             
                         </ul>
@@ -166,8 +164,10 @@
                 </div>
 
                 <div class="small-12 show-for-small-only">
-                    <p>
-                        &copy; <span id="year"></span> Mechetle<br> 
+                    <p class="footer-note">
+                        Website by Mechetle.<br>
+                        Steven B-M Nguyen<br>
+                        &copy; <span id="year"></span> Mechetle
                     
                     </p>                
                 </div>
@@ -178,6 +178,7 @@
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/094d2c489e.js" crossorigin="anonymous"></script>
     <script src="js/anime.min.js"></script>
 
     <script>
@@ -189,9 +190,16 @@
     </script>
     
     <script> 
-    
+        //$( window ).on( "load", function() {
+        //    $('.navigation .grid-container').fadeOut(1000, function() {
+        //        $('.navigation .grid-container');
+        //    });
+        //});
+
+
         $(document).ready(function() {
             console.log('prepared dropdown nav thingo');
+            $('.navigation .grid-container').delay(400).attr( "style", "opacity: 1" );
             $('.navbar-dropdown-wrap').hide();
             $('.nav-megaDropdown-bg').attr( "style", "display: block !important;" );
         });  
@@ -201,12 +209,15 @@
         $('.nav-megaDropdown-bg').parent().hover(
             function(e){ 
                 //console.log('Hovered');
+                
     
                     $('.navbar-dropdown-wrap').show( 0, function(){
                         $(this).addClass("nav-drop-hover");
                         $('.nav-megaDropdown-bg').attr( "style", "display: block !important;" );
                         $('.nav-header-main .navigation-button-wrap').attr( "style", "box-shadow: none" );
                         $('.nav-header-main .logo-space img').attr( "style", "transform: translateY(-3px) scale(0.5);" );
+                        $('header').attr( "style", "outline: rgba(11,35,61,0.025) 62px solid; outline-offset: -60px;" );
+                        $('.border-top-naturalize').fadeToggle(600);
                     });
     
                     
@@ -216,13 +227,11 @@
             
             function(e){ 
                 $('.nav-megaDropdown-bg').parent().removeClass("nav-drop-hover-wrapper"); //for link underline
-    
                 $('.navbar-dropdown-wrap').removeClass("nav-drop-hover").toggleClass("transition-begone");
-    
                 $('.nav-header-main .navigation-button-wrap').removeAttr("style");
-
                 $('.nav-header-main .logo-space img').removeAttr("style");
-
+                $('header').removeAttr("style");
+                $('.border-top-naturalize').delay(300).fadeToggle(300); //these need to be readjusted
                 $(".transition-begone").on("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd",
                 function(e){
                     //$(this).fadeOut(200);
@@ -294,7 +303,9 @@
                 ta = 0;
             }
         }); 
-    </script>    
+    </script> 
+    
+    
 </body>
 </html>
 
