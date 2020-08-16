@@ -129,20 +129,24 @@
     <header>
         <div class="border-top-naturalize"></div>
         <div class="border-bottom-naturalize"></div>
-        <div class="text-wrapper">
-            <h1 class="logo-text-header"><br>
-                <span><span class="rellax" data-rellax-speed="15">
-                    T</span><span class="rellax" data-rellax-speed="12">
-                    H</span><span class="rellax" data-rellax-speed="9">
-                    I</span><span class="rellax" data-rellax-speed="6">
+        
+        <div id="header-wrapper">
+            <div class="text-wrapper">
+                <h1 class="logo-text-header"><br>
+                    <span><span class="rellax" data-rellax-speed="15">
+                        T</span><span class="rellax" data-rellax-speed="12">
+                        H</span><span class="rellax" data-rellax-speed="9">
+                        I</span><span class="rellax" data-rellax-speed="6">
+                        S</span>
+                    </span><br>
+                    <span><span class="rellax" data-rellax-speed="8">I</span><span class="rellax"data-rellax-speed="5">
                     S</span>
-                </span><br>
-                <span><span class="rellax" data-rellax-speed="8">I</span><span class="rellax"data-rellax-speed="5">
-                S</span>
-                </span><br>
-                <span id="me-mechetle"><span class="rellax" data-rellax-speed="4">M</span><span class="rellax" data-rellax-speed="4.25">E</span><span class="rellax" data-rellax-speed="4.5">C</span><span class="rellax" data-rellax-speed="4.75">H</span><span class="rellax" data-rellax-speed="5">E</span><span class="rellax" data-rellax-speed="5.25">T</span><span class="rellax" data-rellax-speed="5.5">L</span><span class="rellax" data-rellax-speed="5.75">E</span></span>
-            </h1>
+                    </span><br>
+                    <span id="me-mechetle"><span class="rellax" data-rellax-speed="4">M</span><span class="rellax" data-rellax-speed="4.25">E</span><span class="rellax" data-rellax-speed="4.5">C</span><span class="rellax" data-rellax-speed="4.75">H</span><span class="rellax" data-rellax-speed="5">E</span><span class="rellax" data-rellax-speed="5.25">T</span><span class="rellax" data-rellax-speed="5.5">L</span><span class="rellax" data-rellax-speed="5.75">E</span></span>
+                </h1>
+            </div>
         </div>
+        
     </header>
 
     <section></section>
@@ -252,7 +256,8 @@
                         $('.nav-header-main .navigation-button-wrap').attr( "style", "box-shadow: none" );
                         $('.nav-header-main .logo-space img').attr( "style", "transform: translateY(-3px) scale(0.5);" );
                         $('header').attr( "style", "outline: rgba(11,35,61,0.025) 62px solid; outline-offset: -60px;" );
-                        $('.border-top-naturalize').fadeToggle(600);
+                        $('#header-wrapper').attr( "style", "transform: scale(0.8); opacity: 0.2;" );
+                        $('.border-top-naturalize, .border-bottom-naturalize').attr( "style", "background:rgba(11,35,61,0.025)" );
                     });
     
                     
@@ -266,7 +271,8 @@
                 $('.nav-header-main .navigation-button-wrap').removeAttr("style");
                 $('.nav-header-main .logo-space img').removeAttr("style");
                 $('header').removeAttr("style");
-                $('.border-top-naturalize').delay(300).fadeToggle(300); //these need to be readjusted
+                $('.border-top-naturalize, .border-bottom-naturalize').removeAttr( "style" ); //these need to be readjusted
+                $('#header-wrapper').removeAttr( "style" )
                 $(".transition-begone").on("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd",
                 function(e){
                     //$(this).fadeOut(200);
