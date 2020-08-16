@@ -671,6 +671,7 @@ header .text-wrapper h1 {
   line-height: 0.8em;
   -webkit-margin-after: 0.25em;
           margin-block-end: 0.25em;
+  padding-bottom: 2.5rem;
 }
 
 header .text-wrapper h1 span > span {
