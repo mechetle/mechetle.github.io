@@ -767,16 +767,21 @@ header {
   .text-wrapper {
     bottom: 0;
     position: absolute;
-    padding-left: 6.6rem;
+    padding-left: 7rem;
+    opacity: 0;
+    transition-duration: 0.5s;
+    transition-delay: 0.1s;
+    transition-timing-function: cubic-bezier(0.88, 0.13, 0.13, 0.96);
+    transition-property: opacity;
     
     h1 {
       font-size: (11.8em);
       line-height: 0.8em;
       margin-block-end: 0.25em;
-      padding-bottom: 2.5rem;
+      padding-bottom: 4.5rem;
       span > span {
         display: inline-block; 
-        overflow: hidden;
+        //test
       }
     }
   }

@@ -663,7 +663,16 @@ header .border-bottom-naturalize {
 header .text-wrapper {
   bottom: 0;
   position: absolute;
-  padding-left: 6.6rem;
+  padding-left: 7rem;
+  opacity: 0;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+  -webkit-transition-delay: 0.1s;
+          transition-delay: 0.1s;
+  -webkit-transition-timing-function: cubic-bezier(0.88, 0.13, 0.13, 0.96);
+          transition-timing-function: cubic-bezier(0.88, 0.13, 0.13, 0.96);
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
 }
 
 header .text-wrapper h1 {
@@ -671,12 +680,11 @@ header .text-wrapper h1 {
   line-height: 0.8em;
   -webkit-margin-after: 0.25em;
           margin-block-end: 0.25em;
-  padding-bottom: 2.5rem;
+  padding-bottom: 4.5rem;
 }
 
 header .text-wrapper h1 span > span {
   display: inline-block;
-  overflow: hidden;
 }
 
 section:first-of-type {

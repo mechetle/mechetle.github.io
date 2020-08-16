@@ -239,6 +239,7 @@
         $(document).ready(function() {
             console.log('prepared dropdown nav thingo');
             $('.navigation .grid-container').delay(400).attr( "style", "opacity: 1" );
+            $('header .text-wrapper').delay(1700).attr( "style", "opacity: 1" );
             $('.navbar-dropdown-wrap').hide();
             $('.nav-megaDropdown-bg').attr( "style", "display: block !important;" );
         });  
@@ -309,7 +310,7 @@
         var textLogoHeader = anime.timeline({
             easing: "spring(0.7, 100, 10, 4)",
             duration: 400,
-            delay: anime.stagger(150),
+            delay: anime.stagger(50),
             loop: false,
             autoplay: false,
         });
@@ -319,7 +320,7 @@
             .add({
                 targets: '.header-letter',
                 opacity: 1,
-                translateY: [-300,0],
+                translateY: [-1000,0],
             })
 
             
