@@ -875,6 +875,15 @@ footer {
       font-size: 30vw !important;
       margin-block-end: 11vw !important;
     }
+    span > span {
+      overflow: unset !important;
+    }
+    .header-letter {
+      opacity: 0;
+    }
+    #me-mechetle {
+      font-size: 0.40em;
+    }
   }
 }
 
@@ -883,10 +892,20 @@ footer {
 
 /* nav break point */
 /*before it breaks (normal state)*/
-@media only screen and (min-width: 63.9375em) and (max-width: 1128px) {
-//  .nav-v2 .links-2 {
-//    transform: translateX(calc(-962px + 100vw));
-//  }
+@media only screen and (min-width: 40em) and (max-width: 1300px) {
+  header {
+    span > span {
+      overflow: unset !important;
+    }
+    h1 {
+      #me-mechetle {
+        font-size: 15vw;
+      }
+      .header-letter {
+        opacity: 0;
+      }
+    }
+  }
 }
 
 /* Medium only */

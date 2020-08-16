@@ -757,11 +757,32 @@ footer a {
     -webkit-margin-after: 11vw !important;
             margin-block-end: 11vw !important;
   }
+  header span > span {
+    overflow: unset !important;
+  }
+  header .header-letter {
+    opacity: 0;
+  }
+  header #me-mechetle {
+    font-size: 0.40em;
+  }
 }
 
 /* Medium and up */
 /* nav break point */
 /*before it breaks (normal state)*/
+@media only screen and (min-width: 40em) and (max-width: 1300px) {
+  header span > span {
+    overflow: unset !important;
+  }
+  header h1 #me-mechetle {
+    font-size: 15vw;
+  }
+  header h1 .header-letter {
+    opacity: 0;
+  }
+}
+
 /* Medium only */
 @media screen and (min-width: 40em) and (max-width: 63.9375em) {
   .nav-hamburger {
