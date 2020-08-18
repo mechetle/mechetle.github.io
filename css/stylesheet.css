@@ -826,6 +826,14 @@ code {
   }
 }
 
+#fourOfour main {
+  height: 93vh;
+  max-width: 960px;
+  margin: 0 auto;
+  padding-top: 2em;
+  font-size: 5rem;
+}
+
 /* Media queries:
 */
 /* Small only */
