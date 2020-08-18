@@ -131,6 +131,273 @@
         <h2>HAVE YOU SEEN MY KETTLE</h2>
     </main>
 
+    <footer>
+        <div class="grid-container">
+            <div class="grid-x">
+                <div class="cell medium-6 large-3 ftr-fst">
+                    <div class="footer-widget">
+                        <h3>Other Pages</h3>
+                        <ul>
+                            <li><a href="/faq">Frequently asked questions</a></li>
+                            <li><a href="https://web.archive.org/web/20181127191854/https://mechetle.ml/">Archived site</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            
+                        </ul>
+                    </div>
+                    <div class="show-for-medium">
+                            <p class="footer-note">
+                                Website by Mechetle.<br>
+                                Steven B-M Nguyen<br>
+                                &copy; <span id="year"></span> Mechetle
+                            </p>
+                    </div>
+                </div>
+                <div class="cell medium-6 large-3">
+                    <div class="footer-widget">
+                        <h3>Social Media</h3>
+                        <ul>
+                            <li><a href="#discordtag" class="discordmodaltoggle"><i class="fab fa-discord"></i>Discord</a></li>
+                            <li><a href="#"><i class="fab fa-instagram"></i>Instagram</a></li>
+                            <li><a href="#"><i class="fab fa-youtube"></i>YouTube</a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i>Twitter</a></li>
+
+                            
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="small-12 show-for-small-only">
+                    <p class="footer-note">
+                        Website by Mechetle.<br>
+                        Steven B-M Nguyen<br>
+                        &copy; <span id="year"></span> Mechetle
+                    
+                    </p>                
+                </div>
+            </div>
+
+        </div>
+
+
+    <div class="discordmodal">
+        <div class="discordmodalwrap">
+            <a href="#%" class="button discordmodaltoggle" title="close"><i class="fas fa-times"></i></a>
+            <div class="modal-body">
+                <h4>Hey, here's my DiscordTag!</h4>
+                <p>
+                Add me if you want.
+                </p>
+                <code>
+                Mechetle<small>#9677</small>
+                </code>
+            </div>
+        </div>
+        <a class="modal-bg"></a>
+    </div>    
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/094d2c489e.js" crossorigin="anonymous"></script>
+    <script src="js/anime.min.js"></script>
+    <script src="js/rellax.min.js"></script>
+
+    <script>
+
+    var rellax = new Rellax('.rellax', {
+        //center: true,
+        vertical: true,
+        horizontal: false
+    });
+        
+    document.getElementById("year").innerHTML = new Date().getFullYear();
+    
+    // Wrap every letter in a span
+    var textWrapper = document.querySelector('.logo-text');
+    //var textWrapperTwo = document.querySelector('#me-mechetle .rellax');
+
+    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+    //textWrapperTwo.innerHTML = textWrapperTwo.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+    $( "#me-mechetle > .rellax" ).slice(2).contents().wrap( "<span class='header-letter'></span>" );
+    
+
+    //rewrite this (ported from old site)
+    function ToggleDiscordModal() {
+        $(".discordmodal").fadeToggle("3500", "swing", function () {});
+    }
+
+    $(".discordmodaltoggle").click(function () {
+        ToggleDiscordModal();
+    });
+    $(".modal-bg").click(function () {
+        ToggleDiscordModal();
+    }); 
+    
+    $(document).ready(function() {
+        if (window.location.href.indexOf("#discordtag") > -1) {
+            ToggleDiscordModal();
+        }
+    });       
+
+
+    </script>
+    
+    <script> 
+        //$( window ).on( "load", function() {
+        //    $('.navigation .grid-container').fadeOut(1000, function() {
+        //        $('.navigation .grid-container');
+        //    });
+        //});
+
+
+        $(document).ready(function() {
+            console.log('prepared dropdown nav thingo');
+            $('.navigation .grid-container').delay(400).attr( "style", "opacity: 1" );
+            $('header .text-wrapper').delay(1700).attr( "style", "opacity: 1" );
+            $('.navbar-dropdown-wrap').hide();
+            $('.nav-megaDropdown-bg').attr( "style", "display: block !important;" );
+        });  
+    
+
+
+        $('.nav-megaDropdown-bg').parent().hover(
+            function(e){ 
+                //console.log('Hovered');
+                
+    
+                    $('.navbar-dropdown-wrap').show( 0, function(){
+                        $(this).addClass("nav-drop-hover");
+                        $('.nav-megaDropdown-bg').attr( "style", "display: block !important;" );
+                        $('.nav-header-main .navigation-button-wrap').attr( "style", "box-shadow: none" );
+                        $('.nav-header-main .logo-space img').attr( "style", "transform: translateY(-3px) scale(0.5);" );
+                        $('header').attr( "style", "outline: rgba(11,35,61,0.025) 62px solid; outline-offset: -60px;" );
+                        $('#header-wrapper').attr( "style", "transform: scale(0.8); opacity: 0.2;" );
+                        $('.border-top-naturalize, .border-bottom-naturalize').attr( "style", "background:rgba(11,35,61,0.025)" );
+                    });
+    
+                    
+                $(this).addClass("nav-drop-hover-wrapper"); //for link underline
+                
+            }, // over
+            
+            function(e){ 
+                $('.nav-megaDropdown-bg').parent().removeClass("nav-drop-hover-wrapper"); //for link underline
+                $('.navbar-dropdown-wrap').removeClass("nav-drop-hover").toggleClass("transition-begone");
+                $('.nav-header-main .navigation-button-wrap').removeAttr("style");
+                $('.nav-header-main .logo-space img').removeAttr("style");
+                $('header').removeAttr("style");
+                $('.border-top-naturalize, .border-bottom-naturalize').removeAttr( "style" ); //these need to be readjusted
+                $('#header-wrapper').removeAttr( "style" )
+                $(".transition-begone").on("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd",
+                function(e){
+                    //$(this).fadeOut(200);
+                    //$(this).off(e);
+                });                
+            }  // out
+            
+            
+        );     
+    
+    </script>
+    
+    <script>
+        //animations
+        //// text logo nav
+        var textLogo = anime.timeline({
+            easing: "spring(0.7, 100, 10, 0)",
+            duration: 400,
+            delay: anime.stagger(30),
+            loop: false,
+            autoplay: false,
+        });
+        textLogo
+        .add({
+            targets: '.logo-text .letter',
+            opacity: 1,
+            translateY: [-200,0],
+        })
+
+        let ta = 0;
+        let tah = 0;
+        
+        //// text logo header in
+        var textLogoHeader = anime.timeline({
+            easing: "spring(0.7, 100, 10, 4)",
+            duration: 400,
+            delay: anime.stagger(50),
+            loop: false,
+            autoplay: false,
+        });
+       
+        $( document ).ready(function() { 
+            textLogoHeader
+            .add({
+                targets: '.header-letter',
+                opacity: 1,
+                translateY: [-1000,0],
+            })
+
+            
+        });
+
+
+        function animationToggleNavText() {
+ 
+            if ( 0 == ta) {
+                //console.log("if statment detected")
+                textLogo.play();
+                ta = 1;
+            }else {
+                //do nothing
+            }       
+        };
+        function animationToggleHeadText() {
+ 
+            if ( 0 == tah) {
+                //console.log("if statment detected")
+                textLogoHeader.play();
+                tah = 1;
+            }else {
+                //do nothing
+            }       
+        };        
+
+        $(window).scroll(function() {
+            var scroll = $(this).scrollTop()
+            if ( scroll >= $('section, #main').offset().top) {
+                $('.nav-primary').removeClass("nav-header-main");
+                $('.nav-primary > .grid-container ').removeClass("fluid");
+
+                animationToggleNavText();
+                tah = 0;
+  
+                    //anime.timeline({loop: false})
+                    //.add({
+                    //    targets: '.logo-text .letter',
+                    //    opacity: 1,
+                    //    translateY: [-200,0],
+                    //    //easing: "cubicBezier(1.000, 0.330, 0.020, 0.850)",
+                    //    easing: "spring(0.7, 100, 10, 0)",
+                    //    duration: 400,
+                    //    delay: anime.stagger(30),
+                    //    autoplay: false
+                    //}).delay("400").pause();       
+
+            }else {
+                $('.nav-primary').addClass("nav-header-main");
+                $('.nav-primary > .grid-container ').addClass("fluid");
+                ta = 0;
+                
+                console.log("test" + scroll)
+                if (scroll > 200) {
+                    console.log("scroll higher than 400");
+                    animationToggleHeadText();
+                }
+            }
+        }); 
+    </script> 
+    
+    
 </body>
 </html>
 
