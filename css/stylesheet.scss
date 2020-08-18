@@ -542,6 +542,13 @@ ul li ul li {
 }
 
 a.nav-button {
+  position: relative;
+  display: block;
+  // display: inline-grid; disabled
+  
+  i {
+    line-height: unset;
+  }
   &:before {
     content: "";
     position: absolute;
@@ -549,24 +556,25 @@ a.nav-button {
     left: 0;
     right: 0;
     bottom: 0;
-    border-bottom: #D81B60 10px solid;
+    border-bottom: #D81B60 13px solid;
     transform: scaleX(0);
     transition-delay: 0.1s;
     transition-duration: 0.6s;
     transition-timing-function: cubic-bezier(0.4, 0.6, 0.13, 0.96);
+    cursor: pointer;
   }
 
   &:hover:before {
     transform: scaleX(0.5);
   }
-}
-
-a.nav-button {
-  position: relative;
-  display: inline-grid;
-
-  /* margin: 0; */
-  /* padding: 0; */
+  &:hover {
+    color: rgba(0, 0, 0, 0.459);
+  }
+  &:active {
+    transform: scale(0.8) translateY(3px);
+    transition-duration: 50ms;
+  }
+  
 }
 
 // .nav-v2 {
@@ -639,7 +647,7 @@ a.nav-button {
 */
 
 .nav-breaking-percau {
-  width: 660px;
+  width: 670px;
   position: relative;
   display: inline-grid;
   padding: 0;
@@ -674,7 +682,7 @@ a.nav-button {
 /* Nav header main*/
 
 .nav-header-main .nav-breaking-percau {
-  width: 675px;
+  width: 690px;
 
   /* max-width: 690px; */
   position: relative;
@@ -845,6 +853,56 @@ footer {
   }
 }
 
+
+//discord modal 
+.discordmodal {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background: -webkit-linear-gradient(rgba(0,0,0,0.5) 35%, rgba(0,0,0,0.9) 95%);
+  background: -moz-linear-gradient(rgba(0,0,0,0.5) 35%, rgba(0,0,0,0.9) 95%);
+  background: -o-linear-gradient(rgba(0,0,0,0.5) 35%, rgba(0,0,0,0.9) 95%);
+  background: linear-gradient(rgba(0,0,0,0.5) 35%, rgba(0,0,0,0.9) 95%);
+}
+
+.modal-bg {
+  z-index: 99998;
+  height: 100vh;
+  width: 100vw;
+  display: block;
+  cursor: default;
+}
+
+.discordmodalwrap {
+  background: white;
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  padding: 2em;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-body {
+  padding: 0 10vh 10vh;
+	text-align: center;
+}
+
+code {
+	padding: 0.7em;
+	background: #e0e0e0;
+	border-radius: 12.5px;
+	border-width: 3px;
+	border-style: solid;
+	border-color: gray;
+}
+
+
+
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
@@ -907,6 +965,7 @@ footer {
     }
     #me-mechetle {
       font-size: 0.40em;
+
     }
   }
 }
@@ -924,6 +983,8 @@ footer {
     h1 {
       #me-mechetle {
         font-size: 15vw;
+        transition-duration: 0.7s;
+        transition-timing-function: $easing-main;
       }
       .header-letter {
         opacity: 0;

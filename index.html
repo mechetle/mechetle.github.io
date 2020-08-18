@@ -79,7 +79,7 @@
                             <ul class="links-1 nav-link-section">
                                 <li><a href="#" class="nav-button">Home</a></li>
                                 <li><a href="#" class="nav-button">About Me</a></li>
-                                <li><a href="#" class="nav-button">Portfolio</a>
+                                <li><a href="#" class="nav-button">Portfolio <i class="fas fa-caret-down"></i></a>
                                 <div class="fix-shadow"></div>
                                 <div class="nav-megaDropdown-bg">
                                     <div class="grid-container">
@@ -176,7 +176,7 @@
                     <div class="footer-widget">
                         <h3>Social Media</h3>
                         <ul>
-                            <li><a href="#"><i class="fab fa-discord"></i>Discord</a></li>
+                            <li><a href="#discordtag" class="discordmodaltoggle"><i class="fab fa-discord"></i>Discord</a></li>
                             <li><a href="#"><i class="fab fa-instagram"></i>Instagram</a></li>
                             <li><a href="#"><i class="fab fa-youtube"></i>YouTube</a></li>
                             <li><a href="#"><i class="fab fa-twitter"></i>Twitter</a></li>
@@ -198,6 +198,22 @@
 
         </div>
 
+
+    <div class="discordmodal">
+        <div class="discordmodalwrap">
+            <a href="#%" class="button discordmodaltoggle" title="close"><i class="fas fa-times"></i></a>
+            <div class="modal-body">
+                <h4>Hey, here's my DiscordTag!</h4>
+                <p>
+                Add me if you want.
+                </p>
+                <code>
+                Mechetle<small>#9677</small>
+                </code>
+            </div>
+        </div>
+        <a class="modal-bg"></a>
+    </div>    
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -224,6 +240,24 @@
 
     $( "#me-mechetle > .rellax" ).slice(2).contents().wrap( "<span class='header-letter'></span>" );
     
+
+    //rewrite this (ported from old site)
+    function ToggleDiscordModal() {
+        $(".discordmodal").fadeToggle("3500", "swing", function () {});
+    }
+
+    $(".discordmodaltoggle").click(function () {
+        ToggleDiscordModal();
+    });
+    $(".modal-bg").click(function () {
+        ToggleDiscordModal();
+    }); 
+    
+    $(document).ready(function() {
+        if (window.location.href.indexOf("#discordtag") > -1) {
+            ToggleDiscordModal();
+        }
+    });       
 
 
     </script>
