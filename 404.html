@@ -1,5 +1,6 @@
 ---
 permalink: /404.html
+redirect_from: "/404/"
 ---
 
 <!DOCTYPE html>
@@ -70,10 +71,18 @@ permalink: /404.html
   <body id="fourOfour">
     
     <main>
+        <a href="https://mechetle.ml"><img src="img/mechetleweb-svglogo.svg" alt="Mechetle" width="80px"></a>
         <h1>404</h1>
-        <h2>HAVE YOU SEEN MY KETTLE</h2>
-        <p>Looks like this page can't be found, this could mean that it doesn't exist, or that it actually does but the link to the page is incorrect. K thanks bai.</p>
+        <h2>HAVE YOU SEEN <a id="mehkettle" href="#showmehkettle">MEH KETTLE?<span></span></a></h2>
+        <p>Do you mean Mechetle? This error happens when the page that you were looking for does not exist. Double check if you got the correct link.</p>
     </main>
+    <div id="mehkettle-rev" class="rellax" data-rellax-speed="-6">
+        <img src="img/404/meh-kettle.png" alt="meh kettle">
+        <figcaption>
+            "Meh kettle, have you seen him?"
+            <br><small>Original idea / concept courtesy of Finn (thatguyfinny).</small>
+        </figcaption>
+    </div>
 
     <footer>
         <div class="grid-container">
@@ -138,15 +147,27 @@ permalink: /404.html
         </div>
         <a class="modal-bg"></a>
     </div>    
-    </footer>
+    </footer> 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/094d2c489e.js" crossorigin="anonymous"></script>
     <script src="js/anime.min.js"></script>
     <script src="js/rellax.min.js"></script>
 
-    <script>
+    <audio id="bs-1" loop>
+        <source src="audio/kettle1.ogg" type="audio/ogg">
+        <source src="audio/kettle1.mp3" type="audio/mpeg">
+    </audio>    
+    <audio id="bs-2" loop>
+        <source src="audio/kettle2.ogg" type="audio/ogg">
+        <source src="audio/kettle2.mp3" type="audio/mpeg">
+    </audio>   
+    <audio id="bs-3">
+        <source src="audio/kettleSwitch.ogg" type="audio/ogg">
+        <source src="audio/kettleSwitch.mp3" type="audio/mpeg">
+    </audio>  
 
+    <script>
     var rellax = new Rellax('.rellax', {
         //center: true,
         vertical: true,
@@ -155,25 +176,143 @@ permalink: /404.html
         
     document.getElementById("year").innerHTML = new Date().getFullYear();
     
-    // Wrap every letter in a span
-    var textWrapper = document.querySelector('.logo-text');
-    //var textWrapperTwo = document.querySelector('#me-mechetle .rellax');
+    //audio play / pause
+    function playAudio(AudioId) { 
+        document.getElementById(`bs-${AudioId}`).play();         
+    } 
+    function pauseAudio(AudioId) { 
+        document.getElementById(`bs-${AudioId}`).pause(); 
+    } 
 
-    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-    //textWrapperTwo.innerHTML = textWrapperTwo.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+    document.getElementById('bs-2').volume = 0;
+    let volumeBS2 = 0;
+    function volumeAudio(AudioId) { 
+        volumeBS2 += 0.25;
+        $(`#bs-${AudioId}`).animate({volume: volumeBS2}, 1500); 
+    }
+    function Audiofadeout(AudioId) { 
+        $(`#bs-${AudioId}`).animate({volume: 0}, 2000); 
+    }
 
-    $( "#me-mechetle > .rellax" ).slice(2).contents().wrap( "<span class='header-letter'></span>" );
+    //kettle animation
+    let rma = rmb = rmc = 0;
+    var basicTimeline = anime.timeline({
+        autoplay: false,
+        duration: 250,
+        loop: true
+    });
     
+
+    basicTimeline
+    .add({
+        targets: '#mehkettle-rev img',
+        translateY: function() {
+            return anime.random(0, 1 + rma);
+        },
+        translateX: function() {
+            return anime.random(0, 23 + rmb);
+        },
+        rotate: function() {
+            return anime.random(0, 2 + rmc);
+        },
+        easing: 'easeInBounce',
+        duration: 250,
+    });
+    
+    //mehketlle
+    let kettleCountdown = 6
+    ,   kettleState = 0;
+
+    function wiggleUp(){
+        rma += 0.5;
+        rmb += 20;
+        rmc += 0.25;        
+    }
+
+    $("#mehkettle").click(function(){
+        if (kettleCountdown == 1) {
+            // console.log("kettle active : 1");
+
+            $("#mehkettle-rev").fadeToggle("3500", "swing", function () {
+                //
+                kettleCountdown = 6;
+                // console.log("kettle activated");
+                // console.log("if kettle active:" + kettleCountdown); 
+                $("#mehkettle span").html("oof!");
+                setTimeout(function(){ $("#mehkettle span").html(""); }, 200); // may cause bugs
+                kettleState ^= 1; //toggle kettle state
+
+            });
+        } 
+        else { //when kettleCountdown doesn't equal 1
+            // console.log("kettle active:" + kettleCountdown);
+            kettleCountdown -= 1;
+            $("#mehkettle span").html(kettleCountdown);
+
+            if (kettleState == 1) {
+                switch (kettleCountdown) {
+
+                case 5:
+                    //console.log('play kettle 1');
+                    playAudio(3);
+                    playAudio(2);
+                    volumeAudio(2);
+                    break;
+                
+                case 4:
+                    basicTimeline.play();
+                    break;
+
+                case 4:
+                case 3:
+                case 2:
+                    volumeAudio(2);
+                    wiggleUp();
+                    break;
+
+                //case 3:
+                //    //console.log('play kettle 2');
+                //    
+                //    break;
+                //case 2:
+                //    //console.log('turned off kettle 2');
+                //    //pauseAudio(2);
+                //    break;
+
+                case 1:
+                    //console.log('turned off kettle 1');
+                    //pauseAudio(1);
+                    Audiofadeout(2);
+                    volumeBS2 = 0;
+                    playAudio(3);
+                    rma = rmb = rmc = 0;
+                    basicTimeline.pause();
+
+                    //pauseAudio(2);
+                    break;
+
+                default:
+                
+                    // do nothing lol
+                    // console.log(`this is ${expr}.`);
+                }
+            } else {
+                //console.log('kettle state = 0');
+            }
+        }
+
+        
+    });
 
     //rewrite this (ported from old site)
     function ToggleDiscordModal() {
         $(".discordmodal").fadeToggle("3500", "swing", function () {});
     }
 
-    $(".discordmodaltoggle").click(function () {
+    $(".discordmodaltoggle").click(function() {
         ToggleDiscordModal();
     });
-    $(".modal-bg").click(function () {
+    $(".modal-bg").click(function() {
         ToggleDiscordModal();
     }); 
     
@@ -244,102 +383,6 @@ permalink: /404.html
     
     </script>
     
-    <script>
-        //animations
-        //// text logo nav
-        var textLogo = anime.timeline({
-            easing: "spring(0.7, 100, 10, 0)",
-            duration: 400,
-            delay: anime.stagger(30),
-            loop: false,
-            autoplay: false,
-        });
-        textLogo
-        .add({
-            targets: '.logo-text .letter',
-            opacity: 1,
-            translateY: [-200,0],
-        })
-
-        let ta = 0;
-        let tah = 0;
-        
-        //// text logo header in
-        var textLogoHeader = anime.timeline({
-            easing: "spring(0.7, 100, 10, 4)",
-            duration: 400,
-            delay: anime.stagger(50),
-            loop: false,
-            autoplay: false,
-        });
-       
-        $( document ).ready(function() { 
-            textLogoHeader
-            .add({
-                targets: '.header-letter',
-                opacity: 1,
-                translateY: [-1000,0],
-            })
-
-            
-        });
-
-
-        function animationToggleNavText() {
- 
-            if ( 0 == ta) {
-                //console.log("if statment detected")
-                textLogo.play();
-                ta = 1;
-            }else {
-                //do nothing
-            }       
-        };
-        function animationToggleHeadText() {
- 
-            if ( 0 == tah) {
-                //console.log("if statment detected")
-                textLogoHeader.play();
-                tah = 1;
-            }else {
-                //do nothing
-            }       
-        };        
-
-        $(window).scroll(function() {
-            var scroll = $(this).scrollTop()
-            if ( scroll >= $('section, #main').offset().top) {
-                $('.nav-primary').removeClass("nav-header-main");
-                $('.nav-primary > .grid-container ').removeClass("fluid");
-
-                animationToggleNavText();
-                tah = 0;
-  
-                    //anime.timeline({loop: false})
-                    //.add({
-                    //    targets: '.logo-text .letter',
-                    //    opacity: 1,
-                    //    translateY: [-200,0],
-                    //    //easing: "cubicBezier(1.000, 0.330, 0.020, 0.850)",
-                    //    easing: "spring(0.7, 100, 10, 0)",
-                    //    duration: 400,
-                    //    delay: anime.stagger(30),
-                    //    autoplay: false
-                    //}).delay("400").pause();       
-
-            }else {
-                $('.nav-primary').addClass("nav-header-main");
-                $('.nav-primary > .grid-container ').addClass("fluid");
-                ta = 0;
-                
-                console.log("test" + scroll)
-                if (scroll > 200) {
-                    console.log("scroll higher than 400");
-                    animationToggleHeadText();
-                }
-            }
-        }); 
-    </script> 
     
     
 </body>

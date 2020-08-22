@@ -24,9 +24,15 @@ body {
 /* 
 Fonts */
 a {
-  color: #5aaadf;
+  $link-colour: #5aaadf;
+  color: $link-colour;
   font-weight: 600;
   text-decoration: none;
+  &:hover {
+    $link-hover: darken($link-colour, 10%);
+    color: $link-hover;
+    border-block-end-color: $link-hover !important;
+  }
 }
 
 /* Classes: condensed + regular */
@@ -920,14 +926,51 @@ code {
 
 #fourOfour {
     main {
-    height: 93vh;
+    min-height: 93vh;
     max-width: 960px;
     margin: 0 auto;
-    padding-top: 2em;
-    font-size: 4rem
+    padding: 2em 1em;
+    font-size: 4rem;
+    h1 {
+      margin-block-start: 0.43em;
+    }
+    a#mehkettle {
+      border-block-end: #5aaadf 0.15em solid;
+      display: inline-block;
+      transform: scale(1);
+      -webkit-transition-duration: 50ms;
+      transition-duration: 50ms;
+      transition-timing-function: $easing-nav;
+
+      &.kettle-active {
+        color: #000
+      }
+      &:active {
+        transform: scale(0.7);
+      }
+      span {
+        font-size: 0.2em;
+        position: absolute;
+      }
+    }
   }
 }
+#mehkettle-rev {
+  display: none;
+  opacity: 0;
+  position: absolute;
+  top: 10vh;
+  right: 22vw;
+  z-index: -3;
+  width: 670px;
+  height: auto;
+  opacity: 0.7;
+}
 
+figcaption {
+  border-left: #01579B solid 12.5px;
+  padding-left: 20px;
+}
 
 
 /* Media queries:
@@ -981,6 +1024,11 @@ code {
 
     }
   }
+  #mehkettle-rev {
+    top: 10vh;
+    right: 2vw;
+    width: 250px;
+  }
 }
 
 /* Medium and up */
@@ -1028,6 +1076,7 @@ code {
   .logo-text {
     display: none;
   }
+
 }
 
 /* Large and up */

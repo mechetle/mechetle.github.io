@@ -23,6 +23,11 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  color: #2f94d7;
+  border-block-end-color: #2f94d7 !important;
+}
+
 /* Classes: condensed + regular */
 body, p, span, a, b, i, em, small, strong, sub, sup, ins, del, mark {
   font-family: 'Jost', sans-serif;
@@ -827,11 +832,59 @@ code {
 }
 
 #fourOfour main {
-  height: 93vh;
+  min-height: 93vh;
   max-width: 960px;
   margin: 0 auto;
-  padding-top: 2em;
+  padding: 2em 1em;
   font-size: 4rem;
+}
+
+#fourOfour main h1 {
+  -webkit-margin-before: 0.43em;
+          margin-block-start: 0.43em;
+}
+
+#fourOfour main a#mehkettle {
+  -webkit-border-after: #5aaadf 0.15em solid;
+          border-block-end: #5aaadf 0.15em solid;
+  display: inline-block;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition-duration: 50ms;
+  transition-duration: 50ms;
+  -webkit-transition-timing-function: cubic-bezier(0.91, 0.13, 0.06, 0.87);
+          transition-timing-function: cubic-bezier(0.91, 0.13, 0.06, 0.87);
+}
+
+#fourOfour main a#mehkettle.kettle-active {
+  color: #000;
+}
+
+#fourOfour main a#mehkettle:active {
+  -webkit-transform: scale(0.7);
+          transform: scale(0.7);
+}
+
+#fourOfour main a#mehkettle span {
+  font-size: 0.2em;
+  position: absolute;
+}
+
+#mehkettle-rev {
+  display: none;
+  opacity: 0;
+  position: absolute;
+  top: 10vh;
+  right: 22vw;
+  z-index: -3;
+  width: 670px;
+  height: auto;
+  opacity: 0.7;
+}
+
+figcaption {
+  border-left: #01579B solid 12.5px;
+  padding-left: 20px;
 }
 
 /* Media queries:
@@ -874,6 +927,11 @@ code {
   }
   header #me-mechetle {
     font-size: 0.40em;
+  }
+  #mehkettle-rev {
+    top: 10vh;
+    right: 2vw;
+    width: 250px;
   }
 }
 
