@@ -75,6 +75,7 @@
             <div class="navigation-button-wrap">
                 <div class="nav-breaking-percau">
                     <div class="nav-break">
+                        <div class="nav-hamburger"><span style="font-size: 0.5em; ">icon goes here</span></div>
                         <div class="nav-break-its-free-real-estate">
                             <ul class="links-1 nav-link-section">
                                 <li><a href="#" class="nav-button">Home</a></li>
@@ -259,6 +260,18 @@
         }
     });       
 
+    let hmbgrStat = 0;
+    $(".nav-hamburger").click(function () {
+        $(".nav-primary").toggleClass("active");
+        $("html").toggleClass("noScroll");
+        hmbgrStat ^= 1;
+        if (hmbgrStat == 0) {
+            focusOffNavHead();
+        } else {
+            focusOnNavHead();
+        }
+        
+    });
 
     </script>
     
@@ -278,7 +291,20 @@
             $('.nav-megaDropdown-bg').attr( "style", "display: block !important;" );
         });  
     
-
+        function focusOnNavHead() {
+            $('.nav-header-main .navigation-button-wrap').attr( "style", "box-shadow: none" );
+            $('.nav-header-main .logo-space img').attr( "style", "transform: translateY(-3px) scale(0.5);" );
+            $('header').attr( "style", "outline: rgba(11,35,61,0.025) 62px solid; outline-offset: -60px;" );
+            $('#header-wrapper').attr( "style", "transform: scale(0.8); opacity: 0.2;" );
+            $('.border-top-naturalize, .border-bottom-naturalize').attr( "style", "background:rgba(11,35,61,0.025)" );            
+        }
+        function focusOffNavHead() {
+            $('.nav-header-main .navigation-button-wrap').removeAttr("style");
+            $('.nav-header-main .logo-space img').removeAttr("style");
+            $('header').removeAttr("style");
+            $('.border-top-naturalize, .border-bottom-naturalize').removeAttr( "style" ); //these need to be readjusted
+            $('#header-wrapper').removeAttr( "style" )
+        }
 
         $('.nav-megaDropdown-bg').parent().hover(
             function(e){ 
@@ -288,11 +314,7 @@
                     $('.navbar-dropdown-wrap').show( 0, function(){
                         $(this).addClass("nav-drop-hover");
                         $('.nav-megaDropdown-bg').attr( "style", "display: block !important;" );
-                        $('.nav-header-main .navigation-button-wrap').attr( "style", "box-shadow: none" );
-                        $('.nav-header-main .logo-space img').attr( "style", "transform: translateY(-3px) scale(0.5);" );
-                        $('header').attr( "style", "outline: rgba(11,35,61,0.025) 62px solid; outline-offset: -60px;" );
-                        $('#header-wrapper').attr( "style", "transform: scale(0.8); opacity: 0.2;" );
-                        $('.border-top-naturalize, .border-bottom-naturalize').attr( "style", "background:rgba(11,35,61,0.025)" );
+                        focusOnNavHead();
                     });
     
                     
@@ -303,11 +325,7 @@
             function(e){ 
                 $('.nav-megaDropdown-bg').parent().removeClass("nav-drop-hover-wrapper"); //for link underline
                 $('.navbar-dropdown-wrap').removeClass("nav-drop-hover").toggleClass("transition-begone");
-                $('.nav-header-main .navigation-button-wrap').removeAttr("style");
-                $('.nav-header-main .logo-space img').removeAttr("style");
-                $('header').removeAttr("style");
-                $('.border-top-naturalize, .border-bottom-naturalize').removeAttr( "style" ); //these need to be readjusted
-                $('#header-wrapper').removeAttr( "style" )
+                focusOffNavHead();
                 $(".transition-begone").on("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd",
                 function(e){
                     //$(this).fadeOut(200);
@@ -335,6 +353,7 @@
             targets: '.logo-text .letter',
             opacity: 1,
             translateY: [-200,0],
+            translateZ: 0
         })
 
         let ta = 0;
@@ -363,7 +382,7 @@
 
         function animationToggleNavText() {
  
-            if ( 0 == ta) {
+            if ( ta == 0) {
                 //console.log("if statment detected")
                 textLogo.play();
                 ta = 1;
