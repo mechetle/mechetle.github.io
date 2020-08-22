@@ -641,10 +641,11 @@ header {
           transition-delay: 0.1s;
   -webkit-transition-timing-function: cubic-bezier(0.88, 0.13, 0.13, 0.96);
           transition-timing-function: cubic-bezier(0.88, 0.13, 0.13, 0.96);
+  position: relative;
 }
 
 header #header-wrapper {
-  height: 100vh;
+  height: calc(100vh - 66px);
   width: 100%;
   opacity: 1;
   -webkit-transform: scale(1);
@@ -679,8 +680,8 @@ header .border-top-naturalize {
 }
 
 header .border-bottom-naturalize {
-  bottom: 0;
-  position: absolute;
+  position: -webkit-sticky;
+  position: sticky;
   z-index: 3;
   width: 100%;
   height: 33px;
@@ -720,6 +721,10 @@ header .text-wrapper h1 {
 
 header .text-wrapper h1 span > span {
   display: inline-block;
+}
+
+.border-bottom-naturalize {
+  bottom: 0;
 }
 
 section:first-of-type {
@@ -1008,6 +1013,9 @@ figcaption {
   header {
     outline: #01579B 20px solid;
     outline-offset: -20px;
+  }
+  header #header-wrapper {
+    height: calc(100vh - 40px);
   }
   header .border-bottom-naturalize, header .border-top-naturalize {
     height: 20px;
