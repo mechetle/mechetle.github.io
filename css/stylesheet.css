@@ -422,7 +422,6 @@ ul li ul li {
           transform: translateX(-29px);
   font-size: 1.3em;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
   font-family: 'sen', sans-serif;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -431,8 +430,6 @@ ul li ul li {
 }
 
 .logo-text .letter {
-  display: inline-block;
-  line-height: 1em;
   -webkit-transition: none;
   transition: none;
   font-family: 'sen', sans-serif !important;

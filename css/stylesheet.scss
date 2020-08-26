@@ -537,14 +537,14 @@ ul li ul li {
   transform: translateX(-29px);
   font-size: 1.3em;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  //letter-spacing: 0.1em;
   font-family: 'sen', sans-serif;
   display: inline-flex;
   opacity: 1;
 
   .letter {
-    display: inline-block;
-    line-height: 1em;
+    // display: inline-block;
+    // line-height: 1em; 
     transition: none;
     font-family: 'sen', sans-serif !important;
     transform: translateZ(0);
