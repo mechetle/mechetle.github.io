@@ -15,6 +15,25 @@ body {
   background: #fff;
 }
 
+body::-webkit-scrollbar {
+  width: 10px;
+  /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: #0b233d0f;
+  /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #d81b60;
+  /* color of the scroll thumb */
+  border-radius: none;
+  /* roundness of the scroll thumb */
+  border: none;
+  /* creates padding around scroll thumb */
+}
+
 .grid-container {
   max-width: 160rem;
 }
@@ -80,24 +99,40 @@ small {
   font-weight: 700;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  text-transform: uppercase;
+p {
+  margin-bottom: 1.15rem;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 2.75rem 0 2.5rem;
+  font-family: 'Sen', sans-serif;
   font-weight: 900;
-  font-family: 'sen', Arial, Helvetica, sans-serif;
+  line-height: 0.925;
+  text-transform: uppercase;
 }
 
 h1 {
-  font-size: 2.8em;
-  line-height: 1.3em;
+  font-size: 4.209em;
 }
 
 h2 {
-  line-height: 1.4em;
+  font-size: 3.157em;
+}
+
+h3 {
+  font-size: 2.369em;
+}
+
+h4 {
+  font-size: 1.777em;
+}
+
+h5 {
+  font-size: 1.333em;
+}
+
+small, .text_small {
+  font-size: 0.75em;
 }
 
 .upper {
@@ -724,13 +759,63 @@ header .text-wrapper h1 span > span {
   bottom: 0;
 }
 
-section:first-of-type {
+section {
+  height: 100vh;
+  padding-top: 6em;
+}
+
+section section:first-of-type {
   height: 100vh;
   /*background: url(../img/bg-test.png);*/
 }
 
 .test {
   background: #000;
+}
+
+.beta-on h2 {
+  display: none;
+}
+
+.beta-on p {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+  background: #d81b60;
+  padding: 0.9em 2em;
+  position: relative;
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+  margin-top: 15px;
+  font-weight: 600;
+  border-radius: 0.15em;
+  border-bottom-color: #A33B81;
+  border-bottom-style: solid;
+  border-bottom-width: 10px;
+  -webkit-transition-duration: 0.12s;
+          transition-duration: 0.12s;
+  -webkit-transition-timing-function: cubic-bezier(0.79, 0.11, 0.28, 0.97);
+          transition-timing-function: cubic-bezier(0.79, 0.11, 0.28, 0.97);
+}
+
+button.small-button {
+  padding: 0.3em 1.6em;
+}
+
+button:hover {
+  -webkit-transform: translateY(-10px);
+          transform: translateY(-10px);
+  border-bottom-width: 20px;
+}
+
+button:active {
+  -webkit-transform: translateY(10px);
+          transform: translateY(10px);
+  border-bottom-width: 0;
+  -webkit-transition-duration: 50ms;
+          transition-duration: 50ms;
 }
 
 /*
@@ -855,7 +940,7 @@ code {
   max-width: 960px;
   margin: 0 auto;
   padding: 2em 1em;
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 #fourOfour main h1 {

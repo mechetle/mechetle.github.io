@@ -14,10 +14,9 @@
     <script type="application/ld+json">
         {
           "@context": "http://schema.org",
-          "@type": "Person",
+          "@type" : "Organization",
           "name": "Mechetle",
           "url": "http://mechetle.ml",
-          "address": "Melbourne, Victoria, Australia",
           "sameAs": [
             "https://www.youtube.com/mechetle"
             "https://www.youtube.com/channel/UCC7AWezpqHe4_lTLJksuVaw",
@@ -64,9 +63,10 @@
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/stylesheet.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Sen:wght@700;800&display=swap" rel="stylesheet">
-    
+
 </head>
 <body>
+    
     <div class="nav-primary navigation nav-header-main">
         <div class="grid-container fluid">
                 <div class="logo-space logo-anim-nav"><a href="#" alt="Home">
@@ -88,7 +88,7 @@
                                     <div class="grid-container">
                                         <div class="grid-x">
                                             <div class="cell medium-9 large-7 navbar-dropdown-wrap">
-                                                <h2>Portfolio</h2>
+                                                <h4>Portfolio</h4>
                                                 <ul class="nav-dropdown">
                                             
                                                     <li><a href="#">Graphic design</a></li>
@@ -151,14 +151,26 @@
         <div class="border-bottom-naturalize"></div>
     </header>
 
-    <section></section>
+    <section>
+        <div class="grid-container">
+            <div class="grid-x">
+                <div class="cell medium-6 large-3" id="beta-nortify">
+                    <h2>Lights are still being installed</h2>
+                    <p>Some in-dev features are disabled because they are incomplete, or obviously still in development and may not be working as intended.<br><br> <i>Enter beta mode to get a sneak peak on what I'm working on!</i></p>
+                    <button class="button" id="joinBeta" onclick="joinBeta()">Enter beta</button> 
+            
+            </div>
+
+        </div>   
+
+    </section>
 
     <footer>
         <div class="grid-container">
             <div class="grid-x">
                 <div class="cell medium-6 large-3 ftr-fst">
-                    <div class="footer-widget">
-                        <h3>Other Pages</h3>
+                    <div class="footer-widget other-pages">
+                        <h5>Other Pages</h5>
                         <ul>
                             <li><a href="/faq">Frequently asked questions</a></li>
                             <li><a href="https://web.archive.org/web/20181127191854/https://mechetle.ml/">Archived site</a></li>
@@ -176,7 +188,7 @@
                 </div>
                 <div class="cell medium-6 large-3">
                     <div class="footer-widget">
-                        <h3>Social Media</h3>
+                        <h5>Social Media</h5>
                         <ul>
                             <li><a href="#discordtag" class="discordmodaltoggle"><i class="fab fa-discord"></i>Discord</a></li>
                             <li><a href="https://www.instagram.com/mechetle/"><i class="fab fa-instagram"></i>Instagram</a></li>
@@ -185,6 +197,9 @@
 
                             
                         </ul>
+
+                        <button class="button small-button" id="leaveBeta" onclick="leaveBeta()">Leave Beta</button>
+
                     </div>
                 </div>
 
@@ -217,11 +232,73 @@
         <a class="modal-bg"></a>
     </div>    
     </footer>
+    <script>
+        let beta = localStorage.getItem("beta"),
+            header = document.getElementsByTagName("header")[0],
+            navButtons = document.getElementsByClassName("navigation-button-wrap")[0],
+            otherPages = document.getElementsByClassName("other-pages")[0];
+
+        // if (localStorage.getItem("beta") === null) {
+        //     console.log("beta item doesn't even exits")
+        // }
+            
+        if (typeof(Storage) !== "undefined") {
+            let join = document.getElementById("joinBeta"),
+                leave = document.getElementById("leaveBeta"),
+                alert = document.getElementById("beta-nortify");
+
+            function joinBeta() {
+                console.info("Join beta button pressed")
+                localStorage.setItem("beta", "on");
+                setTimeout(function(){ window.location.reload(false); }, 100);
+            }
+            function leaveBeta() {
+                console.info("Leave beta button pressed")
+                localStorage.removeItem("beta");
+                setTimeout(function(){ window.location.reload(false); }, 100);
+            }
+
+            switch (beta) {
+                // case null:
+                // break;
+
+                case "on":
+                    // header.style.display = "block"
+                    // navButtons.style.display = "inline-flex";
+                    // otherPages.style.display = "block";
+                    leave.style.display = "inline-block";
+                    join.style.display = "none";
+                    console.log("Beta status: on");
+                    alert.classList.add("beta-on");
+                break;
+
+                // case "wait":
+                //     header.style.display = "none";
+                //     navButtons.style.display = "none";
+                //     otherPages.style.display = "none";
+                //     console.log("Beta status: off");
+                // break;
+
+                default:
+                    header.style.display = "none";
+                    navButtons.style.display = "none";
+                    otherPages.style.display = "none";
+                    leave.style.display = "none";
+                    join.style.display = "inline-block";
+                    console.log("Beta status: not set");
+                    alert.classList.remove("beta-on");
+            }
+        } else {
+            // document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+        }        
+    </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/094d2c489e.js" crossorigin="anonymous"></script>
     <script src="js/anime.min.js"></script>
     <script src="js/rellax.min.js"></script>
+
+
 
     <script>
 
@@ -258,6 +335,12 @@
     $(document).ready(function() {
         if (window.location.href.indexOf("#discordtag") > -1) {
             ToggleDiscordModal();
+        } else if (window.location.href.indexOf("?beta") > -1) {
+            if (beta === null) {
+                joinBeta();
+            } else {
+                // do nothing
+            }
         }
     });       
 
@@ -357,8 +440,8 @@
             translateZ: 0
         })
 
-        let ta = 0;
-        let tah = 0;
+        let ta = 0,
+            tah = 0;
         
         //// text logo header in
         var textLogoHeader = anime.timeline({
@@ -403,7 +486,8 @@
         };        
 
         $(window).scroll(function() {
-            var scroll = $(this).scrollTop()
+            var scroll = $(this).scrollTop();
+
             if ( scroll >= $('section, #main').offset().top) {
                 $('.nav-primary').removeClass("nav-header-main");
                 $('.nav-primary > .grid-container ').removeClass("fluid");
@@ -423,7 +507,7 @@
                     //    autoplay: false
                     //}).delay("400").pause();       
 
-            }else {
+            } else {
                 $('.nav-primary').addClass("nav-header-main");
                 $('.nav-primary > .grid-container ').addClass("fluid");
                 ta = 0;
