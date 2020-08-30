@@ -1096,7 +1096,11 @@ Modals:
     -webkit-transform: translateY(4.7rem);
             transform: translateY(4.7rem);
   }
+  .grid-container.fluid .nav-megaDropdown-bg {
+    width: calc(100vw - 1.5em);
+  }
   .nav-megaDropdown-bg {
+    width: calc(100vw - 2em);
     height: 0;
     margin-bottom: 0.3em;
     position: relative;
@@ -1106,7 +1110,7 @@ Modals:
             transform: translate(-115%, 0.025em);
     margin-top: 0.025em;
     will-change: transform, height, opacity;
-    max-width: 79vw;
+    margin-right: 5em;
   }
   .nav-megaDropdown-bg.hover-area {
     height: 0px !important;
