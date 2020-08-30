@@ -82,12 +82,12 @@
                             <ul class="links-1 nav-link-section">
                                 <li><a href="#" class="nav-button">Home</a></li>
                                 <li><a href="#" class="nav-button">About Me</a></li>
-                                <li><a href="#" class="nav-button">Portfolio <i class="fas fa-caret-down"></i></a>
+                                <li><a href="#Portfolio" class="nav-button">Portfolio <i class="fas fa-caret-down"></i></a>
                                 <div class="fix-shadow"></div>
                                 <div class="nav-megaDropdown-bg">
                                     <div class="grid-container">
                                         <div class="grid-x">
-                                            <div class="cell medium-9 large-7 navbar-dropdown-wrap">
+                                            <div class="cell small-12 medium-9 large-7 navbar-dropdown-wrap">
                                                 <h4>Portfolio</h4>
                                                 <ul class="nav-dropdown">
                                             
@@ -98,7 +98,7 @@
                                                     
                                                 </ul>
                                             </div>
-                                            <div class="cell medium-3 large-5">
+                                            <div class="cell medium-3 large-5 hide-for-small-only">
                                                 <div class="dropdown-image" style="background-image:url(img/Arts-Talk.jpg)">
                                                 </div>
                                             </div>   
@@ -302,60 +302,60 @@
 
     <script>
 
-    var rellax = new Rellax('.rellax', {
-        //center: true,
-        vertical: true,
-        horizontal: false
-    });
+        var rellax = new Rellax('.rellax', {
+            //center: true,
+            vertical: true,
+            horizontal: false
+        });
+            
+        document.getElementById("year").innerHTML = new Date().getFullYear();
         
-    document.getElementById("year").innerHTML = new Date().getFullYear();
-    
-    // Wrap every letter in a span
-    var textWrapper = document.querySelector('.logo-text');
-    //var textWrapperTwo = document.querySelector('#me-mechetle .rellax');
+        // Wrap every letter in a span
+        var textWrapper = document.querySelector('.logo-text');
+        //var textWrapperTwo = document.querySelector('#me-mechetle .rellax');
 
-    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-    //textWrapperTwo.innerHTML = textWrapperTwo.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+        //textWrapperTwo.innerHTML = textWrapperTwo.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
-    $( "#me-mechetle > .rellax" ).slice(2).contents().wrap( "<span class='header-letter'></span>" );
-    
+        $( "#me-mechetle > .rellax" ).slice(2).contents().wrap( "<span class='header-letter'></span>" );
+        
 
-    //rewrite this (ported from old site)
-    function ToggleDiscordModal() {
-        $(".discordmodal").fadeToggle("3500", "swing", function () {});
-    }
+        //rewrite this (ported from old site)
+        function ToggleDiscordModal() {
+            $(".discordmodal").fadeToggle("3500", "swing", function () {});
+        }
 
-    $(".discordmodaltoggle").click(function () {
-        ToggleDiscordModal();
-    });
-    $(".modal-bg").click(function () {
-        ToggleDiscordModal();
-    }); 
-    
-    $(document).ready(function() {
-        if (window.location.href.indexOf("#discordtag") > -1) {
+        $(".discordmodaltoggle").click(function () {
             ToggleDiscordModal();
-        } else if (window.location.href.indexOf("?beta") > -1) {
-            if (beta === null) {
-                joinBeta();
-            } else {
-                // do nothing
-            }
-        }
-    });       
-
-    let hmbgrStat = 0;
-    $(".nav-hamburger").click(function () {
-        $(".nav-primary").toggleClass("active");
-        $("html").toggleClass("noScroll");
-        hmbgrStat ^= 1;
-        if (hmbgrStat == 0) {
-            focusOffNavHead();
-        } else {
-            focusOnNavHead();
-        }
+        });
+        $(".modal-bg").click(function () {
+            ToggleDiscordModal();
+        }); 
         
-    });
+        $(document).ready(function() {
+            if (window.location.href.indexOf("#discordtag") > -1) {
+                ToggleDiscordModal();
+            } else if (window.location.href.indexOf("?beta") > -1) {
+                if (beta === null) {
+                    joinBeta();
+                } else {
+                    // do nothing
+                }
+            }
+        });       
+
+        let hmbgrStat = 0;
+        $(".nav-hamburger").click(function () {
+            $(".nav-primary").toggleClass("active");
+            $("html").toggleClass("noScroll");
+            hmbgrStat ^= 1;
+            if (hmbgrStat == 0) {
+                focusOffNavHead();
+            } else {
+                focusOnNavHead();
+            }
+            
+        });
 
     </script>
     
@@ -372,7 +372,7 @@
             $('.navigation .grid-container').delay(400).attr( "style", "opacity: 1" );
             $('header .text-wrapper').delay(1700).attr( "style", "opacity: 1" );
             $('.navbar-dropdown-wrap').hide();
-            $('.nav-megaDropdown-bg').attr( "style", "display: block !important;" );
+            $('.nav-megaDropdown-bg').attr( "style", "display: block" );
         });  
     
         function focusOnNavHead() {
@@ -388,18 +388,26 @@
             $('header').removeAttr("style");
             $('.border-top-naturalize, .border-bottom-naturalize').removeAttr( "style" ); //these need to be readjusted
             $('#header-wrapper').removeAttr( "style" )
-        }
+        }          
 
+        var mq = window.matchMedia( "(max-width: 39.9375em)" );
+            
         $('.nav-megaDropdown-bg').parent().hover(
+
             function(e){ 
                 //console.log('Hovered');
-                
-    
-                    $('.navbar-dropdown-wrap').show( 0, function(){
-                        $(this).addClass("nav-drop-hover");
-                        $('.nav-megaDropdown-bg').attr( "style", "display: block !important;" );
+                $('.navbar-dropdown-wrap').show( 0, function(){
+                    $(this).addClass("nav-drop-hover");
+                    $('.nav-megaDropdown-bg').attr( "style", "display: block" );
+                    if (mq.matches) {
+                        // window width is mobile
+                    }
+                    else {
+                        // window width is not mobile
                         focusOnNavHead();
-                    });
+                    }                    
+                    
+                });
     
                     
                 $(this).addClass("nav-drop-hover-wrapper"); //for link underline
@@ -409,7 +417,14 @@
             function(e){ 
                 $('.nav-megaDropdown-bg').parent().removeClass("nav-drop-hover-wrapper"); //for link underline
                 $('.navbar-dropdown-wrap').removeClass("nav-drop-hover").toggleClass("transition-begone");
-                focusOffNavHead();
+                if (mq.matches) {
+                        // window width is mobile
+                    }
+                else {
+                        // window width is not mobile
+                        focusOffNavHead();
+                }     
+                
                 $(".transition-begone").on("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd",
                 function(e){
                     //$(this).fadeOut(200);
