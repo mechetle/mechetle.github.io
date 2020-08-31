@@ -1138,6 +1138,7 @@ Modals:
     display: flex;
     flex-flow: column;
     padding-left: 2em;
+    //overflow-x: hidden;
   }
   .active .grid-container .nav-break-its-free-real-estate {
     transform: translate(-85vw, 0rem);
@@ -1186,7 +1187,7 @@ Modals:
     transform: translate(-115%, 0.025em);
     margin-top: 0.025em;
     will-change: transform, height, opacity;
-    
+    transition-duration: 0.5s; //should prob disable
     margin-right:5em;
 
     &.hover-area {
@@ -1206,7 +1207,8 @@ Modals:
   .navbar-dropdown-wrap {
     padding-left: 8%;
     transform: translateX(-20%);
-    transition-delay: 0.2s;  
+    // transition-delay: 0.2s;  
+    transition-delay: 0.1s;  
     will-change: transform, opacity;
   }
 

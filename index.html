@@ -64,6 +64,8 @@
     <link rel="stylesheet" href="css/stylesheet.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Sen:wght@700;800&display=swap" rel="stylesheet">
 
+    <script src="https://kit.fontawesome.com/094d2c489e.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
     
@@ -99,7 +101,7 @@
                                                 </ul>
                                             </div>
                                             <div class="cell medium-3 large-5 hide-for-small-only">
-                                                <div class="dropdown-image" style="background-image:url(img/Arts-Talk.jpg)">
+                                                <div class="dropdown-image"> <!-- add background image css inline here-->
                                                 </div>
                                             </div>   
                                         </div>
@@ -237,10 +239,6 @@
             header = document.getElementsByTagName("header")[0],
             navButtons = document.getElementsByClassName("navigation-button-wrap")[0],
             otherPages = document.getElementsByClassName("other-pages")[0];
-
-        // if (localStorage.getItem("beta") === null) {
-        //     console.log("beta item doesn't even exits")
-        // }
             
         if (typeof(Storage) !== "undefined") {
             let join = document.getElementById("joinBeta"),
@@ -294,7 +292,6 @@
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://kit.fontawesome.com/094d2c489e.js" crossorigin="anonymous"></script>
     <script src="js/anime.min.js"></script>
     <script src="js/rellax.min.js"></script>
 
@@ -310,7 +307,7 @@
             
         document.getElementById("year").innerHTML = new Date().getFullYear();
         
-        // Wrap every letter in a span
+        // Wrap every letter in logo-text with a span
         var textWrapper = document.querySelector('.logo-text');
         //var textWrapperTwo = document.querySelector('#me-mechetle .rellax');
 
@@ -320,27 +317,18 @@
         $( "#me-mechetle > .rellax" ).slice(2).contents().wrap( "<span class='header-letter'></span>" );
         
 
-        //rewrite this (ported from old site)
         function ToggleDiscordModal() {
             $(".discordmodal").fadeToggle("3500", "swing", function () {});
         }
-
-        $(".discordmodaltoggle").click(function () {
+        $(".discordmodaltoggle, .modal-bg").click(function () {
             ToggleDiscordModal();
         });
-        $(".modal-bg").click(function () {
-            ToggleDiscordModal();
-        }); 
         
         $(document).ready(function() {
             if (window.location.href.indexOf("#discordtag") > -1) {
                 ToggleDiscordModal();
             } else if (window.location.href.indexOf("?beta") > -1) {
-                if (beta === null) {
-                    joinBeta();
-                } else {
-                    // do nothing
-                }
+                if (beta === null) joinBeta(); 
             }
         });       
 
@@ -349,12 +337,7 @@
             $(".nav-primary").toggleClass("active");
             $("html").toggleClass("noScroll");
             hmbgrStat ^= 1;
-            if (hmbgrStat == 0) {
-                focusOffNavHead();
-            } else {
-                focusOnNavHead();
-            }
-            
+            hmbgrStat == 0 ? focusOffNavHead() : focusOnNavHead(); // if hamburger menu status is 0 then do those functions lol.
         });
 
     </script>
@@ -365,7 +348,6 @@
         //        $('.navigation .grid-container');
         //    });
         //});
-
 
         $(document).ready(function() {
             console.log('prepared dropdown nav thingo');
@@ -390,7 +372,7 @@
             $('#header-wrapper').removeAttr( "style" )
         }          
 
-        var mq = window.matchMedia( "(max-width: 39.9375em)" );
+        var mobileRes = window.matchMedia( "(max-width: 39.9375em)" );
             
         $('.nav-megaDropdown-bg').parent().hover(
 
@@ -399,7 +381,7 @@
                 $('.navbar-dropdown-wrap').show( 0, function(){
                     $(this).addClass("nav-drop-hover");
                     $('.nav-megaDropdown-bg').attr( "style", "display: block" );
-                    if (mq.matches) {
+                    if (mobileRes.matches) {
                         // window width is mobile
                     }
                     else {
@@ -417,7 +399,7 @@
             function(e){ 
                 $('.nav-megaDropdown-bg').parent().removeClass("nav-drop-hover-wrapper"); //for link underline
                 $('.navbar-dropdown-wrap').removeClass("nav-drop-hover").toggleClass("transition-begone");
-                if (mq.matches) {
+                if (mobileRes.matches) {
                         // window width is mobile
                     }
                 else {
@@ -480,24 +462,16 @@
 
 
         function animationToggleNavText() {
- 
             if ( ta == 0) {
-                //console.log("if statment detected")
                 textLogo.play();
                 ta = 1;
-            }else {
-                //do nothing
-            }       
+            }     
         };
         function animationToggleHeadText() {
- 
             if ( 0 == tah) {
-                //console.log("if statment detected")
                 textLogoHeader.play();
                 tah = 1;
-            }else {
-                //do nothing
-            }       
+            }     
         };        
 
         $(window).scroll(function() {
@@ -508,28 +482,16 @@
                 $('.nav-primary > .grid-container ').removeClass("fluid");
 
                 animationToggleNavText();
-                tah = 0;
-  
-                    //anime.timeline({loop: false})
-                    //.add({
-                    //    targets: '.logo-text .letter',
-                    //    opacity: 1,
-                    //    translateY: [-200,0],
-                    //    //easing: "cubicBezier(1.000, 0.330, 0.020, 0.850)",
-                    //    easing: "spring(0.7, 100, 10, 0)",
-                    //    duration: 400,
-                    //    delay: anime.stagger(30),
-                    //    autoplay: false
-                    //}).delay("400").pause();       
+                tah = 0;     
 
             } else {
                 $('.nav-primary').addClass("nav-header-main");
                 $('.nav-primary > .grid-container ').addClass("fluid");
                 ta = 0;
+                // console.log("test" + scroll);
                 
-                console.log("test" + scroll)
                 if (scroll > 200) {
-                    console.log("scroll higher than 400");
+                    // console.log("scroll higher than 400");
                     animationToggleHeadText();
                 }
             }
