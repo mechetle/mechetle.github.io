@@ -1,0 +1,40 @@
+/*
+Modals:
+*/
+//discord modal 
+.discordmodal {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background: -webkit-linear-gradient(rgba(0, 0, 0, 0.5) 35%, rgba(0, 0, 0, 0.9) 95%);
+  background: -moz-linear-gradient(rgba(0, 0, 0, 0.5) 35%, rgba(0, 0, 0, 0.9) 95%);
+  background: -o-linear-gradient(rgba(0, 0, 0, 0.5) 35%, rgba(0, 0, 0, 0.9) 95%);
+  background: linear-gradient(rgba(0, 0, 0, 0.5) 35%, rgba(0, 0, 0, 0.9) 95%);
+}
+
+.modal-bg {
+  z-index: 99998;
+  height: 100vh;
+  width: 100vw;
+  display: block;
+  cursor: default;
+}
+
+.discordmodalwrap {
+  background: white;
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  padding: 2em;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-body {
+  padding: 0 10vh 10vh;
+  text-align: center;
+}

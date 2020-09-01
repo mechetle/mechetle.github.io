@@ -256,61 +256,62 @@
     </footer>
 
     <script>
-        let beta = localStorage.getItem("beta"),
-            header = document.getElementsByTagName("header")[0],
-            navButtons = document.getElementsByClassName("navigation-button-wrap")[0],
-            otherPages = document.getElementsByClassName("other-pages")[0];
+        // let header = document.getElementsByTagName("header")[0],
+        //     navButtons = document.getElementsByClassName("navigation-button-wrap")[0],
+        //     otherPages = document.getElementsByClassName("other-pages")[0];
+        var beta = localStorage.getItem("beta");
 
         if (typeof (Storage) !== "undefined") {
-            let join = document.getElementById("joinBeta"),
+            // Things to hide during beta
+            const hideByFacade = document.querySelectorAll("header, .navigation-button-wrap, .other-pages");
+
+            const join = document.getElementById("joinBeta"),
                 leave = document.getElementById("leaveBeta"),
                 alert = document.getElementById("beta-notify");
 
             function joinBeta() {
-                console.info("Join beta button pressed")
+                // console.info("Join beta button pressed")
                 localStorage.setItem("beta", "on");
                 setTimeout(function () {
                     window.location.reload(false);
                 }, 100);
             }
-
             function leaveBeta() {
-                console.info("Leave beta button pressed")
+                // console.info("Leave beta button pressed")
                 localStorage.removeItem("beta");
                 setTimeout(function () {
                     window.location.reload(false);
                 }, 100);
             }
+            function waitForRelease() {
+                localStorage.setItem("beta", "wait");
+            }
 
             switch (beta) {
-                // case null:
-                // break;
-
                 case "on":
-                    // header.style.display = "block"
-                    // navButtons.style.display = "inline-flex";
-                    // otherPages.style.display = "block";
+                    //beta notifier stuff
                     leave.style.display = "inline-block";
                     join.style.display = "none";
                     console.log("Beta status: on");
+
                     alert.classList.add("beta-on");
                     break;
 
-                    // case "wait":
-                    //     header.style.display = "none";
-                    //     navButtons.style.display = "none";
-                    //     otherPages.style.display = "none";
-                    //     console.log("Beta status: off");
-                    // break;
+                case "wait":
+                    alert.querySelector("h2").innerHTML = "Hello again! Still developing on this."; 
+                    break;
 
-                default:
-                    header.style.display = "none";
-                    navButtons.style.display = "none";
-                    otherPages.style.display = "none";
+                default: //during facade (if not "signed up")
+                    for (var i = 0; i < hideByFacade.length; i++) {
+                        hideByFacade[i].style.display = "none";
+                    }
+                    //beta notifier stuff
                     leave.style.display = "none";
                     join.style.display = "inline-block";
                     console.log("Beta status: not set");
-                    alert.classList.remove("beta-on");
+
+                 // this might be useless, might remove:
+                 // alert.classList.remove("beta-on");
             }
         } else {
             // document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
@@ -324,6 +325,9 @@
 
 
     <script>
+        //todo:
+        // -> slowly remove jquery
+
         var rellax = new Rellax('.rellax', {
             //center: true,
             vertical: true,
@@ -334,13 +338,9 @@
 
         // Wrap every letter in logo-text with a span
         var textWrapper = document.querySelector('.logo-text');
-        //var textWrapperTwo = document.querySelector('#me-mechetle .rellax');
-
         textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-        //textWrapperTwo.innerHTML = textWrapperTwo.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
         $("#me-mechetle > .rellax").slice(2).contents().wrap("<span class='header-letter'></span>");
-
 
         function ToggleDiscordModal() {
             $(".discordmodal").fadeToggle("3500", "swing", function () {});
@@ -349,11 +349,19 @@
             ToggleDiscordModal();
         });
 
-        $(document).ready(function () {
-            if (window.location.href.indexOf("#discordtag") > -1) {
-                ToggleDiscordModal();
-            } else if (window.location.href.indexOf("?beta") > -1) {
-                if (beta === null) joinBeta();
+        //execute functions from URL
+        function validateURL(str) {
+            let pattern = new RegExp(str); // fragment locator 
+            return !!pattern.test(window.location.href);
+        }        
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            switch (true) {
+                case validateURL("discordtag"):
+                    ToggleDiscordModal();
+                    break;
+                case validateURL("beta"):
+                    if (beta === null) joinBeta();
+                    break;
             }
         });
 

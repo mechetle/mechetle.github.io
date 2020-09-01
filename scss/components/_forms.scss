@@ -1,0 +1,61 @@
+button {
+  //Note to self: This varible affects how high the button goes up when being hovered. 
+  $RiseUp: 10px;
+
+  //$RiseUpBringDown: $RiseUp + 17px; //do not change this varible
+
+  cursor: pointer;
+  background: #d81b60;
+  padding: 0.9em 2em;
+  position: relative;
+  transform-origin: bottom;
+  margin-top: 5px + $RiseUp;
+  font-weight: 600;
+  // border-radius: 0;
+  border-radius: 0.15em;
+  border-bottom-color: #A33B81;
+  border-bottom-style: solid;
+  border-bottom-width: $RiseUp;
+  transition-duration: 0.12s;
+  transition-timing-function: cubic-bezier(0.79, 0.11, 0.28, 0.97);
+
+  &.small-button {
+    padding: 0.3em 1.6em;
+  }
+
+  &:hover {
+    transform: translateY(-$RiseUp);
+    border-bottom-width: $RiseUp * 2;
+
+
+    //&:before {
+    //  // transform: scaleY(0.5);
+    //  transform: translateY($RiseUpBringDown);
+    //}
+  }
+
+  &:active {
+    transform: translateY($RiseUp);
+    border-bottom-width: 0;
+    transition-duration: 50ms;
+
+    //&:before {
+    //  // transform: scaleY(0.5);
+    //  // transform: translateY($RiseUpBringDown);
+    //  transform: scaleY(0);
+    //}
+  }
+
+  //&:before {
+  //  content: '';
+  //  position: absolute;
+  //  width: 100%;
+  //  height: $RiseUpBringDown + 1px;
+  //  bottom: 0;
+  //  left: 0;
+  //  transform: translateY(0.9em);
+  //  z-index: -1;
+  //  background: #A33B81;
+  //  transform-origin: bottom;
+  //}
+}

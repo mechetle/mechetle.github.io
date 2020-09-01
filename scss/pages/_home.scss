@@ -1,0 +1,20 @@
+section {
+  height: 100vh;
+  padding-top: 6em;
+
+  section:first-of-type {
+    height: 100vh;
+
+    /*background: url(../img/bg-test.png);*/
+  }
+}
+
+.beta-on {
+  h2 {
+    display: none;
+  }
+
+  p {
+    display: none;
+  }
+}
