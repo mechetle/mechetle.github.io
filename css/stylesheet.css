@@ -613,6 +613,15 @@ header #swave-wrapper {
   overflow: hidden;
   width: 100%;
 }
+header #swave-wrapper::after {
+  content: "";
+  height: 20vh;
+  width: 100%;
+  position: absolute;
+  box-shadow: inset 0 -53px 35px -35px rgba(11, 35, 61, 0.2);
+  display: block;
+  bottom: 0;
+}
 header #swave-wrapper .rellax:nth-child(2) {
   position: absolute;
   top: 0;
@@ -804,8 +813,8 @@ footer a {
 }
 section {
   height: 100vh;
-  padding-top: 6em;
   position: relative;
+  padding-top: 6em;
 }
 section section:first-of-type {
   height: 100vh;
@@ -813,6 +822,14 @@ section section:first-of-type {
 }
 section#who-am-i {
   padding-top: 14em;
+}
+section #wai-wrapper {
+  background: rgba(255, 255, 255, 0.6);
+  /* outline: rgb(255 255 255) 14em solid; */
+  backdrop-filter: blur(30px) saturate(150%);
+  padding: 5em 4em;
+  border-radius: 0.3em;
+  margin-left: 7.5em;
 }
 
 .beta-on h2 {

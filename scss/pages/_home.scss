@@ -1,16 +1,24 @@
 section {
   height: 100vh;
-  padding-top: 6em;
   position: relative;
+  padding-top: 6em;
 
   section:first-of-type {
     height: 100vh;
-
     /*background: url(../img/bg-test.png);*/
   }
   &#who-am-i {
     padding-top: 14em;
   }
+  #wai-wrapper {
+    background: rgb(255 255 255 / 0.6);
+    /* outline: rgb(255 255 255) 14em solid; */
+    backdrop-filter: blur(30px) saturate(150%);
+    padding: 5em 4em;
+    border-radius: 0.3em;
+    margin-left: 7.5em;
+  }
+
 }
 
 .beta-on {
