@@ -3,12 +3,20 @@ html / wrappers
 */
 html {
   font-size: 58.5%;
-  overflow-x: hidden;
 }
 
 html.noScroll {
   overflow: hidden;
 }
+
+// html, body {
+//   height: 100%;
+//   // overflow-x: hidden;
+//   overscroll-behavior-x: none;
+//   margin: 0;
+// }
+
+//
 
 body {
   font-size: 2rem;
@@ -16,26 +24,6 @@ body {
   font-weight: 400;
   color: #000;
   background: #fff;
-
-  &::-webkit-scrollbar {
-    width: 10px;
-    /* width of the entire scrollbar */
-  }
-
-  &::-webkit-scrollbar-track {
-    background: #0b233d0f;
-    /* color of the tracking area */
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #d81b60;
-    /* color of the scroll thumb */
-
-    border-radius: none;
-    /* roundness of the scroll thumb */
-    border: none;
-    /* creates padding around scroll thumb */
-  }
 }
 
 .grid-container {

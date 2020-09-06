@@ -121,3 +121,23 @@ small,
 .upper {
   text-transform: uppercase;
 }
+
+q {
+  font-size: 1.4em;
+  font-weight: 600;
+  margin-block-start: 1.7em;
+  margin-block-end: 1.7em;
+  display: block;
+  line-height: 1.2em;
+  /* mix-blend-mode: exclusion; */
+  /* color: rgb(255 197 197); */
+  &:after {
+    content: "";
+    position: relative;
+    display: block;
+    background: #01579b;
+    height: 15px;
+    width: 60px;
+    margin-top: 1em;
+  }
+}

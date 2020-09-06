@@ -1,11 +1,15 @@
 section {
   height: 100vh;
   padding-top: 6em;
+  position: relative;
 
   section:first-of-type {
     height: 100vh;
 
     /*background: url(../img/bg-test.png);*/
+  }
+  &#who-am-i {
+    padding-top: 14em;
   }
 }
 

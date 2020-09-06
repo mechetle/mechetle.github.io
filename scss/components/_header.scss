@@ -2,7 +2,7 @@
 Header
 */
 header {
-  height: 100vh;
+  min-height: 100vh;
   background: #fff;
   outline: #01579B 33px solid;
   outline-offset: -33px;
@@ -10,6 +10,35 @@ header {
   transition-delay: 0.1s;
   transition-timing-function: cubic-bezier(0.88, 0.13, 0.13, 0.96);
   position: relative;
+  transition-property: outline, outline-offset;
+
+  #swave-wrapper {
+    position: absolute;
+    top: 0;
+    transition-duration: 0.6s;
+    transition-delay: 0.1s;
+    transition-timing-function: cubic-bezier(0.88, 0.13, 0.13, 0.96);
+    transition-property: filter, opacity, transform;
+    overflow: hidden;
+    width: 100%;
+
+    .rellax:nth-child(2) {
+      position: absolute;
+      top: 0;
+    }
+
+    .swaves {
+      width: calc(2882px/ 1.5);
+      height: auto;
+    }
+
+    #swave-2 {
+      transform: translate(-229px, -50px);
+    }
+    #swave-1 {
+      transform: scale(1.01);
+    }
+  }
 
   #header-wrapper {
     height: calc(100vh - 66px);

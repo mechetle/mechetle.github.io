@@ -79,7 +79,7 @@
     <div class="nav-primary navigation nav-header-main">
         <div class="grid-container fluid">
             <div class="logo-space logo-anim-nav"><a href="#" alt="Home">
-                    <img src="img/mechetleweb-svglogo.svg" alt="Mechetle logo">
+                    <img src="/img/mechetleweb-svglogo.svg" alt="Mechetle logo">
                     <h1 class="logo-text">MECHETLE</h1>
                 </a>
             </div>
@@ -142,7 +142,15 @@
 
     <header>
         <div class="border-top-naturalize"></div>
-
+        <div id="swave-wrapper">
+            <div class="rellax" data-rellax-speed="-3.5">
+                <div id="swave-1" class="swaves"></div>
+            </div>
+            <div class="rellax" data-rellax-speed="-2.5">
+                <div id="swave-2" class="swaves"> </div>
+            </div>
+            
+        </div>
         <div id="header-wrapper">
             <div class="text-wrapper">
                 <h1 class="logo-text-header"><br>
@@ -164,10 +172,24 @@
                 </h1>
             </div>
         </div>
+
         <div class="border-bottom-naturalize"></div>
     </header>
 
-    <section>
+    <section id="who-am-i">
+        <div class="grid-container">
+            <div class="grid-x">
+                <div class="cell medium-6 large-4">
+                    <h2>Who am I?</h2>
+                    <q>Hello, I’m Steven B-M Nguyen. A enthusiastic, cheerful “hatchling-semi-junior” designer.</q>
+                    <p>Have been designing in the past 3-4 years. And aim to bring the most out of me by producing the best branding for small businesses and personal use. (This paragraph is sample, it was extracted from the old site lol)</p>
+
+                </div>
+
+            </div>
+
+    </section>
+    <section id="beta-section">
         <div class="grid-container">
             <div class="grid-x">
                 <div class="cell medium-6 large-3" id="beta-notify">
@@ -263,7 +285,7 @@
 
         if (typeof (Storage) !== "undefined") {
             // Things to hide during beta
-            const hideByFacade = document.querySelectorAll("header, .navigation-button-wrap, .other-pages");
+            const hideByFacade = document.querySelectorAll("header, .navigation-button-wrap, .other-pages, section:not(#beta-section), main");
 
             const join = document.getElementById("joinBeta"),
                 leave = document.getElementById("leaveBeta"),
@@ -318,6 +340,7 @@
         }
     </script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.3/lottie.min.js" integrity="sha512-35O/v2b9y+gtxy3HK+G3Ah60g1hGfrxv67nL6CJ/T56easDKE2TAukzxW+/WOLqyGE7cBg0FR2KhiTJYs+FKrw==" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/anime.min.js"></script>
     <script src="js/rellax.min.js"></script>
@@ -382,13 +405,30 @@
         //    });
         //});
 
+        var swaveOne = bodymovin.loadAnimation({
+            container: document.getElementById('swave-1'), // Required
+            path: '/img/homepage/swave-1.json', // Required
+            renderer: 'svg', // Required
+            loop: false, // Optional
+            autoplay: true, // Optional
+        })
+        var swaveTwo = bodymovin.loadAnimation({
+            container: document.getElementById('swave-2'), // Required
+            path: '/img/homepage/swave-2.json', // Required
+            renderer: 'svg', // Required
+            loop: false, // Optional
+            autoplay: true, // Optional
+        })
+
         $(document).ready(function () {
+            swaveOne.play();
+            swaveTwo.play();
+            $('.navigation .grid-container').attr("style", "opacity: 1");
             console.log('prepared dropdown nav thingo');
-            $('.navigation .grid-container').delay(400).attr("style", "opacity: 1");
-            $('header .text-wrapper').delay(1700).attr("style", "opacity: 1");
+            $('header .text-wrapper').attr("style", "opacity: 1");
             $('.navbar-dropdown-wrap').hide();
             $('.nav-megaDropdown-bg').attr("style", "display: block");
-        });
+        });        
 
         function focusOnNavHead() {
             $('.nav-header-main .navigation-button-wrap').attr("style", "box-shadow: none");
@@ -396,6 +436,7 @@
             $('header').attr("style", "outline: rgba(11,35,61,0.025) 62px solid; outline-offset: -60px;");
             $('#header-wrapper').attr("style", "transform: scale(0.8); opacity: 0.2;");
             $('.border-top-naturalize, .border-bottom-naturalize').attr("style", "background:rgba(11,35,61,0.025)");
+            $('#swave-wrapper').attr("style", "opacity: 0.10;filter: grayscale(90%) blur(25px); transform:scale(0.85);");
         }
 
         function focusOffNavHead() {
@@ -403,7 +444,8 @@
             $('.nav-header-main .logo-space img').removeAttr("style");
             $('header').removeAttr("style");
             $('.border-top-naturalize, .border-bottom-naturalize').removeAttr("style"); //these need to be readjusted
-            $('#header-wrapper').removeAttr("style")
+            $('#header-wrapper').removeAttr("style");
+            $('#swave-wrapper').attr("style", "opacity: 1;filter: grayscale(0%) blur(0); transform:scale(1)");
         }
 
         var mobileRes = window.matchMedia("(max-width: 39.9375em)");
