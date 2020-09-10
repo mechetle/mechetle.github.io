@@ -699,7 +699,7 @@ button {
   padding: 0.9em 2em;
   position: relative;
   transform-origin: bottom;
-  margin-top: 15px;
+  margin-top: 25px;
   font-weight: 600;
   border-radius: 0.15em;
   border-bottom-color: #A33B81;
@@ -707,6 +707,8 @@ button {
   border-bottom-width: 10px;
   transition-duration: 0.12s;
   transition-timing-function: cubic-bezier(0.79, 0.11, 0.28, 0.97);
+  outline: 0em #01579b solid;
+  outline-offset: 0em;
 }
 button.small-button {
   padding: 0.3em 1.6em;
@@ -714,6 +716,10 @@ button.small-button {
 button:hover {
   transform: translateY(-10px);
   border-bottom-width: 20px;
+}
+button:focus {
+  outline: 0.4em #01579b solid;
+  outline-offset: 0.3em;
 }
 button:active {
   transform: translateY(10px);
@@ -1054,6 +1060,14 @@ header .border-top-naturalize {
   }
   header #me-mechetle {
     font-size: 0.4em;
+  }
+
+  section#who-am-i {
+    padding-top: 0em;
+    background: #fff;
+  }
+  section #wai-wrapper {
+    padding: 5em 1em;
   }
 
   #mehkettle-rev {
