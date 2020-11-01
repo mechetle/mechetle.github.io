@@ -17,7 +17,7 @@ a {
 /* Classes: condensed + regular */
 body,
 p,
-span,
+span, //might remove causes problems
 a,
 b,
 i,
@@ -140,4 +140,10 @@ q {
     width: 60px;
     margin-top: 1em;
   }
+}
+
+.spoiler {
+  transition-duration: 0.6s;
+  transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  overflow-y: hidden;
 }

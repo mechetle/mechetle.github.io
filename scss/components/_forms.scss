@@ -6,6 +6,7 @@ button {
 
   cursor: pointer;
   background: #d81b60;
+  color: #fff;
   padding: 0.9em 2em;
   position: relative;
   transform-origin: bottom;
@@ -23,6 +24,7 @@ button {
 
   &.small-button {
     padding: 0.3em 1.6em;
+    font-weight: 500;
   }
 
   &:hover {

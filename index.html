@@ -38,7 +38,7 @@
         content="Hello, I'm Steven, an enthusiastic self-taught graphics, motion, web designer and web developer. I like to get things done with full effort.">
     <meta property="og:url" content="https://mechetle.ml/">
     <meta property="og:site_name" content="Mechetle">
-    <meta property="og:image:secure_url" content="/img/bg-v2Artboard 1.png">
+    <meta property="og:image:secure_url" content="/img/bg-v2Artboard.png">
     <meta property="og:image:width" content="1024">
     <meta property="og:image:height" content="576">
     
@@ -74,7 +74,7 @@
 
 </head>
 
-<body>
+<body id="homepage">
 
     <div class="nav-primary navigation nav-header-main">
         <div class="grid-container fluid">
@@ -182,8 +182,15 @@
                 <div class="cell medium-6 large-5" id="wai-wrapper">
                     <h2>Who am I?</h2>
                     <q>Hello, I’m Steven B-M Nguyen. A enthusiastic, cheerful “hatchling-semi-junior” designer.</q>
-                    <p>Have been designing in the past 3-4 years. And aim to bring the most out of me by producing the best branding for small businesses and personal use. (This paragraph is sample, it was extracted from the old site lol)</p>
-                    <button class="button">Test button</button>
+                    <div class="spoiler" id="aboutSpoiler">
+                        <p>I was introduced to “graphic design” during Primary School when my friend asked me what I wanted to be when I grew up, I said I didn’t know, so she suggested that I’d become a graphic designer, she introduced me to the world of design, I thought it was incredible.</p>
+                        <p>
+                        When I showed my first ever graphic design piece to her, she flamed me. However, this did not stop me, I kept on experimenting and created “logos” for my friends for fun.</p> 
+                        <p>
+                        Over the years, I decided to mess around with motion design as well after seeing a video from my favourite YouTuber at the time and came to the realisation that it was fun too. Feedback and advice from peers turned my fun hobby into something I could do in my free time, whilst be able to help others by supplying designs that fit their need.</p>
+                    </div>
+                    
+                    <button class="button" onclick="tglSpoiler('aboutSpoiler')">Read more</button>
                 </div>
 
             </div>
@@ -215,8 +222,8 @@
                             <li><a href="/faq">Frequently asked questions</a></li>
                             <li><a href="https://web.archive.org/web/20181127191854/https://mechetle.ml/">Archived
                                     site</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-
+                            <li><a href="/privacy-policy">Privacy Policy</a></li>
+                            <li><a href="/order-progress">Order progress</a></li>
                         </ul>
                     </div>
                     <div class="show-for-medium">
@@ -277,11 +284,18 @@
         </div>
     </footer>
 
+    <div class="nortification-pullup">
+        <p id="nortification_details"></p>
+    </div>
+
     <script>
-        // let header = document.getElementsByTagName("header")[0],
-        //     navButtons = document.getElementsByClassName("navigation-button-wrap")[0],
-        //     otherPages = document.getElementsByClassName("other-pages")[0];
+        ////
+        // Mechetle Core
+        ////
+
+        //// Beta mode switch:
         var beta = localStorage.getItem("beta");
+        var firstTimer = localStorage.getItem("firstTimer");
 
         if (typeof (Storage) !== "undefined") {
             // Things to hide during beta
@@ -290,20 +304,24 @@
             const join = document.getElementById("joinBeta"),
                 leave = document.getElementById("leaveBeta"),
                 alert = document.getElementById("beta-notify");
+                bodyTag = document.getElementById("homepage");
+                betaSection = document.getElementById("beta-section");
 
             function joinBeta() {
                 // console.info("Join beta button pressed")
                 localStorage.setItem("beta", "on");
                 setTimeout(function () {
                     window.location.reload(false);
-                    window.onbeforeunload = function () {
-                        window.scrollTo(0, 0);
-                    }
+                    window.scrollTo(0, 0);
+                    //window.onbeforeunload = function () {
+                    //    window.scrollTo(0, 0);
+                    //}
                 }, 100);
             }
             function leaveBeta() {
                 // console.info("Leave beta button pressed")
                 localStorage.removeItem("beta");
+                localStorage.removeItem("firstTimer");
                 setTimeout(function () {
                     window.location.reload(false);
                 }, 100);
@@ -317,7 +335,15 @@
                     //beta notifier stuff
                     leave.style.display = "inline-block";
                     join.style.display = "none";
+                    betaSection.remove();
                     console.log("Beta status: on");
+
+                    if (firstTimer == "noLonger") {
+                        nortification("This is a test notification");
+                    } else {
+                        nortification("Welcome to the development-zone. <br><small>A lot of things will not work as they haven't fully been implemented yet.</small>", "warning", "4000");
+                        localStorage.setItem("firstTimer", "noLonger");
+                    }
 
                     alert.classList.add("beta-on");
                     break;
@@ -326,56 +352,140 @@
                     alert.querySelector("h2").innerHTML = "Hello again! Still developing on this."; 
                     break;
 
-                default: //during facade (if not "signed up")
+                default: //during facade (if not "signed up") - not in beta
+                    bodyTag.style.background = "#fff";
                     for (var i = 0; i < hideByFacade.length; i++) {
-                        hideByFacade[i].style.display = "none";
+                        //hideByFacade[i].style.display = "none";
+                        hideByFacade[i].remove();
                     }
+
                     //beta notifier stuff
                     leave.style.display = "none";
                     join.style.display = "inline-block";
-                    console.log("Beta status: not set");
-
+                    console.log("Beta status: off");
+                    
                  // this might be useless, might remove:
                  // alert.classList.remove("beta-on");
             }
         } else {
-            // document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+            // document.getElementById("error").innerHTML = "Oopsies, your browser is too old that this function would not work";
+            // to-do: add mchtl-Nortifications.js into here.
         }
-    </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.3/lottie.min.js" integrity="sha512-35O/v2b9y+gtxy3HK+G3Ah60g1hGfrxv67nL6CJ/T56easDKE2TAukzxW+/WOLqyGE7cBg0FR2KhiTJYs+FKrw==" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="js/anime.min.js"></script>
-    <script src="js/rellax.min.js"></script>
+        //// Nortifications:
+        function nortification(details = "This is a nortification", type = "normal",  timeout = 3000) {
+            var elementNortifDetails = document.getElementById("nortification_details");
+            var elementNortifWrap = document.getElementsByClassName("nortification-pullup")[0];
+            elementNortifWrap.className += " nort-push-active";
+            
+            elementNortifDetails.innerHTML = details;
 
+            console.log(details);
 
+            setTimeout(function(){
+                elementNortifWrap.classList.remove("nort-push-active");
+                
+                setTimeout(function(){
+                    elementNortifDetails.innerHTML = "";
 
-    <script>
-        //todo:
-        // -> slowly remove jquery
+                }, 1000);
+            }, timeout);
 
-        var rellax = new Rellax('.rellax', {
-            //center: true,
-            vertical: true,
-            horizontal: false
-        });
+            var timeout_colour = timeout / 1.005;
 
-        document.getElementById("year").innerHTML = new Date().getFullYear();
+            switch (type) {
+                case "success":
+                    elementNortifDetails.className += " nortification_success";
+                    console.log(type);
 
-        // Wrap every letter in logo-text with a span
-        var textWrapper = document.querySelector('.logo-text');
-        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+                    setTimeout(function(){
+                        elementNortifDetails.classList.remove("nortification_success");
+                    }, timeout_colour);
+                break;
 
-        $("#me-mechetle > .rellax").slice(2).contents().wrap("<span class='header-letter'></span>");
+                case "warning":
+                    elementNortifDetails.className += " nortification_warning";
+                    console.log(type);
+                    setTimeout(function(){
+                        elementNortifDetails.classList.remove("nortification_warning");
+                    }, timeout_colour);
+                break;
 
-        function ToggleDiscordModal() {
-            $(".discordmodal").fadeToggle("3500", "swing", function () {});
+                case "error":
+                    elementNortifDetails.className += " nortification_error";
+                    console.log(type);
+                    setTimeout(function(){
+                        elementNortifDetails.classList.remove("nortification_error");
+                    }, timeout_colour);
+                break;
+
+                default:
+                    elementNortifDetails.className += " nortification_normal";
+                    console.log(type);
+                    setTimeout(function(){
+                        elementNortifDetails.classList.remove("nortification_normal");
+                    }, timeout_colour);
+            }
+            
+//            if (type === "success") { // to-do: turn this int a switch
+//                elementNortifDetails.className += " nortification_success";
+//                console.log(type);
+//
+//                setTimeout(function(){
+//                    elementNortifDetails.classList.remove("nortification_success");
+//                }, timeout_colour);
+//            } else if (type === "warning") {
+//                elementNortifDetails.className += " nortification_warning";
+//                console.log(type);
+//                setTimeout(function(){
+//                    elementNortifDetails.classList.remove("nortification_warning");
+//                }, timeout_colour);
+//            } else {
+//                elementNortifDetails.className += " nortification_normal";
+//                console.log(type);
+//                setTimeout(function(){
+//                    elementNortifDetails.classList.remove("nortification_normal");
+//                }, timeout_colour);
+//            }
+        }  
+
+        //// Spoilers:
+        function tglSpoiler(id) {
+            let spoiler = document.getElementById(id);
+            let numberOfChildren = spoiler.children.length;
+            console.log(numberOfChildren);
+
+            let el = document.querySelectorAll(".spoiler p");
+            
+            if (spoiler.style.display === "none") {
+                spoiler.style.display = "block";
+                
+                // make this on page load:
+                
+                let el = document.querySelectorAll(".spoiler p");
+                let i, 
+                    transitionDelay;
+
+                for (i = 0; i < numberOfChildren; i++) {
+                    transitionDelay = i * 0.2 + 0.4;
+                    setTimeout(function(){ el[i].style.opacity = "1" }, transitionDelay);
+                    
+                    //el[i].style.transitionDelay = i * 0.2 + 0.4 + "s";
+                    //text += cars[i] + "<br>";
+                }                
+                
+                //spoiler.style.height = "24rem";
+            } else {
+                el.forEach(child => {
+                child.style.opacity = 1;
+                });                
+                spoiler.style.display = "none";
+                //spoiler.style.height = "0";
+            }
         }
-        $(".discordmodaltoggle, .modal-bg").click(function () {
-            ToggleDiscordModal();
-        });
+        tglSpoiler('aboutSpoiler');
 
-        //execute functions from URL
+        //// Execute functions from URL:
         function validateURL(str) {
             let pattern = new RegExp(str); // fragment locator 
             return !!pattern.test(window.location.href);
@@ -391,14 +501,38 @@
             }
         });
 
-        let hmbgrStat = 0;
-        $(".nav-hamburger").click(function () {
-            $(".nav-primary").toggleClass("active");
-            $("html").toggleClass("noScroll");
-            hmbgrStat ^= 1; //toggle value
-            hmbgrStat == 0 ? focusOffNavHead() :
-                focusOnNavHead(); // if hamburger menu status is 0 then do those functions lol.
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.3/lottie.min.js" integrity="sha512-35O/v2b9y+gtxy3HK+G3Ah60g1hGfrxv67nL6CJ/T56easDKE2TAukzxW+/WOLqyGE7cBg0FR2KhiTJYs+FKrw==" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/anime.min.js"></script>
+    <script src="js/rellax.min.js"></script>
+
+
+
+    <script>
+        var rellax = new Rellax('.rellax', {
+            //center: true,
+            vertical: true,
+            horizontal: false
         });
+
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+
+        // Wrap every letter in logo-text with a span
+        var textWrapper = document.querySelector('.logo-text');
+        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+        $("#me-mechetle > .rellax").slice(2).contents().wrap("<span class='header-letter'></span>");
+
+        //// Discord modal:
+        function ToggleDiscordModal() {
+            $(".discordmodal").fadeToggle("3500", "swing", function () {});
+        }
+        $(".discordmodaltoggle, .modal-bg").click(function () {
+            ToggleDiscordModal();
+        });
+
     </script>
 
     <script>
@@ -409,18 +543,18 @@
         //});
 
         var swaveOne = bodymovin.loadAnimation({
-            container: document.getElementById('swave-1'), // Required
-            path: '/img/homepage/swave-1.json', // Required
-            renderer: 'svg', // Required
-            loop: false, // Optional
-            autoplay: true, // Optional
+            container: document.getElementById('swave-1'),
+            path: '/img/homepage/swave-1.json', 
+            renderer: 'svg', 
+            loop: false,
+            autoplay: true, 
         })
         var swaveTwo = bodymovin.loadAnimation({
-            container: document.getElementById('swave-2'), // Required
-            path: '/img/homepage/swave-2.json', // Required
-            renderer: 'svg', // Required
-            loop: false, // Optional
-            autoplay: true, // Optional
+            container: document.getElementById('swave-2'), 
+            path: '/img/homepage/swave-2.json', 
+            renderer: 'svg', 
+            loop: false,
+            autoplay: true, 
         })
 
         $(document).ready(function () {
@@ -452,6 +586,7 @@
         }
 
         var mobileRes = window.matchMedia("(max-width: 39.9375em)");
+        const viewportHeight = window.innerHeight;
 
         $('.nav-megaDropdown-bg').parent().hover(
 
@@ -493,6 +628,14 @@
 
 
         );
+        let hmbgrStat = 0;
+        $(".nav-hamburger").click(function () {
+            $(".nav-primary").toggleClass("active");
+            $("html").toggleClass("noScroll");
+            hmbgrStat ^= 1; //toggle value
+            hmbgrStat == 0 ? focusOffNavHead() :
+                focusOnNavHead(); // if hamburger menu status is 0 then do those functions lol.
+        });
 
 
         // animations //
@@ -529,7 +672,7 @@
                 .add({
                     targets: '.header-letter',
                     opacity: 1,
-                    translateY: [-1000, 0],
+                    translateY: [-viewportHeight , 0],  // make -1000 to the height of the window - done
                 })
         });
 

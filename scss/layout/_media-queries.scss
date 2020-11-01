@@ -207,14 +207,16 @@
     }
     
     section{
-    &#who-am-i {
-      padding-top: 0em;
-      background: #fff;
+      &#who-am-i {
+        padding-top: 0em;
+        background: #fff;
+      }
+      #wai-wrapper {
+        padding: 5em 1em;
+        background: transparent;
+        color: #000;
+      }
     }
-    #wai-wrapper {
-      padding: 5em 1em;
-    }
-  }
 
     #mehkettle-rev {
       top: 10vh;

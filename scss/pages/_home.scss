@@ -1,3 +1,7 @@
+body#homepage {
+  background: rgb(11 35 61);
+}
+
 section {
   height: 100vh;
   position: relative;
@@ -9,9 +13,12 @@ section {
   }
   &#who-am-i {
     padding-top: 14em;
+    height: auto;
   }
   #wai-wrapper {
-    background: rgb(255 255 255 / 0.6);
+    //background: rgb(255 255 255 / 0.6);
+    background: rgb(11 35 61 / 44%);
+
     /* outline: rgb(255 255 255) 14em solid; */
     backdrop-filter: blur(30px) saturate(150%);
     //box-shadow: 0 5px 53px 0 rgba(11,35,61,.5);
@@ -20,6 +27,13 @@ section {
     padding: 5em 4em;
     border-radius: 0.3em;
     //margin-left: 7.5em;
+
+    background: rgb(11 35 61 / 44%);
+    -webkit-backdrop-filter: blur(30px) saturate(150%);
+    backdrop-filter: blur(30px) saturate(150%);
+    padding: 5em 4em;
+    color: #fff;
+    border-radius: 0.3em;
   }
 
 }
