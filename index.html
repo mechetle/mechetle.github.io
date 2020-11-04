@@ -91,7 +91,7 @@
                         <div class="nav-break-its-free-real-estate">
                             <ul class="links-1 nav-link-section">
                                 <li><a href="#" class="nav-button">Home</a></li>
-                                <li><a href="#" class="nav-button">About Me</a></li>
+                                <li><a href="#" class="nav-button disable-me">About Me</a></li>
                                 <li><a href="#Portfolio" class="nav-button">Portfolio <i
                                             class="fas fa-caret-down"></i></a>
                                     <div class="fix-shadow"></div>
@@ -125,7 +125,7 @@
                             </ul>
                             <ul class="links-2 nav-link-section">
                                 <li><a href="#" class="nav-button">Lab room</a></li>
-                                <li><a href="#" class="nav-button">Contact</a></li>
+                                <li><a href="#" class="nav-button disable-me">Contact</a></li>
                             </ul>
                         </div>
 
@@ -293,6 +293,15 @@
         ////
         // Mechetle Core
         ////
+        
+        console.log(
+            "%cMECHETLE" + "\n",
+            "color:#002e62;font-family:Sen;font-size:5rem;font-weight:800"
+            );
+        console.log(
+            "%c🔥 Herro, not sure what you are doing here but I hope you enjoy your stay!" + "\n" + "\n" + "Version: 0.[Insert total number of commits here] - ALPHA" + "\n",
+            "color:#000;font-family:Jost;font-size:1rem;",
+            );
 
         //// Beta mode switch:
         var beta = localStorage.getItem("beta");
@@ -373,6 +382,18 @@
             // to-do: add mchtl-Nortifications.js into here.
         }
 
+        //// Disable navigation buttons
+        window.onload = function() {
+            const DisableBtn = document.querySelectorAll(".disable-me");
+            setTimeout(function () {
+                for (var i = 0; i < DisableBtn.length; i++) {
+                    //hideByFacade[i].style.display = "none";
+                    DisableBtn[i].className = "nav-button disabled";
+                    DisableBtn[i].onclick = function() { nortification("Page disabled <br><small>I haven't added this page yet.</small>", "warning" ); };
+                }
+            }, 500);
+        };
+
         //// Nortifications:
         function nortification(details = "This is a nortification", type = "normal",  timeout = 3000) {
             var elementNortifDetails = document.getElementById("nortification_details");
@@ -384,15 +405,16 @@
             console.log(details);
 
             setTimeout(function(){
+                // todo: if nort-push-active is still there => do not remove
                 elementNortifWrap.classList.remove("nort-push-active");
                 
-                setTimeout(function(){
-                    elementNortifDetails.innerHTML = "";
-
-                }, 1000);
+//                setTimeout(function(){ // this caused problems
+//                    elementNortifDetails.innerHTML = "";
+//
+//                }, 1000);
             }, timeout);
 
-            var timeout_colour = timeout / 1.005;
+            var timeout_colour = timeout + 15;
 
             switch (type) {
                 case "success":
@@ -427,27 +449,7 @@
                         elementNortifDetails.classList.remove("nortification_normal");
                     }, timeout_colour);
             }
-            
-//            if (type === "success") { // to-do: turn this int a switch
-//                elementNortifDetails.className += " nortification_success";
-//                console.log(type);
-//
-//                setTimeout(function(){
-//                    elementNortifDetails.classList.remove("nortification_success");
-//                }, timeout_colour);
-//            } else if (type === "warning") {
-//                elementNortifDetails.className += " nortification_warning";
-//                console.log(type);
-//                setTimeout(function(){
-//                    elementNortifDetails.classList.remove("nortification_warning");
-//                }, timeout_colour);
-//            } else {
-//                elementNortifDetails.className += " nortification_normal";
-//                console.log(type);
-//                setTimeout(function(){
-//                    elementNortifDetails.classList.remove("nortification_normal");
-//                }, timeout_colour);
-//            }
+
         }  
 
         //// Spoilers:

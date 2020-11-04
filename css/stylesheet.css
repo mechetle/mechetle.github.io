@@ -438,6 +438,29 @@ a.nav-button {
 a.nav-button i {
   line-height: unset;
 }
+a.nav-button:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-bottom: #0b233d 6px solid;
+  transform: scaleX(0) translateY(-24px);
+  transition-delay: 0.1s;
+  transition-duration: 0.6s;
+  transition-timing-function: cubic-bezier(0.4, 0.6, 0.13, 0.96);
+}
+a.nav-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+a.nav-button.disabled:after {
+  transform: scaleX(0.85) translateY(-24px);
+}
+a.nav-button.disabled::before {
+  cursor: not-allowed;
+}
 a.nav-button:before {
   content: "";
   position: absolute;
