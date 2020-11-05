@@ -263,6 +263,7 @@
                         Website by Mechetle.<br>
                         Steven B-M Nguyen<br>
                         &copy; <span id="year"></span> Mechetle
+                        <div id="last-modified"></div>  
 
                     </p>
                 </div>
@@ -296,13 +297,33 @@
         ////
         // Mechetle Core
         ////
+        var path = window.location.pathname;
+        var page = path.split("/").pop();
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            let repos = JSON.parse(this.responseText);
+            var updateDate = repos[0].commit.committer.date;
+            let updateBy = repos[0].commit.committer.name;
+            let updateChange = repos[0].commit.message;
+
+            console.log(`🔹 Changed: ${updateChange}, \n🔹 Updated on: ${new Date(updateDate)} by ${updateBy},`);
+
+            //repos.forEach((repo)=>{
+            //console.log(`Previous updates: ${repo.commit.committer.name}: ${new Date(repo.commit.committer.date)}`);
+            //});
+        }
+        };
+        xhttp.open("GET", `https://api.github.com/repos/mechetle/mechetle.github.io/commits?per_page=100&sha=060b76634b626835051204ee68bf78791ba18368&path=${page}`, true);
+        xhttp.send();   
         
         console.log(
             "%cMECHETLE" + "\n",
             "background:#000;color:#fff;font-family:arial black;font-size:5vw;font-weight:800;padding: 0 2vw"
             );
         console.log(
-            "%c🔥 Herro, not sure what you are doing here but I hope you enjoy your stay!" + "\n" + "Version: 0.[Insert total number of commits here] - ALPHA" + "\n",
+            "%c🔥 Herro, not sure what you are doing here but I hope you enjoy your stay!" + "\n" + "Version:  ALPHA" + "\n",
             "color:#000;font-family:Courier New;font-size:1rem;",
             );
 
@@ -349,7 +370,7 @@
                     leave.style.display = "inline-block";
                     join.style.display = "none";
                     betaSection.remove();
-                    console.log("Beta status: on");
+                    console.log("🔹 Beta status: Enabled");
 
                     if (firstTimer == "noLonger") {
                         nortification("This is a test notification");
@@ -375,7 +396,7 @@
                     //beta notifier stuff
                     leave.style.display = "none";
                     join.style.display = "inline-block";
-                    console.log("Beta status: off");
+                    console.log("🔹 Beta status: Disabled");
                     
                  // this might be useless, might remove:
                  // alert.classList.remove("beta-on");
@@ -405,7 +426,7 @@
             
             elementNortifDetails.innerHTML = details;
 
-            console.log(details);
+            console.log("💬 " + details);
 
             setTimeout(function(){
                 // todo: if nort-push-active is still there => do not remove
