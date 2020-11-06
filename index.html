@@ -297,9 +297,14 @@
         ////
         // Mechetle Core
         ////
+
         var path = window.location.pathname;
         var page = path.split("/").pop();
 
+        //// magic dust:
+        var jkjkjk="thub.i";shrek="gi";ml=`.gi${jkjkjk}o`;sully=`${shrek}thub`;
+
+        //// Fetches info about page:
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -315,7 +320,7 @@
             //});
         }
         };
-        xhttp.open("GET", `https://api.github.com/repos/mechetle/mechetle.github.io/commits?per_page=100&sha=060b76634b626835051204ee68bf78791ba18368&path=${page}`, true);
+        xhttp.open("GET", `https://api.${sully}.com/repos/mechetle/mechetle${ml}/commits?per_page=100&sha=060b76634b626835051204ee68bf78791ba18368&path=${page}`, true);
         xhttp.send();   
         
         console.log(
@@ -476,7 +481,25 @@
 
         }  
 
-        //// Spoilers:
+        //// Execute functions from URL:
+        function validateURL(str) {
+            let pattern = new RegExp(str); // fragment locator 
+            return !!pattern.test(window.location.href);
+        }        
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            switch (true) {
+                case validateURL("discordtag"):
+                    console.log("Attempting to execute functions from URL: Discord");
+                    ToggleDiscordModal();
+                    
+                    break;
+                case validateURL("beta"):
+                    if (beta === null) joinBeta();
+                    break;
+            }
+        });
+
+        //// Spoilers: <-- note to self: this breaks when it's not in beta mode - temp fixed
         function tglSpoiler(id) {
             let spoiler = document.getElementById(id);
             let numberOfChildren = spoiler.children.length;
@@ -510,23 +533,11 @@
                 //spoiler.style.height = "0";
             }
         }
-        tglSpoiler('aboutSpoiler');
+        
+        if (beta == "on") {
+            tglSpoiler('aboutSpoiler');
+        }
 
-        //// Execute functions from URL:
-        function validateURL(str) {
-            let pattern = new RegExp(str); // fragment locator 
-            return !!pattern.test(window.location.href);
-        }        
-        document.addEventListener("DOMContentLoaded", function(event) { 
-            switch (true) {
-                case validateURL("discordtag"):
-                    ToggleDiscordModal();
-                    break;
-                case validateURL("beta"):
-                    if (beta === null) joinBeta();
-                    break;
-            }
-        });
 
     </script>
 
@@ -536,6 +547,14 @@
     <script src="js/rellax.min.js"></script>
 
     <script>
+        //// Discord modal:
+        function ToggleDiscordModal() {
+            $(".discordmodal").fadeToggle("3500", "swing", function () {});
+        }
+        $(".discordmodaltoggle, .modal-bg").click(function () {
+            ToggleDiscordModal();
+        });
+
         var rellax = new Rellax('.rellax', {
             //center: true,
             vertical: true,
@@ -549,14 +568,6 @@
         textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
         $("#me-mechetle > .rellax").slice(2).contents().wrap("<span class='header-letter'></span>");
-
-        //// Discord modal:
-        function ToggleDiscordModal() {
-            $(".discordmodal").fadeToggle("3500", "swing", function () {});
-        }
-        $(".discordmodaltoggle, .modal-bg").click(function () {
-            ToggleDiscordModal();
-        });
 
     </script>
 
