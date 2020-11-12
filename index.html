@@ -215,6 +215,91 @@
             </div>
 
     </section>
+    <section id="featured-work">
+        <div class="grid-container fluid extended">
+            <h2>Some of my work</h2>
+            <div class="grid-x grid-margin-x">
+                <div class="cell medium-6 large-6 work-thumb">
+                    <div class="work-thumb-wrapper">
+                            <div class="work-thumb-wrapper-cont">
+                            <img src="https://via.placeholder.com/1920x1080.png?text=_">
+                            <h3>This is a post lol</h3>
+                            <p>This post doesn't exist yet</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cell medium-6 large-6 work-thumb">
+                    <div class="work-thumb-wrapper">
+                            <div class="work-thumb-wrapper-cont">
+                            <img src="https://via.placeholder.com/1920x1080.png?text=_" alt="s">
+                            <h3>This is a post lol</h3>
+                            <p>This post doesn't exist yet</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cell medium-6 large-4 work-thumb">
+                    <div class="work-thumb-wrapper">
+                            <div class="work-thumb-wrapper-cont">
+                            <img src="https://via.placeholder.com/1920x1080.png?text=_" alt="s">
+                            <h3>This is a post lol</h3>
+                            <p>This post doesn't exist yet</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cell medium-6 large-8 work-thumb">
+                    <div class="work-thumb-wrapper">
+                            <div class="work-thumb-wrapper-cont">
+                            <img src="https://via.placeholder.com/1920x1080.png?text=_" alt="s">
+                            <h3>This is a post lol</h3>
+                            <p>This post doesn't exist yet</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cell medium-6 large-6 work-thumb">
+                    <div class="work-thumb-wrapper">
+                            <div class="work-thumb-wrapper-cont">
+                            <img src="https://via.placeholder.com/1920x1080.png?text=_" alt="s">
+                            <h3>This is a post lol</h3>
+                            <p>This post doesn't exist yet</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cell medium-6 large-6 work-thumb">
+                    <div class="work-thumb-wrapper">
+                            <div class="work-thumb-wrapper-cont">
+                            <img src="https://via.placeholder.com/1920x1080.png?text=_" alt="s">
+                            <h3>This is a post lol</h3>
+                            <p>This post doesn't exist yet</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cell">
+                    <button class="button">See more!</button>
+                </div>
+            </div>
+        </div>
+
+        
+    </section>
+
+    <section id="lets-talk">
+        <div class="grid-container">
+            <div class="grid-x grid-margin-x">
+                <div class="cell medium-6 large-10">
+                    <h2>Interested?</h2>
+                    <p>
+                        Let's start something awesome.
+                    </p>
+                </div>
+                <div class="cell medium-6 large-auto">
+                    <button class="button">Let's talk</button>
+                </div>
+            </div>
+
+
+        </div>
+        
+    </section>
 
     <footer>
         <div class="grid-container">
@@ -242,7 +327,7 @@
                     <div class="footer-widget">
                         <h5>Social Media</h5>
                         <ul>
-                            <li><a href="#discordtag" class="discordmodaltoggle"><i
+                            <li><a href="#discordtag" class="discordmodaltoggle" onclick="ToggleDiscordModal()"><i
                                         class="fab fa-discord"></i>Discord</a></li>
                             <li><a href="https://www.instagram.com/mechetle/"><i
                                         class="fab fa-instagram"></i>Instagram</a></li>
@@ -274,7 +359,7 @@
 
         <div class="discordmodal">
             <div class="discordmodalwrap">
-                <a href="#%" class="button discordmodaltoggle" title="close"><i class="fas fa-times"> </i></a>
+                <a href="#%" class="button discordmodaltoggle" title="close" onclick="ToggleDiscordModal()"><i class="fas fa-times"> </i></a>
                 <div class="modal-body">
                     <h4>Hey, here's my DiscordTag!</h4>
                     <p>
@@ -285,7 +370,7 @@
                     </code>
                 </div>
             </div>
-            <a class="modal-bg"></a>
+            <a class="modal-bg" onclick="ToggleDiscordModal()"></a>
         </div>
     </footer>
 
@@ -538,6 +623,17 @@
             tglSpoiler('aboutSpoiler');
         }
 
+        //// Discord modal:
+        function ToggleDiscordModal() {
+            $(".discordmodal").fadeToggle("3500", "swing", function () {}); //todo: el.classList.toggle(className);
+        }
+        // changed to onclick in html, removed redundancy
+        //$(".discordmodaltoggle, .modal-bg").click(function () { //todo: convert to click event: 
+        //    ;
+        //});
+
+        
+
 
     </script>
 
@@ -547,14 +643,6 @@
     <script src="js/rellax.min.js"></script>
 
     <script>
-        //// Discord modal:
-        function ToggleDiscordModal() {
-            $(".discordmodal").fadeToggle("3500", "swing", function () {});
-        }
-        $(".discordmodaltoggle, .modal-bg").click(function () {
-            ToggleDiscordModal();
-        });
-
         var rellax = new Rellax('.rellax', {
             //center: true,
             vertical: true,
@@ -611,7 +699,6 @@
             $('.border-top-naturalize, .border-bottom-naturalize').attr("style", "background:rgba(11,35,61,0.025)");
             $('#swave-wrapper').attr("style", "opacity: 0.10;filter: grayscale(90%) blur(25px); transform:scale(0.85);");
         }
-
         function focusOffNavHead() {
             $('.nav-header-main .navigation-button-wrap').removeAttr("style");
             $('.nav-header-main .logo-space img').removeAttr("style");
@@ -620,12 +707,10 @@
             $('#header-wrapper').removeAttr("style");
             $('#swave-wrapper').attr("style", "opacity: 1;filter: grayscale(0%) blur(0); transform:scale(1)");
         }
-
         var mobileRes = window.matchMedia("(max-width: 39.9375em)");
         const viewportHeight = window.innerHeight;
 
         $('.nav-megaDropdown-bg').parent().hover(
-
             function (e) {
                 //console.log('Hovered');
                 $('.navbar-dropdown-wrap').show(0, function () {
@@ -672,7 +757,6 @@
             hmbgrStat == 0 ? focusOffNavHead() :
                 focusOnNavHead(); // if hamburger menu status is 0 then do those functions lol.
         });
-
 
         // animations //
         // text logo nav
@@ -726,9 +810,7 @@
                 tah = 1;
             }
         };
-
-
-        // navigation bar switching //
+        //// navigation bar switching
         $(window).scroll(function () {
             var scroll = $(this).scrollTop();
 

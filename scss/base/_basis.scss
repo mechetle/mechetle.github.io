@@ -29,6 +29,9 @@ body {
 
 .grid-container {
   max-width: 160rem;
+  &.extended {
+    padding: 0 4.5em;
+  }
 }
 
 figcaption {
@@ -43,4 +46,11 @@ code {
   border-width: 3px;
   border-style: solid;
   border-color: gray;
+}
+
+.text-center {
+  text-align: center;
+}
+.text-right{
+  text-align: right;
 }

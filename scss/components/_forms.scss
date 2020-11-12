@@ -30,7 +30,7 @@ button {
   &:hover {
     transform: translateY(-$RiseUp);
     border-bottom-width: $RiseUp * 2;
-
+    margin-bottom: -$RiseUp; //
 
     //&:before {
     //  // transform: scaleY(0.5);
@@ -47,6 +47,7 @@ button {
     transform: translateY($RiseUp);
     border-bottom-width: 0;
     transition-duration: 50ms;
+    margin-bottom: $RiseUp;
 
     //&:before {
     //  // transform: scaleY(0.5);

@@ -210,6 +210,8 @@
       &#who-am-i {
         padding-top: 0em;
         background: #fff;
+        height: auto;
+        min-height: auto;
       }
       #wai-wrapper {
         padding: 5em 1em;
@@ -223,6 +225,16 @@
       right: 2vw;
       width: 250px;
     }
+
+    .grid-container.extended {
+      padding-right: 2.5rem;
+      padding-left: 2.5rem;
+    }
+
+    // .work-thumb {
+    //   transition-delay: 0s;
+    //   transition-duration: 0s;
+    // }
   }
   
   /* Medium and up */
@@ -267,6 +279,11 @@
   
     .logo-text {
       display: none;
+    }
+    section{
+      &#who-am-i {
+        height: auto;
+      }
     }
   
   }
