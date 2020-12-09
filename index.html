@@ -427,51 +427,36 @@
         // Mechetle Core
         ////
 
-// Deprecate
-//
-//        var path = window.location.pathname;
-//        var page = path.split("/").pop();
-//
-//
-//        //// magic dust:
-//        var jkjkjk="thub.i";shrek="gi";ml=`.gi${jkjkjk}o`;sully=`${shrek}thub`;
-//
-//        //// Fetches info about page:
-//        var xhttp = new XMLHttpRequest();
-//        xhttp.onreadystatechange = function() {
-//        if (this.readyState == 4 && this.status == 200) {
-//            let repos = JSON.parse(this.responseText);
-//            var updateDate = repos[0].commit.committer.date;
-//            let updateBy = repos[0].commit.committer.name;
-//            let updateChange = repos[0].commit.message;
-//
-//            console.log(`🔹 Changed: ${updateChange}, \n🔹 Updated on: ${new Date(updateDate)} by ${updateBy},`);
-//
-//            //repos.forEach((repo)=>{
-//            //console.log(`Previous updates: ${repo.commit.committer.name}: ${new Date(repo.commit.committer.date)}`);
-//            //});
-//        }
-//        };
-//        xhttp.open("GET", `https://api.${sully}.com/repos/mechetle/mechetle${ml}/commits?per_page=100&sha=060b76634b626835051204ee68bf78791ba18368&path=${page}`, true);
-//        xhttp.send();   
+ Deprecate
 
-        // Fetches info for the page:
-        var updatedOn;
+        var path = window.location.pathname;
+        var page = path.split("/").pop();
 
-        function setModifiedDate() {
-        if (document.getElementById('last-modified')) {
-            fetch("https://api.github.com/repos/{{ site.github.owner_name }}/{{ site.github.repository_name }}/commits?path={{ page.path }}")
-            .then((response) => {
-                return response.json();
-            })
-            .then((commits) => {
-                var modified = commits[0]['commit']['committer']['date'].slice(0,10);
-                if(modified != "{{ page.date | date: '%Y-%m-%d' }}") {
-                    updatedOn = "Last Modified: " + modified; 
-                }
-            });
+
+        //// magic dust:
+        var jkjkjk="thub.i";shrek="gi";ml=`.gi${jkjkjk}o`;sully=`${shrek}thub`;
+
+        //// Fetches info about page:
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            let repos = JSON.parse(this.responseText);
+            var updateDate = repos[0].commit.committer.date;
+            let updateBy = repos[0].commit.committer.name;
+            let updateChange = repos[0].commit.message;
+
+            console.log(`🔹 Changed: ${updateChange}, \n🔹 Updated on: ${new Date(updateDate)} by ${updateBy},`);
+
+            //repos.forEach((repo)=>{
+            //console.log(`Previous updates: ${repo.commit.committer.name}: ${new Date(repo.commit.committer.date)}`);
+            //});
         }
-        }        
+        };
+        xhttp.open("GET", `https://api.${sully}.com/repos/mechetle/mechetle${ml}/commits?per_page=100&sha=beta&path=${page}`, true);
+        xhttp.send();   
+
+// https://api.github.com/repos/mechetle/mechetle.github.io/commits?per_page=100&sha=060b76634b626835051204ee68bf78791ba18368&path=
+    
 
         
         console.log(
