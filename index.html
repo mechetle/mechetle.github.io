@@ -757,7 +757,7 @@
         var mobileRes = window.matchMedia("(max-width: 39.9375em)");
         const viewportHeight = window.innerHeight;
 
-        $('.nav-megaDropdown-bg').parent().hover(
+        $('.nav-megaDropdown-bg').parent().hover( // gets parent of .nav-megaDropdown-bg, this causes problems because it makes the parent big.
             function (e) {
                 //console.log('Hovered');
                 $('.navbar-dropdown-wrap').show(0, function () {
@@ -796,6 +796,7 @@
 
 
         );
+        
         let hmbgrStat = 0;
         $(".nav-hamburger").click(function () {
             $(".nav-primary").toggleClass("active");
