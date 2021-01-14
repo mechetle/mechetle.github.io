@@ -151,3 +151,9 @@
                 }
             }
         });
+
+        $("#empty-video-space, header .video-wrapper").hover(function() {
+            $("#project-post-details").addClass("makeHollow");
+          }, function() {
+            $("#project-post-details").removeClass("makeHollow");
+          });

@@ -10,14 +10,24 @@ var jkjkjk="thub.i";shrek="gi";com=`.gi${jkjkjk}o`;sully=`${shrek}thub`;  // mag
 
 //// Fetches info about page:
 var xhttp = new XMLHttpRequest();
+// function isObjectEmpty(obj) {
+//     return obj.length;
+// }
+
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-        let repos = JSON.parse(this.responseText);
-        var updateDate = repos[0].commit.committer.date;
-        let updateBy = repos[0].commit.committer.name;
-        let updateChange = repos[0].commit.message;
 
-        console.log(`🔹 Changed: ${updateChange}, \n🔹Updated on: ${new Date(updateDate)} by {updateBy},`);
+        // console.log("how long is array" + this.length);
+        let repos = JSON.parse(this.responseText);
+        if (typeof repos !== 'undefined' && repos.length > 0) { // checks for existance
+            // the array is defined and has at least one element
+            var updateDate = repos[0].commit.committer.date;
+            let updateBy = repos[0].commit.committer.name;
+            let updateChange = repos[0].commit.message;
+            console.log(`🔹 Changed: ${updateChange}, \n🔹 Updated on: ${new Date(updateDate)} by ${updateBy},`);
+        } else {
+            console.warn(`🔹 "${page}" can't be found in change logs, this may be because you are still editing on your computer bruv.`);
+        }
 
         //repos.forEach((repo)=>{
         //console.log(`Previous updates: ${repo.commitcommitter.name}: ${new Date(repo.commitcommitter.date)}`);
@@ -217,40 +227,52 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 //// Spoilers: <-- note to self: this breaks when it's not in beta mode - temp fixed
+
 function tglSpoiler(id) {
     let spoiler = document.getElementById(id);
-    let numberOfChildren = spoiler.children.length;
-    console.log(numberOfChildren);
 
-    let el = document.querySelectorAll(".spoiler p");
-            
-    if (spoiler.style.display === "none") {
-        spoiler.style.display = "block";
-                
-        // make this on page load:
-                
-        let el = document.querySelectorAll(".spoiler p");
-        let i, 
-            transitionDelay;
-
-        for (i = 0; i < numberOfChildren; i++) {
-            transitionDelay = i * 0.2 + 0.4;
-            setTimeout(function(){ el[i].style.opacity = "1" }, transitionDelay);
-                    
-            //el[i].style.transitionDelay = i * 0.2 + 0.4 + "s";
-            //text += cars[i] + "<br>";
-        }                
-                
-        //spoiler.style.height = "24rem";
-    } else {
-        el.forEach(child => {
-        child.style.opacity = 1;
-        });                
-        spoiler.style.display = "none";
-        //spoiler.style.height = "0";
+    //check for existance
+    function checkIfSpoilerExist() {
+        if (spoiler == null) {
+            // do nothing
+        } else {
+            return true;
+        }
     }
+
+    if (checkIfSpoilerExist()) {
+        let numberOfChildren = spoiler.children.length;
+        console.log(numberOfChildren);
+    
+        let el = document.querySelectorAll(".spoiler p");
+    
+        if (spoiler.style.display === "none") {
+            spoiler.style.display = "block";
+                    
+            // make this on page load:
+            let i, 
+                transitionDelay;
+    
+            for (i = 0; i < numberOfChildren - 1; i++) {
+                transitionDelay = i * 0.2 + 0.4;
+                setTimeout(function(){ el[i].style.opacity = "1" }, transitionDelay);
+                        
+                //el[i].style.transitionDelay = i * 0.2 + 0.4 + "s";
+                //text += cars[i] + "<br>";
+            }                
+                    
+            //spoiler.style.height = "24rem";
+        } else {
+            el.forEach(child => {
+            child.style.opacity = 1;
+            });                
+            spoiler.style.display = "none";
+            //spoiler.style.height = "0";
+        }
+    }
+    
 }
-        
+
 if (beta == "on") {
     tglSpoiler('aboutSpoiler');
 }
@@ -261,7 +283,16 @@ if (beta == "on") {
 function ToggleDiscordModal() {
     $(".discordmodal").fadeToggle("3500", "swing", function () {}); //todo: el.classList.toggle(className);
 }
+
 // changed to onclick in html, removed redundancy
 //$(".discordmodaltoggle, .modal-bg").click(function () { //todo: convert to click event: 
 //    ;
 //});
+
+
+//// Get copyright date
+let copyrightYearWrap = document.getElementsByClassName("year");
+let copyrightYear = new Date().getFullYear();
+copyrightYearWrap[0].innerHTML = copyrightYear;
+copyrightYearWrap[1].innerHTML = copyrightYear;
+

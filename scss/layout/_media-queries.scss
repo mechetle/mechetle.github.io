@@ -6,7 +6,8 @@
 //     transition-duration: 0.6s;    
 //   }
 // 
-// }
+// }     
+
 
 @use "../base/variables" as *;
 
@@ -214,7 +215,7 @@
         min-height: auto;
       }
       #wai-wrapper {
-        padding: 5em 1em;
+        padding: 5em 1em !important;
         background: transparent;
         color: #000;
       }
@@ -235,6 +236,9 @@
     //   transition-delay: 0s;
     //   transition-duration: 0s;
     // }
+    header .text-wrapper h1.post {
+      font-size: 4.6em !important;
+    }
   }
   
   /* Medium and up */
@@ -261,6 +265,9 @@
         }
       }
     }
+    header .text-wrapper h1.post {
+      font-size: 4.6em;
+    }
   }
   
   /* Medium only */
@@ -285,6 +292,11 @@
         height: auto;
       }
     }
+
+    .lets-talk-wrapper {
+      text-align: right;
+    }
+
   
   }
   
@@ -303,22 +315,36 @@
     //    height: 100% !important;
     //  }
     //}
+
   }
 
-  @media screen and (min-width: 1921px) { 
-    #swave-wrapper {
-      .swaves {
-        width: 100vw !important;
-        height: auto !important;
+  /* x-Large and up */
+  @media screen and (min-width: 120em) {
+      html {
+        font-size: 0.95vh;
       }
-    } 
   }
+
+  /* Beyond large */
+//  @media screen and (min-width: 1921px) { 
+//    #swave-wrapper {
+//      .swaves {
+//        width: 100vw !important;
+//        height: auto !important;
+//      }
+//
+//      // html {
+//      //   font-size: 0.95vh;
+//      // }
+//    } 
+//  }
   
   /* Large only */
   @media screen and (min-width: 64em) and (max-width: 74.9375em) {}
   
-  /* smartphones, touchscreens */
+  /* touchscreens */
   @media (hover: none) and (pointer: coarse) {
+
     .nav-break {
       overflow-x: scroll;
     }
@@ -341,6 +367,14 @@
   
     @supports (backdrop-filter: none) {}
   }
+
+  /* smartphones and has touchscreens */
+  @media screen and (max-width: 39.9375em) and (hover: none) and (pointer: coarse) {
+    html {
+      font-size: 48.5%;
+    }
+  }
+
   
   /* stylus-based screens */
   @media (hover: none) and (pointer: fine) {

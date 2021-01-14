@@ -670,3 +670,31 @@ a.nav-button {
   text-transform: none !important;
   font-size: 90%;
 }
+
+/* Breadcrumbs */
+// <nav aria-label="breadcrumb">
+//   <ol class="breadcrumb">
+//     <li class="breadcrumb-item"><a href="#">Home</a></li>
+//     <li class="breadcrumb-item active" aria-current="page">Library</li>
+//   </ol>
+// </nav>
+
+.breadcrumb {
+  margin: 0;
+  padding-inline-start: 0;
+}
+.breadcrumb-item {
+  display: inline;
+}
+
+.breadcrumb-item+.breadcrumb-item:hover::before {
+  text-decoration: none;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+  display: inline-block;
+  padding-right: 1.25rem;
+  padding-left: .5rem;
+  color: #6c757d;
+  content: "/";
+}
