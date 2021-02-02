@@ -831,13 +831,71 @@ button:active {
 /*
 Modals:
 */
-.discordmodal {
+.m-modal {
   display: none;
   position: fixed;
   z-index: 99999;
   top: 0;
   height: 100vh;
   width: 100vw;
+}
+.m-modal.active {
+  display: block;
+}
+
+.titlebar {
+  cursor: move;
+  user-select: none;
+}
+
+#SourceConsoleModal {
+  max-width: 90vw;
+  max-height: 90vh;
+  background: #616161;
+  min-height: 20vh;
+  min-width: 30vw;
+  resize: both;
+  overflow: auto;
+  width: 1207px;
+  height: 602px;
+  font-family: "roboto mono", monospace;
+  padding: 0.35em 0.7em;
+  color: #fff;
+  border-radius: 0.2em;
+  display: flex;
+  flex-direction: column;
+  width: 846px;
+  height: 505px;
+}
+#SourceConsoleModal a {
+  color: #fff;
+}
+#SourceConsoleModal #the-console {
+  /* display: flex; */
+  /* align-items: stretch; */
+  width: 100%;
+  background: #424242;
+  height: 100%;
+  resize: none;
+  padding: 0.2em;
+  color: #fff;
+}
+#SourceConsoleModal form {
+  margin: 0.5em 0 0.1em;
+}
+#SourceConsoleModal form input#command {
+  width: calc(100% - 100px);
+  background: #424242;
+  color: #fff;
+  padding: 0.2em;
+}
+#SourceConsoleModal form input[type=submit] {
+  background: #616161;
+  color: #fff;
+  padding: 0.2em;
+}
+
+.discordmodal {
   background: -webkit-linear-gradient(rgba(0, 0, 0, 0.5) 35%, rgba(0, 0, 0, 0.9) 95%);
   background: -moz-linear-gradient(rgba(0, 0, 0, 0.5) 35%, rgba(0, 0, 0, 0.9) 95%);
   background: -o-linear-gradient(rgba(0, 0, 0, 0.5) 35%, rgba(0, 0, 0, 0.9) 95%);

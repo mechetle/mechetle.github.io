@@ -296,3 +296,90 @@ let copyrightYear = new Date().getFullYear();
 copyrightYearWrap[0].innerHTML = copyrightYear;
 copyrightYearWrap[1].innerHTML = copyrightYear;
 
+//// Lab room stuff:
+// SourceConsole (wip): //
+let scContents = `
+    <div class="m-modal window" id="SourceConsole">
+        <div id="SourceConsoleModal">
+            <div class="titlebar">
+                Console 
+                
+                <a href="#%" class="button float-right" title="close" onclick="sourceConsole()"><i class="fas fa-times"> </i></a> 
+            </div>
+            <!-- <textarea id="the-console" readonly> -->
+            <textarea id="the-console" readonly>THIS IS A WORK IN PROGRESS, YOU ARE NOT MEANT TO SEE THIS LOL. CLICK OUT OF THIS AND RETURN WHEN IT'S READY!
+            </textarea>
+
+            <form id="consoleCommand"  name="consoleCom">
+                <input type="text" id="command" name="command">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+`;
+document.getElementsByTagName("footer")[0].insertAdjacentHTML('afterend', scContents);
+
+document.onkeypress = function (e) {
+    e = e || window.event;
+
+    if (e.key == "`") {
+        console.log("pressed on " + e.key + ", it enabled the SourceConsole");
+        sourceConsole();
+    }
+    
+};
+
+function sourceConsole() {
+    let div = document.getElementById("SourceConsole");
+    div.classList.toggle('active');
+
+   // if (div.style.display !== 'none') {
+   //     div.style.display = 'none';
+   // }
+   // else {
+   //     div.style.display = 'block';
+   // }
+}
+
+var form = document.getElementById("consoleCommand");
+function handleForm(event) { event.preventDefault(); } 
+form.addEventListener('submit', handleForm);
+
+document.getElementById('the-console').onclick = function() {
+    document.forms.consoleCom.notes1.value += '\n' + document.forms.consoleCom.notes2.value;
+ };
+
+// For each item with a `window` class…
+var windows = document.querySelectorAll(".window");
+[].forEach.call(windows,function(win){
+
+  // …find the title bar inside it and do something onmousedown
+  var title = win.querySelector('.titlebar');
+  title.addEventListener('mousedown',function(evt){
+
+    // Record where the window started
+    var real = window.getComputedStyle(win),
+        winX = parseFloat(real.left),
+        winY = parseFloat(real.top);
+
+    // Record where the mouse started
+    var mX = evt.clientX,
+        mY = evt.clientY;
+
+    // When moving anywhere on the page, drag the window
+    // …until the mouse button comes up
+    document.body.addEventListener('mousemove',drag,false);
+    document.body.addEventListener('mouseup',function(){
+      document.body.removeEventListener('mousemove',drag,false);
+    },false);
+
+    // Every time the mouse moves, we do the following 
+    function drag(evt){
+      // Add difference between where the mouse is now
+      // versus where it was last to the original positions
+      win.style.left = winX + evt.clientX-mX + 'px';
+      win.style.top  = winY + evt.clientY-mY + 'px';
+    };
+  },false);
+});
+
