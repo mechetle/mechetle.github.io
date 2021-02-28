@@ -1291,6 +1291,44 @@ section #wai-wrapper {
   padding-left: 4em;
 }
 
+#contact #wai-wrapper {
+  padding: 5em 4em;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(30px) saturate(150%);
+  padding: 5em 4em;
+  color: #000;
+  border-radius: 0em;
+  margin-top: 7.5em;
+  margin-bottom: 1em;
+}
+#contact .just-go-right {
+  width: 50%;
+  margin: 0;
+  float: right;
+}
+#contact section:not(:first-of-type) {
+  padding-top: 6em;
+  padding-bottom: 7em;
+}
+#contact #lets-talk {
+  padding: 3em 0 3em;
+}
+#contact .border-top-naturalize, #contact .border-bottom-naturalize {
+  background: none;
+}
+#contact header {
+  outline: #fff 33px solid;
+  min-height: unset;
+}
+#contact header h1 {
+  padding-bottom: 0;
+  font-size: 7.209em;
+}
+#contact #header-wrapper {
+  height: unset;
+  margin-top: 10em;
+}
+
 /* Media queries:
 */
 /* Small only */

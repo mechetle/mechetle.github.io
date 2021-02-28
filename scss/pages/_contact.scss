@@ -1,0 +1,44 @@
+#contact {
+    #wai-wrapper {
+        padding: 5em 4em;
+        background: rgb(255 255 255 / 0.4);
+        backdrop-filter: blur(30px) saturate(150%);
+        padding: 5em 4em;
+        color: #000;
+        border-radius: 0em;
+        margin-top: 7.5em;
+        margin-bottom: 1em;
+    }
+    .just-go-right {
+        width: 50%;
+        margin: 0;
+        float: right;
+    }
+
+    section:not(:first-of-type) {
+        padding-top: 6em;
+        padding-bottom: 7em;
+    }
+
+    #lets-talk {
+        padding: 3em 0 3em;
+    }
+    
+    .border-top-naturalize, .border-bottom-naturalize {
+        background: none;
+    }
+    header {
+        outline: #fff 33px solid;
+        min-height: unset;
+
+        h1 {
+            padding-bottom: 0;
+            font-size: 7.209em;
+        }
+    }
+    #header-wrapper {
+        height: unset;
+        margin-top:10em;
+    }
+    
+}
