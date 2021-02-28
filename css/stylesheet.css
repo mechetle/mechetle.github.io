@@ -1076,10 +1076,10 @@ section#featured-work .work-thumb p {
   margin-block-end: 1em;
 }
 section#featured-work .work-thumb-wrapper {
-  outline: #01589b4b 0 solid;
+  outline: #01589b00 0 solid;
   transition-delay: 0;
   transition-duration: 0.6s;
-  transition-timing-function: cubic-bezier(0.06, 0.85, 0.05, 1.25);
+  transition-timing-function: cubic-bezier(0.04, 0.52, 0.06, 1.03);
   transition-property: outline, outline-offset;
   outline-offset: 20px;
   position: relative;
@@ -1550,9 +1550,20 @@ header .border-top-naturalize {
     font-size: 0.95vh;
   }
 }
-@media screen and (min-width: 64em) and (max-width: 74.99875em) {
+/* Really low dpi laptop */
+@media screen and (min-width: 64em) and (max-width: 1366px) {
   .grid-container.extended {
     padding: 0px 1.8em;
+  }
+}
+/* Potato DPI screen, absolutely low DPI */
+@media screen and (min-height: 480px) and (max-height: 768px) {
+  header .text-wrapper h1 {
+    font-size: 21.8vh;
+  }
+
+  header #swave-wrapper .swaves {
+    width: calc(2882px/ 2.13);
   }
 }
 /* Beyond large */
