@@ -279,6 +279,10 @@
     //      display: none;
     //    }
     //  }
+
+    .grid-container.extended {
+      padding: 0px 1.8em;
+    }
   
     .nav-breaking-percau {
       display: inline-grid;
@@ -323,6 +327,12 @@
       html {
         font-size: 0.95vh;
       }
+  }
+
+  @media screen and (min-width: 64em) and (max-width: 74.99875em) {
+    .grid-container.extended {
+      padding: 0px 1.8em;
+    }
   }
 
   /* Beyond large */

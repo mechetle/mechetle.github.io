@@ -307,12 +307,12 @@ let scContents = `
                 <a href="#%" class="button float-right" title="close" onclick="sourceConsole()"><i class="fas fa-times"> </i></a> 
             </div>
             <!-- <textarea id="the-console" readonly> -->
-            <textarea id="the-console" readonly>THIS IS A WORK IN PROGRESS, YOU ARE NOT MEANT TO SEE THIS LOL. CLICK OUT OF THIS AND RETURN WHEN IT'S READY!
+            <textarea id="the-console" name="theConsole" readonly>THIS IS A WORK IN PROGRESS, YOU ARE NOT MEANT TO SEE THIS LOL. CLICK OUT OF THIS AND RETURN WHEN IT'S READY!
             </textarea>
 
             <form id="consoleCommand"  name="consoleCom">
                 <input type="text" id="command" name="command">
-                <input type="submit" value="Submit">
+                <input type="submit" value="Submit" id="consoleSend">
             </form>
         </div>
     </div>
@@ -345,8 +345,8 @@ var form = document.getElementById("consoleCommand");
 function handleForm(event) { event.preventDefault(); } 
 form.addEventListener('submit', handleForm);
 
-document.getElementById('the-console').onclick = function() {
-    document.forms.consoleCom.notes1.value += '\n' + document.forms.consoleCom.notes2.value;
+document.getElementById('consoleSend').onclick = function() {
+    document.theConsole.value += '\n' + document.forms.consoleCom.command.value;
  };
 
 // For each item with a `window` class…

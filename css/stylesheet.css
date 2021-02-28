@@ -1158,14 +1158,9 @@ section#featured-work .work-thumb-wrapper:hover .work-thumb-wrapper-cont {
   transform: scale(0.8);
 }
 section #wai-wrapper {
-  background: rgba(11, 35, 61, 0.44);
   /* outline: rgb(255 255 255) 14em solid; */
-  backdrop-filter: blur(30px) saturate(150%);
   padding: 5em 4em;
   border-radius: 0.3em;
-  background: rgba(11, 35, 61, 0.44);
-  -webkit-backdrop-filter: blur(30px) saturate(150%);
-  backdrop-filter: blur(30px) saturate(150%);
   padding: 5em 4em;
   color: #fff;
   border-radius: 0.3em;
@@ -1523,6 +1518,10 @@ header .border-top-naturalize {
 }
 /* Medium only */
 @media screen and (min-width: 40em) and (max-width: 63.9375em) {
+  .grid-container.extended {
+    padding: 0px 1.8em;
+  }
+
   .nav-breaking-percau {
     display: inline-grid;
   }
@@ -1549,6 +1548,11 @@ header .border-top-naturalize {
 @media screen and (min-width: 120em) {
   html {
     font-size: 0.95vh;
+  }
+}
+@media screen and (min-width: 64em) and (max-width: 74.99875em) {
+  .grid-container.extended {
+    padding: 0px 1.8em;
   }
 }
 /* Beyond large */
