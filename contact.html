@@ -161,7 +161,7 @@
     </header>
 
     <main id="project-post-details">
-        <div class="grid-container fluid">
+        <div class="grid-container">
             <div class="grid-x grid-margin-x"> 
                 <!--
                 <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/mknpbkar" method="post">
@@ -179,34 +179,37 @@
                 
                 <div class="large-9 cell" id="contact-letter">
                     <div id="mechs-details">
-                        <p><b>
-                            Mechetle
-                            <br>
-                            Steven B-m Nguyen
-                            <br>
-                            Melbourne, Australia 
-                            </b>
-                            <br>
+                        <p>
+                            Steven B-m Nguyen<br>
+                            Hey@mechetle.com<br>
+                            Melbourne, VIC 3000<br><br>
+                            
                         </p>
                     </div>
                     <form action="https://formspree.io/f/mknpbkar" method="POST" id="contact-form">
                         <label for="time-zone">Sender's time-zone:</label>
+                        <input type="text" name="time-zone" id="time-zone" readonly>
                         <br>
+
                         <label for="email-address">Sender's Email:</label>
-                        <input type="text" name="_replyto" id="email-address"  placeholder="example@example.com" maxlength="64" width="12.1ch">
-                        <span class='measure'></span>
+                        <input type="text" name="_replyto" id="email-address"  placeholder="example@example.com" maxlength="64" width="12.1ch" required oninvalid="nortification('Uh oh, you forgot to enter your email in.','warning')">
+                        
+                        
+                        <br><br>
+                        <label for="subject">Subject:</label>
+                        <input type="text" name="_subject" id="subject"  placeholder="I just wanted to say hai" maxlength="125" style=width:60ch;>
                         
                         <br>
                         
                         <!--<label for="message" class="ph-label">[ Your message here ]</label>-->
-                        <textarea name="message" id="message" placeholder="[ Your message here ]"></textarea>
+                        <textarea name="message" id="message" placeholder="[ Say whatever you like to me. ]" required></textarea>
                     
                     </form>
                 </div>
                 <div class="large-auto cell" id="contact-sidebar">
-                    <div class="footer-widget">
-                        <h5>Social Media</h5>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque repudiandae velit voluptatem!</p>
+                    <div class="footer-widget small-order-2">
+                        <h2>Social Media</h2>
+                        <p>Here are socials, hit me up there! I'm usually more active on Twitter and Discord.</p>
                         <ul>
                             <li><a href="#discordtag" class="discordmodaltoggle" onclick="ToggleDiscordModal()"><i
                                         class="fab fa-discord"></i>Discord</a></li>
@@ -221,7 +224,7 @@
 
                     </div>
                     
-                    <button type="submit" form="contact-form">Send</button>
+                    <button type="submit" form="contact-form" class="small-order-1">Send <i class="float-right fas fa-angle-right"></i></button>
                 </div>
 
             </div>
@@ -278,6 +281,7 @@
           xhr.send(data);
         }
 
+        // Auto size text area
         var observe;  
         if (window.attachEvent) {
             observe = function (element, event, handler) {
@@ -310,16 +314,72 @@
             resize();
         }
         
-        areaText();
+        areaText();   
 
+        document.getElementById("time-zone").value = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    </script>
 
-        document.querySelector('input').addEventListener('input', onInput)
+    <script>
+       
+        function insertAfterV(newNode, referenceNode) {
+            referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+        }
 
+        const inputText = document.getElementsByTagName("input");
+
+        function inputSetup() {
+            // create "measurment placeholder / input box"
+            for (var i = 0; i < inputText.length; ++i) {
+                inputText[i].addEventListener("input", onInput);
+                inputText[i].addEventListener("blur", hoverOffWhenEmpty);
+
+                if(inputText[i].readOnly) {
+
+                } else {
+                    var measureTemp = document.createElement("span");
+                    measureTemp.className = "measure";
+                    measureTemp.textContent = inputText[i].getAttribute("placeholder");
+
+                    insertAfterV( measureTemp, inputText[i]);
+
+                    inputText[i].style.width = measureTemp.offsetWidth + 'px';
+                }
+            }
+        }
+
+        inputSetup();
+        
         function onInput(){
+            console.log("trertert");
+
             var spanElm = this.nextElementSibling;
             spanElm.textContent = this.value; // the hidden span takes the value of the input; 
             this.style.width = spanElm.offsetWidth + 'px'; // apply width of the span to the input
-        };        
+
+            this.addEventListener('keydown', function(event) {
+                const key = event.key; // const {key} = event; ES6+
+                if (key === "Backspace" || key === "Delete") {
+                    console.log("deleted a letter");
+                    // this.style.transitionDuration = "0.4s";
+                    this.style.transitionProperty = "width, border-bottom";
+                    return false;
+                } else {
+                    //this.style.transitionDuration = "0s";
+                    this.style.transitionProperty = "border-bottom";
+                }
+
+            });
+
+        };
+        function hoverOffWhenEmpty() {
+            if (this.value.length == 0) {
+                const spanElm = this.nextElementSibling;
+                spanElm.textContent = this.getAttribute("placeholder");
+                this.style.width = spanElm.offsetWidth + 'px';
+            } else {
+            }
+                
+        };
     </script>
     
 
