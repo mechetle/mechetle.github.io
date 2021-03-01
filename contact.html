@@ -79,7 +79,7 @@
 
 </head>
 
-<body id="post">
+<body id="contact" onload="init();">
 
     <div class="nav-primary navigation nav-header-main">
         <div class="grid-container fluid">
@@ -150,47 +150,20 @@
         <div id="header-wrapper" class="grid-container full">
             <div class="grid-x">
                 <div class="text-wrapper post cell large-6">
-                    
-                    <div class="grid-y" style="height: 200%;">
-                        <div class="cell medium-3 post-details">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                    <li class="breadcrumb-item active"><a href="/portfolio/">Portfolio</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">NIHDC4</li>
-                                </ol>
-                            </nav>
-                            <h1 class="post">NIHDC4</h1>
-                        </div>
-                        <div class="cell medium-9 lower">
-                            <!--
-                            <div class="credits">
-                                <div class="grid-x">
-                                    <div class="cell small-12">
-                                        <h2>The gist</h2>
-                                    </div>
-                                    <div class="cell small-6">
-                                        <b>Programs Used:</b>
-                                    </div>
-                                    <div class="cell small-6">
-                                        <b>Credits:</b>
-                                    </div>
-                                </div>
-                            </div>-->
-                        </div>
+                    <div class="cell medium-3 post-details">
+                        <h1 class="post">Contact</h1>
                     </div>
+
                 </div>
-                <div class="cell large-6 show-for-large header-post-image rellax" data-rellax-speed="-3" style=""></div>
             </div>
 
         </div>
-
-        <div class="border-bottom-naturalize"></div>
     </header>
 
-    <section id="project-post-details">
+    <main id="project-post-details">
         <div class="grid-container fluid">
-            <div class="grid-x"> <!--
+            <div class="grid-x grid-margin-x"> 
+                <!--
                 <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/mknpbkar" method="post">
                     <fieldset id="fs-frm-inputs">
                         <label for="full-name">Full Name</label>
@@ -204,38 +177,151 @@
                     <input type="submit" value="Submit">
                 </form> -->
                 
-                <form class="kwes-form" action="https://kwes.io/api/foreign/forms/6qgF1JaIAG6CPM1Q4RlX">
-                    <label for="name">Your Name</label>
-                    <input type="text" name="name" rules="required|max:255">
-              
-                    <button type="submit">Submit</button>
-                </form>
+                <div class="large-9 cell" id="contact-letter">
+                    <div id="mechs-details">
+                        <p><b>
+                            Mechetle
+                            <br>
+                            Steven B-m Nguyen
+                            <br>
+                            Melbourne, Australia 
+                            </b>
+                            <br>
+                        </p>
+                    </div>
+                    <form action="https://formspree.io/f/mknpbkar" method="POST" id="contact-form">
+                        <label for="time-zone">Sender's time-zone:</label>
+                        <br>
+                        <label for="email-address">Sender's Email:</label>
+                        <input type="text" name="_replyto" id="email-address"  placeholder="example@example.com" maxlength="64" width="12.1ch">
+                        <span class='measure'></span>
+                        
+                        <br>
+                        
+                        <!--<label for="message" class="ph-label">[ Your message here ]</label>-->
+                        <textarea name="message" id="message" placeholder="[ Your message here ]"></textarea>
+                    
+                    </form>
+                </div>
+                <div class="large-auto cell" id="contact-sidebar">
+                    <div class="footer-widget">
+                        <h5>Social Media</h5>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque repudiandae velit voluptatem!</p>
+                        <ul>
+                            <li><a href="#discordtag" class="discordmodaltoggle" onclick="ToggleDiscordModal()"><i
+                                        class="fab fa-discord"></i>Discord</a></li>
+                            <li><a href="https://www.instagram.com/mechetle/"><i
+                                        class="fab fa-instagram"></i>Instagram</a></li>
+                            <li><a href="https://www.youtube.com/Mechetle"><i class="fab fa-youtube"></i>YouTube</a>
+                            </li>
+                            <li><a href="https://twitter.com/mechetle"><i class="fab fa-twitter"></i>Twitter</a></li>
+
+
+                        </ul>
+
+                    </div>
+                    
+                    <button type="submit" form="contact-form">Send</button>
+                </div>
 
             </div>
         </div>
-    </section>
-    
+    </main>
 
+    <script>
+        window.addEventListener("DOMContentLoaded", function() {
+      
+          // get the form elements defined in your form HTML above
+          
+          var form = document.getElementById("contact-form");
+          // var button = document.getElementById("my-form-button");
+          // var status = document.getElementById("form-status");
+      
+          // Success and Error functions for after the form is submitted
+          
+          function success() {
+            form.reset();
+            // button.style = "display: none ";
+            status.innerHTML = "Thanks!";
+            nortification("Contact form sent!","success")
+          }
+      
+          function error() {
+            // status.innerHTML = "Oops! There was a problem.";
+            nortification("Oops! There was a problem. 😦","error")
+          }
+      
+          // handle the form submission event
+      
+          form.addEventListener("submit", function(ev) {
+            ev.preventDefault();
 
-
-    <section id="lets-talk">
-        <div class="grid-container">
-            <div class="grid-x grid-margin-x">
-                <div class="cell medium-6 large-10">
-                    <h2>Interested?</h2>
-                    <p>
-                        Let's start something awesome.
-                    </p>
-                </div>
-                <div class="cell medium-6 large-auto lets-talk-wrapper">
-                    <button class="button">Let's talk</button>
-                </div>
-            </div>
-
-
-        </div>
+            var data = new FormData(form);
+            ajax(form.method, form.action, data, success, error);
+          });
+        });
         
-    </section>
+        // helper function for sending an AJAX request
+      
+        function ajax(method, url, data, success, error) {
+          var xhr = new XMLHttpRequest();
+          xhr.open(method, url);
+          xhr.setRequestHeader("Accept", "application/json");
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState !== XMLHttpRequest.DONE) return;
+            if (xhr.status === 200) {
+              success(xhr.response, xhr.responseType);
+            } else {
+              error(xhr.status, xhr.response, xhr.responseType);
+            }
+          };
+          xhr.send(data);
+        }
+
+        var observe;  
+        if (window.attachEvent) {
+            observe = function (element, event, handler) {
+                element.attachEvent('on'+event, handler);
+            };
+        }
+        else {
+            observe = function (element, event, handler) {
+                element.addEventListener(event, handler, false);
+            };
+        }
+        function areaText() {
+            var text = document.getElementById('message');
+            function resize () {
+                text.style.height = 'auto';
+                text.style.height = text.scrollHeight+'px';
+            }
+            /* 0-timeout to get the already changed text */
+            function delayedResize () {
+                window.setTimeout(resize, 0);
+            }
+            observe(text, 'change',  resize);
+            observe(text, 'cut',     delayedResize);
+            observe(text, 'paste',   delayedResize);
+            observe(text, 'drop',    delayedResize);
+            observe(text, 'keydown', delayedResize);
+
+            text.focus();
+            text.select();
+            resize();
+        }
+        
+        areaText();
+
+
+        document.querySelector('input').addEventListener('input', onInput)
+
+        function onInput(){
+            var spanElm = this.nextElementSibling;
+            spanElm.textContent = this.value; // the hidden span takes the value of the input; 
+            this.style.width = spanElm.offsetWidth + 'px'; // apply width of the span to the input
+        };        
+    </script>
+    
 
     <section id="beta-section">
         <div class="grid-container">
@@ -277,22 +363,9 @@
                 </div>
                 <div class="cell medium-6 large-3">
                     <div class="footer-widget">
-                        <h5>Social Media</h5>
-                        <ul>
-                            <li><a href="#discordtag" class="discordmodaltoggle" onclick="ToggleDiscordModal()"><i
-                                        class="fab fa-discord"></i>Discord</a></li>
-                            <li><a href="https://www.instagram.com/mechetle/"><i
-                                        class="fab fa-instagram"></i>Instagram</a></li>
-                            <li><a href="https://www.youtube.com/Mechetle"><i class="fab fa-youtube"></i>YouTube</a>
-                            </li>
-                            <li><a href="https://twitter.com/mechetle"><i class="fab fa-twitter"></i>Twitter</a></li>
-
-
-                        </ul>
-
                         <button class="button small-button" id="leaveBeta" onclick="leaveBeta()">Leave Beta</button>
 
-                    </div>
+                    </div>    
                 </div>
 
                 <div class="small-12 show-for-small-only">

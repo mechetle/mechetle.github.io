@@ -49,11 +49,12 @@ section {
 
     }
     .work-thumb-wrapper {
-      outline: #01589b4b 0 solid;
+      outline: #01589b00 0 solid;
       transition-delay: 0;
       transition-duration: 0.6s;
       
-      transition-timing-function: cubic-bezier(0.06, 0.85, 0.05, 1.25); 
+      transition-timing-function: cubic-bezier(0.04, 0.52, 0.06, 1.03);
+      // transition-timing-function: cubic-bezier(0.06, 0.85, 0.05, 1.25); 
       //transition-timing-function: cubic-bezier(0.02, 0.85, 0.32, 1.33);
 
       transition-property: outline, outline-offset;
