@@ -6,7 +6,11 @@ footer {
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
   padding: 3em 0;
+}
 
+/* Footer widget
+*/
+.footer-widget {
   a {
     transition-duration: 0.12s;
     transition-timing-function: cubic-bezier(0.79, 0.11, 0.28, 0.97);
@@ -19,17 +23,7 @@ footer {
     }
   }
 
-  ul:hover a {
-    color: rgba(0, 0, 0, 0.3);
-  }
-}
-
-.footer-note {
-  padding-top: 2em;
-}
-
-footer {
-  .fab {
+  .fab { // Font awesome
     width: 1.5em;
 
   }
@@ -38,14 +32,28 @@ footer {
     list-style: none;
     padding: 0;
     margin: 0;
+
+    &:hover a {
+      color: rgba(0, 0, 0, 0.3);
+    }
+
   }
 
   a {
     color: rgba(0, 0, 0, 0.5);
   }
+
+  p {
+    margin-block-end: 1em;
+  }
 }
 
+.footer-note {
+  padding-top: 2em;
+}
 
+/* Animating background:
+*/
 @keyframes gradient {
   0% {
     background-position: 0% 50%;

@@ -935,36 +935,43 @@ footer {
   animation: gradient 15s ease infinite;
   padding: 3em 0;
 }
-footer a {
+
+/* Footer widget
+*/
+.footer-widget a {
   transition-duration: 0.12s;
   transition-timing-function: cubic-bezier(0.79, 0.11, 0.28, 0.97);
   padding-left: 0;
 }
-footer a:hover {
+.footer-widget a:hover {
   color: rgba(0, 0, 0, 0.7) !important;
   transform: translateX(1.2);
   padding-left: 10px;
 }
-footer ul:hover a {
+.footer-widget .fab {
+  width: 1.5em;
+}
+.footer-widget ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-widget ul:hover a {
   color: rgba(0, 0, 0, 0.3);
+}
+.footer-widget a {
+  color: rgba(0, 0, 0, 0.5);
+}
+.footer-widget p {
+  margin-block-end: 1em;
 }
 
 .footer-note {
   padding-top: 2em;
 }
 
-footer .fab {
-  width: 1.5em;
-}
-footer ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-footer a {
-  color: rgba(0, 0, 0, 0.5);
-}
-
+/* Animating background:
+*/
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
@@ -1327,6 +1334,56 @@ section #wai-wrapper {
 #contact #header-wrapper {
   height: unset;
   margin-top: 10em;
+}
+#contact button[type=submit] {
+  width: 100%;
+  text-align: left;
+  position: sticky;
+  top: calc(100vh - 70px - 20px);
+}
+#contact input[type=text] {
+  border: none;
+  border-bottom: #eceff1 6px solid;
+  margin-bottom: 1em;
+}
+#contact input, #contact .measure {
+  padding: 0.5em;
+  padding-left: 0.65em;
+  white-space: pre;
+  /* white-spaces will work effectively */
+}
+#contact .measure {
+  position: absolute;
+  z-index: 1000;
+  left: -9999px;
+  top: -9999px;
+  color: transparent;
+}
+#contact #contact-letter {
+  background: #fff;
+  box-shadow: 0px 5px 29px 0px rgba(11, 35, 61, 0.18);
+  padding: 3.5em 2.2em;
+  margin-bottom: 3.5em;
+}
+#contact #contact-letter * {
+  font-family: "roboto mono", consolas;
+}
+#contact #contact-sidebar {
+  margin-bottom: 3.5em;
+  min-height: max-content;
+}
+#contact .grid-container > .grid-x {
+  padding-top: 25px;
+}
+#contact textarea {
+  border: 0 none white;
+  overflow: hidden;
+  padding: 0;
+  outline: none;
+  background-color: none;
+}
+#contact #message {
+  width: 100%;
 }
 
 /* Media queries:

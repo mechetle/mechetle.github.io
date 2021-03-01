@@ -79,7 +79,7 @@
 
 </head>
 
-<body id="contact">
+<body id="contact" onload="init();">
 
     <div class="nav-primary navigation nav-header-main">
         <div class="grid-container fluid">
@@ -162,7 +162,8 @@
 
     <main id="project-post-details">
         <div class="grid-container fluid">
-            <div class="grid-x"> <!--
+            <div class="grid-x grid-margin-x"> 
+                <!--
                 <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/mknpbkar" method="post">
                     <fieldset id="fs-frm-inputs">
                         <label for="full-name">Full Name</label>
@@ -176,20 +177,52 @@
                     <input type="submit" value="Submit">
                 </form> -->
                 
-                <form action="https://formspree.io/f/mknpbkar" method="POST" id="contact-form">
-                <label>
-                  Your email:
-                  <input type="text" name="_replyto">
-                </label>
-                <label>
-                  Your message:
-                  <textarea name="message"></textarea>
-                </label>
-              
-                <!-- your other form fields go here -->
-              
-                <button type="submit">Send</button>
-              </form>
+                <div class="large-9 cell" id="contact-letter">
+                    <div id="mechs-details">
+                        <p><b>
+                            Mechetle
+                            <br>
+                            Steven B-m Nguyen
+                            <br>
+                            Melbourne, Australia 
+                            </b>
+                            <br>
+                        </p>
+                    </div>
+                    <form action="https://formspree.io/f/mknpbkar" method="POST" id="contact-form">
+                        <label for="time-zone">Sender's time-zone:</label>
+                        <br>
+                        <label for="email-address">Sender's Email:</label>
+                        <input type="text" name="_replyto" id="email-address"  placeholder="example@example.com" maxlength="64" width="12.1ch">
+                        <span class='measure'></span>
+                        
+                        <br>
+                        
+                        <!--<label for="message" class="ph-label">[ Your message here ]</label>-->
+                        <textarea name="message" id="message" placeholder="[ Your message here ]"></textarea>
+                    
+                    </form>
+                </div>
+                <div class="large-auto cell" id="contact-sidebar">
+                    <div class="footer-widget">
+                        <h5>Social Media</h5>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque repudiandae velit voluptatem!</p>
+                        <ul>
+                            <li><a href="#discordtag" class="discordmodaltoggle" onclick="ToggleDiscordModal()"><i
+                                        class="fab fa-discord"></i>Discord</a></li>
+                            <li><a href="https://www.instagram.com/mechetle/"><i
+                                        class="fab fa-instagram"></i>Instagram</a></li>
+                            <li><a href="https://www.youtube.com/Mechetle"><i class="fab fa-youtube"></i>YouTube</a>
+                            </li>
+                            <li><a href="https://twitter.com/mechetle"><i class="fab fa-twitter"></i>Twitter</a></li>
+
+
+                        </ul>
+
+                    </div>
+                    
+                    <button type="submit" form="contact-form">Send</button>
+                </div>
 
             </div>
         </div>
@@ -244,6 +277,49 @@
           };
           xhr.send(data);
         }
+
+        var observe;  
+        if (window.attachEvent) {
+            observe = function (element, event, handler) {
+                element.attachEvent('on'+event, handler);
+            };
+        }
+        else {
+            observe = function (element, event, handler) {
+                element.addEventListener(event, handler, false);
+            };
+        }
+        function areaText() {
+            var text = document.getElementById('message');
+            function resize () {
+                text.style.height = 'auto';
+                text.style.height = text.scrollHeight+'px';
+            }
+            /* 0-timeout to get the already changed text */
+            function delayedResize () {
+                window.setTimeout(resize, 0);
+            }
+            observe(text, 'change',  resize);
+            observe(text, 'cut',     delayedResize);
+            observe(text, 'paste',   delayedResize);
+            observe(text, 'drop',    delayedResize);
+            observe(text, 'keydown', delayedResize);
+
+            text.focus();
+            text.select();
+            resize();
+        }
+        
+        areaText();
+
+
+        document.querySelector('input').addEventListener('input', onInput)
+
+        function onInput(){
+            var spanElm = this.nextElementSibling;
+            spanElm.textContent = this.value; // the hidden span takes the value of the input; 
+            this.style.width = spanElm.offsetWidth + 'px'; // apply width of the span to the input
+        };        
     </script>
     
 
@@ -287,22 +363,9 @@
                 </div>
                 <div class="cell medium-6 large-3">
                     <div class="footer-widget">
-                        <h5>Social Media</h5>
-                        <ul>
-                            <li><a href="#discordtag" class="discordmodaltoggle" onclick="ToggleDiscordModal()"><i
-                                        class="fab fa-discord"></i>Discord</a></li>
-                            <li><a href="https://www.instagram.com/mechetle/"><i
-                                        class="fab fa-instagram"></i>Instagram</a></li>
-                            <li><a href="https://www.youtube.com/Mechetle"><i class="fab fa-youtube"></i>YouTube</a>
-                            </li>
-                            <li><a href="https://twitter.com/mechetle"><i class="fab fa-twitter"></i>Twitter</a></li>
-
-
-                        </ul>
-
                         <button class="button small-button" id="leaveBeta" onclick="leaveBeta()">Leave Beta</button>
 
-                    </div>
+                    </div>    
                 </div>
 
                 <div class="small-12 show-for-small-only">
