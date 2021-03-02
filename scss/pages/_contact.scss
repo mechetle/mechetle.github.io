@@ -54,7 +54,7 @@
 
     input {
 
-        &[type="text"] {
+        &[type="text"], &[type="email"] {
             border: none;
             border-bottom: #eceff1 8px solid;
             margin-bottom: 1em;

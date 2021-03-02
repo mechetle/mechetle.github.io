@@ -192,7 +192,7 @@
                         <br>
 
                         <label for="email-address">Sender's Email:</label>
-                        <input type="text" name="_replyto" id="email-address"  placeholder="example@example.com" maxlength="64" width="12.1ch" required oninvalid="nortification('Uh oh, you forgot to enter your email in.','warning')">
+                        <input type="email" name="_replyto" id="email-address"  placeholder="example@example.com" maxlength="64" width="12.1ch" required oninvalid="nortification('Uh oh, you forgot to enter your email in.','warning')">
                         
                         
                         <br><br>
@@ -207,7 +207,7 @@
                     </form>
                 </div>
                 <div class="large-auto cell" id="contact-sidebar">
-                    <div class="footer-widget small-order-2">
+                    <div class="footer-widget small-order-2 large-order-1">
                         <h2>Social Media</h2>
                         <p>Here are socials, hit me up there! I'm usually more active on Twitter and Discord.</p>
                         <ul>
@@ -224,7 +224,7 @@
 
                     </div>
                     
-                    <button type="submit" form="contact-form" class="small-order-1">Send <i class="float-right fas fa-angle-right"></i></button>
+                    <button type="submit" form="contact-form" class="small-order-1 large-order-2">Send <i class="float-right fas fa-angle-right"></i></button>
                 </div>
 
             </div>
@@ -308,10 +308,12 @@
             observe(text, 'paste',   delayedResize);
             observe(text, 'drop',    delayedResize);
             observe(text, 'keydown', delayedResize);
-
-            text.focus();
+            
             text.select();
+            text.focus();
             resize();
+
+
         }
         
         areaText();   
@@ -320,7 +322,13 @@
     </script>
 
     <script>
-       
+
+        function stickifySubmit() {
+            const submitBtn = document.querySelector("button[type=submit]");
+            submitBtn.style.position = "sticky";
+        }
+        
+        // inserts element after another specified element
         function insertAfterV(newNode, referenceNode) {
             referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
         }
@@ -355,6 +363,8 @@
             var spanElm = this.nextElementSibling;
             spanElm.textContent = this.value; // the hidden span takes the value of the input; 
             this.style.width = spanElm.offsetWidth + 'px'; // apply width of the span to the input
+            
+            // stickifySubmit(); redundant.
 
             this.addEventListener('keydown', function(event) {
                 const key = event.key; // const {key} = event; ES6+
