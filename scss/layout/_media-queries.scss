@@ -240,12 +240,20 @@
       font-size: 4.6em !important;
     }
 
-    #contact-letter {
-      margin-bottom: 0.5em !important;
+    #contact {
+      #contact-letter {
+        margin-bottom: 0.5em !important;
+      }
+      button[type=submit] {
+        position: static !important;
+      }      
+      .post-details {
+        padding-left: 0;
+        text-align: center;
+      }
     }
-    button[type=submit] {
-      position: static !important;
-    }
+
+
   }
   
   /* Medium and up */

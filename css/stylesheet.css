@@ -1623,12 +1623,15 @@ header .border-top-naturalize {
     font-size: 4.6em !important;
   }
 
-  #contact-letter {
+  #contact #contact-letter {
     margin-bottom: 0.5em !important;
   }
-
-  button[type=submit] {
+  #contact button[type=submit] {
     position: static !important;
+  }
+  #contact .post-details {
+    padding-left: 0;
+    text-align: center;
   }
 }
 /* Medium and up */
