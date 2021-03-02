@@ -60,7 +60,8 @@ if (typeof (Storage) !== "undefined") {
     const join = document.getElementById("joinBeta"),
           leave = document.getElementById("leaveBeta"),
           alert = document.getElementById("beta-notify");
-          bodyTag = document.getElementById("homepage");
+          // bodyTag = document.getElementsByTagName("homepage");
+          bodyTag = document.querySelector("body");
           betaSection = document.getElementById("beta-section");
 
     function joinBeta() {
