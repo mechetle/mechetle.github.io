@@ -1412,7 +1412,7 @@ section #wai-wrapper {
 #contact #contact-sidebar h2 {
   margin-top: 0;
 }
-#contact .grid-container > .grid-x {
+#contact #contact-contents .grid-container > .grid-x {
   padding-top: 25px;
 }
 #contact textarea {
