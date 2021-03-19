@@ -794,7 +794,17 @@ header .grid-x > * {
   color: black;
 }
 
-button {
+a.button {
+  appearance: button;
+  text-decoration: none;
+  color: initial;
+  line-height: 1em;
+}
+a.button:hover {
+  border-bottom-color: #A33B81 !important;
+}
+
+button, a.button {
   cursor: pointer;
   background: #d81b60;
   color: #fff;
@@ -812,24 +822,22 @@ button {
   outline: 0em #01579b solid;
   outline-offset: 0em;
 }
-button.small-button {
+button.small-button, a.button.small-button {
   padding: 0.3em 1.6em;
   font-weight: 500;
 }
-button:hover {
-  transform: translateY(-10px);
+button:hover, a.button:hover {
   border-bottom-width: 20px;
-  margin-bottom: -10px;
+  margin-top: 15px;
 }
-button:focus {
+button:focus, a.button:focus {
   outline: 0.4em #01579b solid;
   outline-offset: 0.3em;
 }
-button:active {
-  transform: translateY(10px);
+button:active, a.button:active {
   border-bottom-width: 0;
   transition-duration: 50ms;
-  margin-bottom: 10px;
+  margin-top: 35px;
 }
 
 /*
@@ -1404,7 +1412,7 @@ section #wai-wrapper {
 #contact #contact-sidebar h2 {
   margin-top: 0;
 }
-#contact .grid-container > .grid-x {
+#contact #contact-contents .grid-container > .grid-x {
   padding-top: 25px;
 }
 #contact textarea {

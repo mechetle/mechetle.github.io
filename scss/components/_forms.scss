@@ -1,4 +1,15 @@
-button {
+a.button {
+  appearance: button;
+  text-decoration: none;
+  color: initial;
+  line-height: 1em;
+
+  &:hover {
+    border-bottom-color: #A33B81 !important;
+  }
+}
+
+button, a.button {
   //Note to self: This varible affects how high the button goes up when being hovered. 
   $RiseUp: 10px;
 
@@ -12,13 +23,17 @@ button {
   transform-origin: bottom;
   margin-top: 15px + $RiseUp;
   font-weight: 600;
+
   // border-radius: 0;
   border-radius: 0.15em;
+
   border-bottom-color: #A33B81;
   border-bottom-style: solid;
   border-bottom-width: $RiseUp;
+  
   transition-duration: 0.12s;
   transition-timing-function: cubic-bezier(0.79, 0.11, 0.28, 0.97);
+
   outline: 0em #01579b solid;
   outline-offset: 0em;
 
@@ -28,9 +43,10 @@ button {
   }
 
   &:hover {
-    transform: translateY(-$RiseUp);
+    // transform: translateY(-$RiseUp);
     border-bottom-width: $RiseUp * 2;
-    margin-bottom: -$RiseUp; //
+    // margin-bottom: -$RiseUp;
+    margin-top: 15px;
 
     //&:before {
     //  // transform: scaleY(0.5);
@@ -44,10 +60,11 @@ button {
   }
 
   &:active {
-    transform: translateY($RiseUp);
+    // transform: translateY($RiseUp);
     border-bottom-width: 0;
     transition-duration: 50ms;
-    margin-bottom: $RiseUp;
+    // margin-bottom: $RiseUp;
+    margin-top: 15px + $RiseUp * 2;
 
     //&:before {
     //  // transform: scaleY(0.5);
