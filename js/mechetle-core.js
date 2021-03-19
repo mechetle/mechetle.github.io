@@ -320,7 +320,7 @@ let scContents = `
 `;
 document.getElementsByTagName("footer")[0].insertAdjacentHTML('afterend', scContents);
 
-document.onkeypress = function (e) {
+/* document.onkeypress = function (e) {
     e = e || window.event;
 
     if (e.key == "`") {
@@ -329,6 +329,7 @@ document.onkeypress = function (e) {
     }
     
 };
+ */
 
 function sourceConsole() {
     let div = document.getElementById("SourceConsole");
