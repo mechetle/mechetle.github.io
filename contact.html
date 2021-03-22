@@ -189,6 +189,8 @@
                     <form action="" method="POST" id="contact-form">
                         <label for="time-zone">Sender's time-zone:</label>
                         <input type="text" name="time-zone" id="time-zone" readonly>
+                        <input type="text" name="_gotcha" style="display:none">
+
                         <br>
 
                         <label for="email-address">Sender's Email:</label>
@@ -252,7 +254,7 @@
                 // play send animation
             }
             function error() {
-                nortification("Oops! There was a problem. 😦","error");
+                nortification("Oops! There was a problem. 😦 ","error");
                 submitBtn.disabled = false;
             }
         
