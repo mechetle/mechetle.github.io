@@ -839,6 +839,17 @@ button:active, a.button:active {
   transition-duration: 50ms;
   margin-top: 35px;
 }
+button:disabled, a.button:disabled {
+  background: #78909C;
+  border-bottom-color: #455A64;
+  cursor: not-allowed;
+  transition-duration: 0.12s;
+  transition-timing-function: cubic-bezier(0.79, 0.11, 0.28, 0.97);
+}
+button:disabled:hover, a.button:disabled:hover {
+  margin-top: 25px;
+  border-bottom-width: 10px;
+}
 
 /*
 Modals:
@@ -1022,6 +1033,7 @@ footer {
   transition-timing-function: cubic-bezier(1, 0.04, 0.28, 0.95);
   max-width: 400px;
   line-height: 1.15em;
+  background: #ffffff;
 }
 
 .nortification-pullup small {
@@ -1047,7 +1059,11 @@ footer {
 }
 
 .nortification_error {
-  background: #d81b60;
+  background: #E53935;
+  color: #ffffff;
+}
+.nortification_error > * {
+  color: #ffffff;
 }
 
 body#homepage {

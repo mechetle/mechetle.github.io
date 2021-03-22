@@ -186,7 +186,7 @@
                             
                         </p>
                     </div>
-                    <form action="https://formspree.io/f/mknpbkar" method="POST" id="contact-form">
+                    <form action="" method="POST" id="contact-form">
                         <label for="time-zone">Sender's time-zone:</label>
                         <input type="text" name="time-zone" id="time-zone" readonly>
                         <br>
@@ -224,7 +224,7 @@
 
                     </div>
                     
-                    <button type="submit" form="contact-form" class="small-order-1 large-order-2">Send <i class="float-right fas fa-angle-right"></i></button>
+                    <button type="submit" form="contact-form" class="small-order-1 large-order-2" disabled>Send <i class="float-right fas fa-angle-right"></i></button>
                 </div>
 
             </div>
@@ -233,39 +233,65 @@
 
     <script>
         window.addEventListener("DOMContentLoaded", function() {
-      
-          // get the form elements defined in your form HTML above
-          
-          var form = document.getElementById("contact-form");
-          // var button = document.getElementById("my-form-button");
-          // var status = document.getElementById("form-status");
-      
-          // Success and Error functions for after the form is submitted
-          
-          function success() {
-            form.reset();
-            // button.style = "display: none ";
-            status.innerHTML = "Thanks!";
-            nortification("Contact form sent!","success")
-          }
-      
-          function error() {
-            // status.innerHTML = "Oops! There was a problem.";
-            nortification("Oops! There was a problem. 😦","error")
-          }
-      
-          // handle the form submission event
-      
-          form.addEventListener("submit", function(ev) {
-            ev.preventDefault();
+            const submitBtn = document.querySelector("button[type=submit]");
+            
+            // If Javascript is enabled, enable form.
+            submitBtn.disabled = false;
+        
+            // get the form elements
+            var form = document.getElementById("contact-form");
+        
+            // Success and Error functions for after the form is submitted
+            function success() {
+                form.reset();
+                nortification("Contact form sent!","success");
+                getTimeZone();
+                submitBtn.disabled = false;
 
-            var data = new FormData(form);
-            ajax(form.method, form.action, data, success, error);
-          });
+                // hide packing animation
+                // play send animation
+            }
+            function error() {
+                nortification("Oops! There was a problem. 😦","error");
+                submitBtn.disabled = false;
+            }
+        
+
+            // Get time zone:
+            const timeZoneEl = document.getElementById("time-zone");
+            function getTimeZone() {
+                timeZoneEl.value = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            }
+            getTimeZone();
+            function reassureTimeZone() { // verifying if time-zone changed;
+                return Intl.DateTimeFormat().resolvedOptions().timeZone;
+            }
+
+
+            // Listen for submit
+            form.addEventListener("submit", function(ev) {
+                ev.preventDefault();
+
+                // play packing animation.
+
+                // assign form action:
+                // ^ to detect if submission is done in an enviroment where js is enabled.
+                form.setAttribute("action", "https://formspree.io/f/mknpbkar");
+
+                var data = new FormData(form);
+
+                // check if there is a time zone and if the time-zone inputed is actually a time zone and if it's the user's actual timezone.
+                if ( (timeZoneEl.value != "") && (timeZoneEl.value == reassureTimeZone()) ) {
+                    submitBtn.disabled = true;
+                    // execte ajax:
+                    ajax(form.method, form.action, data, success, error);
+                } else {
+                    nortification("🌌 No time zone detected<small style='display: inline'>[1]</small> / time traveler detected<small style='display: inline'>[2]</small> <br><small>[1] You might have wrote this form some how in 1 second or before the page loaded. please stop using BotOS, the form doesn't support that. 😭 <br><br>[2] Or for some sort of reason your time zone doesn't match with what's detected. This may be because the actual time zone changed unexpectedly. 🤷‍♀️ </small>", "error", 29000);
+                }
+            });
         });
         
         // helper function for sending an AJAX request
-      
         function ajax(method, url, data, success, error) {
           var xhr = new XMLHttpRequest();
           xhr.open(method, url);
@@ -318,10 +344,7 @@
         
         areaText();   
 
-        document.getElementById("time-zone").value = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    </script>
-
-    <script>
+        // document.getElementById("time-zone").value = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
         function stickifySubmit() {
             const submitBtn = document.querySelector("button[type=submit]");
@@ -334,7 +357,6 @@
         }
 
         const inputText = document.getElementsByTagName("input");
-
         function inputSetup() {
             // create "measurment placeholder / input box"
             for (var i = 0; i < inputText.length; ++i) {

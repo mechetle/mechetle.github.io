@@ -26,6 +26,7 @@
     transition-timing-function: cubic-bezier(1, 0.04, 0.28, 0.95);
     max-width: 400px;
     line-height: 1.15em;
+    background: #ffffff;
 }
 
 .nortification-pullup {
@@ -43,4 +44,11 @@
 .nortification_success { background: #69f0ae; }
 .nortification_warning { background: #ffb300; }
 .nortification_normal { background: #ffffff; }
-.nortification_error { background: #d81b60; }
+.nortification_error { 
+    background: #E53935;
+    color: #ffffff;
+
+    > * {
+        color: #ffffff;
+    }
+ }
