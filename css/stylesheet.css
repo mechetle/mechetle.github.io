@@ -688,7 +688,7 @@ header #swave-wrapper .rellax:nth-child(2) {
   top: 0;
 }
 header #swave-wrapper .swaves {
-  width: calc(2882px/ 1.5);
+  width: calc(100vh * 16 / 9 + (22vh));
   height: auto;
 }
 header #swave-wrapper #swave-2 {
@@ -781,6 +781,8 @@ header .text-wrapper h1.post {
 }
 header .text-wrapper h1 span > span {
   display: inline-block;
+  font-family: "Sen";
+  letter-spacing: -5px;
 }
 header .grid-x > * {
   position: static !important;
@@ -1270,11 +1272,11 @@ section #wai-wrapper {
   z-index: -1;
   overflow-y: hidden;
   overflow-x: hidden;
-  padding: 0;
+  padding: 0 !important;
 }
 #post .full-size-image img {
   max-width: fit-content;
-  transform-origin: 100px, 0;
+  transform: translateY(500px);
 }
 #post section:not(:first-of-type) {
   padding-top: 6em;

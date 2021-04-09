@@ -42,7 +42,8 @@ header {
     }
 
     .swaves {
-      width: calc(2882px/ 1.5);
+      // width: calc(2882px/ 1.5);
+      width: calc(100vh * 16 / 9 + (22vh));
       height: auto;
     }
 
@@ -151,6 +152,8 @@ header {
 
       span>span {
         display: inline-block;
+        font-family: 'Sen'; // might change it
+        letter-spacing: -5px;
         //test
       }
     }

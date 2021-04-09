@@ -217,7 +217,7 @@
     </section>
     
     <section class="full-size-image">
-        <img src="/img/Portfolio/nihdc4/Balcony-scene.png" alt="Mechetle's NIHDC4 - Balcony scene" class="rellax" data-rellax-speed="-2.5" data-rellax-percentage="2">
+        <img src="/img/Portfolio/nihdc4/Balcony-scene.png" alt="Mechetle's NIHDC4 - Balcony scene" class="rellax" data-rellax-speed="-2.5" data-rellax-percentage="0.5">
 
     </section>
 
@@ -383,41 +383,12 @@
         ///////
 
         var rellax = new Rellax('.rellax', {
-            //center: true,
+            center: false,
             vertical: true,
             horizontal: false
         });
 
-        // Wrap every letter in logo-text with a span
-        var textWrapper = document.querySelector('.logo-text');
-        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-
-        $("#me-mechetle > .rellax").slice(2).contents().wrap("<span class='header-letter'></span>");
-
-        // loading in swave:
-        var swaveOne = bodymovin.loadAnimation({
-            container: document.getElementById('swave-1'),
-            path: '/img/homepage/swave-1.json', 
-            renderer: 'svg', 
-            loop: false,
-            autoplay: true, 
-        })
-        var swaveTwo = bodymovin.loadAnimation({
-            container: document.getElementById('swave-2'), 
-            path: '/img/homepage/swave-2.json', 
-            renderer: 'svg', 
-            loop: false,
-            autoplay: true, 
-        })
-
-        // todo: iradicate jquery:
-        // when document ready execute:
-        $(document).ready(function () {
-            swaveOne.play();
-            swaveTwo.play();
-        });  
-        
-   
+ 
     </script>
 
     <script>
