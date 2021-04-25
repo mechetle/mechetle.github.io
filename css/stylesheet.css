@@ -513,6 +513,8 @@ a.nav-button:active {
   overflow-y: hidden;
   position: relative;
   padding: 0 1em;
+  width: calc(2em * 18.4);
+  display: inline-block;
 }
 
 .nav-header-main .nav-break-its-free-real-estate {
@@ -533,7 +535,6 @@ a.nav-button:active {
   }
   */
 .nav-breaking-percau {
-  width: 670px;
   position: relative;
   display: inline-grid;
   padding: 0;
@@ -564,7 +565,6 @@ a.nav-button:active {
 
 /* Nav header main */
 .nav-header-main .nav-breaking-percau {
-  width: 690px;
   /* max-width: 690px; */
   position: relative;
   display: inline-grid;
