@@ -130,7 +130,7 @@ header {
       transform: translateX(-150%) scale(1.5);
 
       transition-delay: 0.2s;
-      transition-duration: 0.95s;
+      transition-duration: 1.15s;
       transition-timing-function: cubic-bezier(0.86, 0.05, 0.15, 0.93);
 
       &.load-header {
@@ -193,6 +193,7 @@ header {
 
             p {
               // line-height: 450px;
+              padding-top: 15%;
               text-align: center;
             }
           }
