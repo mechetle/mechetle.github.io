@@ -388,16 +388,17 @@ var windows = document.querySelectorAll(".window");
 
 // Header image load
 //
-var checkImg = document.querySelector(".full-size-image img");
+var checkImg = document.querySelector(".image-header-temp");
 
 function loaded() {
     document.querySelector(".image-header").classList.add("load-header");
     document.querySelector(".transition").classList.add("load-header");
     document.querySelector(".video").classList.add("load-header");
+    checkImg.remove();
 }
 
 if (checkImg.complete) {
     loaded()
 } else {
-    checkImg.addEventListener("load", loaded)
+    checkImg.addEventListener("load", loaded);
 }
