@@ -93,7 +93,7 @@ header {
 
   .header-post-image {
     height: 100vh;
-    background:#1e252b;
+    // background:#1e252b;
     overflow: hidden;
 /*     background-position: center top;
     background-size: cover;
@@ -101,22 +101,43 @@ header {
 
     border-right: 33px solid rgb(255, 255, 255);  // might remove
 
+    .transition {
+      content: ""; 
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      display: block;
+      z-index: -1;
+      top: 0;
+      background: #01579b;
+      transition-delay: 0.05s;
+      transition-duration: 0.95s;
+      transition-timing-function: cubic-bezier(0.86, 0.05, 0.15, 0.93);
+      opacity: 0;
+      transform: translateX(-110%);
+      
+      &.load-header {
+        transform: translate(0);
+      }
+    }
+
     > .image-header {
       height: 100%;
       width: 100%;
       background-position: center top;
       background-size: cover;
       background-repeat: no-repeat;
-      transform: translateX(-110%);
+      transform: translateX(-150%) scale(1.5);
 
       transition-delay: 0.2s;
       transition-duration: 0.95s;
       transition-timing-function: cubic-bezier(0.86, 0.05, 0.15, 0.93);
 
       &.load-header {
-        transform: translate(0);
+        transform: translate(0) scale(1);
       }
     }
+
   }
 
   .text-wrapper {
@@ -146,15 +167,36 @@ header {
         .video-wrapper {
           width: 100%;
           // height: 30.5%;
-          background: #CFD8DC;
           position: sticky;
           top: 9.5em;
           aspect-ratio: 21 / 9;
-          
-          p {
-            // line-height: 450px;
-            text-align: center;
+
+          .video-overflow {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
           }
+
+          .video {
+            background: #CFD8DC;
+            height: 100%;
+            width: 100%;
+            margin-top: -19px;
+            transform: translateY(100%);
+            transition-delay: 0.4s;
+            transition-duration: 0.95s;
+            transition-timing-function: cubic-bezier(0.86, 0.05, 0.15, 0.93);
+
+            &.load-header {
+              transform: translateY(0%);
+            }
+
+            p {
+              // line-height: 450px;
+              text-align: center;
+            }
+          }
+
         }
       }
     }

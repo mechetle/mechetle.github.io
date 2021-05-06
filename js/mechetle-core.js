@@ -390,9 +390,10 @@ var windows = document.querySelectorAll(".window");
 //
 var checkImg = document.querySelector(".full-size-image img");
 
-
 function loaded() {
     document.querySelector(".image-header").classList.add("load-header");
+    document.querySelector(".transition").classList.add("load-header");
+    document.querySelector(".video").classList.add("load-header");
 }
 
 if (checkImg.complete) {

@@ -4,6 +4,7 @@
             $('.navigation .grid-container').attr("style", "opacity: 1");
             console.log('prepared dropdown nav thingo');
             $('header .text-wrapper').attr("style", "opacity: 1");
+            $('header .transition').attr("style", "opacity: 1");
             $('.navbar-dropdown-wrap').hide();
             $('.nav-megaDropdown-bg').attr("style", "display: block");
         });        
