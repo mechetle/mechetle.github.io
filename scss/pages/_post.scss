@@ -22,11 +22,12 @@
         // background-position: center;
         overflow-y: hidden;
         overflow-x: hidden;
-        padding: 0;
+        padding: 0 !important;
         
         img {
             max-width: fit-content;
-            transform-origin: 100px, 0;
+            // transform-origin: 100px, 0;
+            transform: translateY(500px);
         }
     }
 

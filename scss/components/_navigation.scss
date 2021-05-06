@@ -544,6 +544,9 @@ a.nav-button {
   overflow-y: hidden;
   position: relative;
   padding: 0 1em;
+
+  width: calc(2em * 18.4);
+  display: inline-block;
 }
 
 // .nav-v2 .nav-break {
@@ -570,7 +573,7 @@ a.nav-button {
   */
 
 .nav-breaking-percau {
-  width: 670px;
+  // width: 670px;
   position: relative;
   display: inline-grid;
   padding: 0;
@@ -604,7 +607,7 @@ a.nav-button {
 
 /* Nav header main */
 .nav-header-main .nav-breaking-percau {
-  width: 690px;
+  // width: 690px;
 
   /* max-width: 690px; */
   position: relative;
