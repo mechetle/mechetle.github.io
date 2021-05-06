@@ -385,3 +385,18 @@ var windows = document.querySelectorAll(".window");
   },false);
 });
 
+
+// Header image load
+//
+var checkImg = document.querySelector(".full-size-image img");
+
+
+function loaded() {
+    document.querySelector(".image-header").classList.add("load-header");
+}
+
+if (checkImg.complete) {
+    loaded()
+} else {
+    checkImg.addEventListener("load", loaded)
+}
