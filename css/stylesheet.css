@@ -733,10 +733,25 @@ header .border-bottom-naturalize {
 header .header-post-image {
   height: 100vh;
   background: #1e252b;
+  overflow: hidden;
+  /*     background-position: center top;
+      background-size: cover;
+      background-repeat: no-repeat; */
+  border-right: 33px solid white;
+}
+header .header-post-image > .image-header {
+  height: 100%;
+  width: 100%;
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
-  border-right: 33px solid white;
+  transform: translateX(-110%);
+  transition-delay: 0.2s;
+  transition-duration: 0.95s;
+  transition-timing-function: cubic-bezier(0.86, 0.05, 0.15, 0.93);
+}
+header .header-post-image > .image-header.load-header {
+  transform: translate(0);
 }
 header .text-wrapper {
   bottom: 0;
@@ -761,13 +776,12 @@ header .text-wrapper.post .lower {
 }
 header .text-wrapper.post .lower .video-wrapper {
   width: 100%;
-  height: 30.5%;
   background: #CFD8DC;
   position: sticky;
   top: 9.5em;
+  aspect-ratio: 21/9;
 }
 header .text-wrapper.post .lower .video-wrapper p {
-  line-height: 450px;
   text-align: center;
 }
 header .text-wrapper h1 {
