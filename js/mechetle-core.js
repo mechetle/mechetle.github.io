@@ -385,16 +385,34 @@ var windows = document.querySelectorAll(".window");
   },false);
 });
 
+// Checks for webp usable:
+//
+var headerImage = document.querySelector(".image-header");
+
+// if no support:
+Modernizr.on('webplossless,webp-lossless', function(result) {
+    if (result) {
+      // supported
+    } else {
+      // not-supported
+      console.log("webp lossless is supported");
+      headerImage.querySelector("img").src = headerImageSrc.replace("webp", "png");
+    }
+ });
 
 // Header image load
 //
 var checkImg = document.querySelector(".image-header-temp");
 
 function loaded() {
-    document.querySelector(".image-header").classList.add("load-header");
+    let headerImageSrc = headerImage.querySelector("img").src;
+
+    headerImage.style.cssText = `background-image: url( ${headerImageSrc} );`
+    headerImage.classList.add("load-header");
+
     document.querySelector(".transition").classList.add("load-header");
     document.querySelector(".video").classList.add("load-header");
-    checkImg.remove();
+    // checkImg.remove();
 }
 
 if (checkImg.complete) {
