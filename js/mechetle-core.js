@@ -412,7 +412,8 @@ function loaded() {
 
     document.querySelector(".transition").classList.add("load-header");
     document.querySelector(".video").classList.add("load-header");
-    // checkImg.remove();
+    checkImg.remove(); // hide image
+
 }
 
 if (checkImg.complete) {
