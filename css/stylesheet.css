@@ -1708,6 +1708,10 @@ header .border-top-naturalize {
     padding-left: 0;
     text-align: center;
   }
+
+  body {
+    font-size: 1.85rem;
+  }
 }
 /* Medium and up */
 /* nav break point */
