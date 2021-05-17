@@ -1639,6 +1639,9 @@ section #wai-wrapper {
   .footer-widget {
     margin-top: 50px;
   }
+  .footer-widget ul {
+    line-height: 1.9em;
+  }
 
   header {
     outline: #01579B 20px solid;
