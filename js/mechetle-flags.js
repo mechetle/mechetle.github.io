@@ -1,6 +1,49 @@
 //// Mechetle page builder:
 ////
 
+// grid collumn slider:
+const colSlider = document.querySelectorAll(".slider-overlay")
+colSlider.forEach(element => {
+    let cells;
+    let initColVal;
+    let valueChange;
+
+    element.addEventListener("mousedown", (e) => {
+        console.group("Column change imbound:");
+
+        // Get cells:
+        cells = e.target.parentElement.getElementsByClassName("cell");
+
+        // Get first cell:
+        // firstCell = cell[0];
+
+        // get the column value for first collumn
+        initColVal = element.value;
+    });
+
+    element.addEventListener("input", (e) => {
+        valueChange = e.target.value;
+        console.log("Value:", valueChange);
+        console.log("From:", e.target.parentElement);
+
+        console.log(cells[0].className);
+
+        const regex = new RegExp('(medium-)[0-9]{1,}', 'g');
+        
+        cells[0].className = cells[0].className.replace(regex, "medium-" + valueChange);
+        
+        cells[1].className = cells[1].className.replace(regex, "medium-" + (12 - valueChange));
+
+
+    });
+
+    element.addEventListener("mouseup", (e) => {
+        console.groupEnd();
+    });
+
+});
+
+
 // finding work area:
 const workspace = document.querySelector(".mchtl-page-builder > div");
 // Making workspace area editable:
