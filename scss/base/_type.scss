@@ -14,6 +14,40 @@ a {
   }
 }
 
+.hover-fx a {
+  position: relative;
+  z-index: 1;
+
+
+
+  &::after {
+    content: " ";
+    width: 1.85em;
+    height: 1.85em;
+    background: rgba(255, 255, 255, 0.39);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%) scale(0);
+    user-select: none;
+    z-index: -1;
+    border-radius: 5em;
+    transition-duration: 0.35s;
+    transition-timing-function: cubic-bezier(0.86, 0.05, 0.15, 0.93);
+  }
+
+  &:hover::after {
+    border-radius: 0.3em;
+    transform: translateX(-50%) translateY(-50%) scale(0.8);
+  }
+  &:active::after {
+    border-radius: 0.3em;
+    width: 112.5%;
+    transform: translateX(-50%) translateY(-50%) scale(1);
+    transition-duration: 0.10s;
+  }
+}
+
 /* Classes: condensed + regular */
 body,
 p,
@@ -41,7 +75,8 @@ small {
 }
 
 .regular {
-  font-family: Roboto, sans-serif;
+  font-family: 'Jost', sans-serif;
+  text-transform: initial;
 
   &.thin {
     font-weight: 100;

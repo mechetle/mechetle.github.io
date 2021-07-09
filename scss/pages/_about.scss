@@ -1,0 +1,230 @@
+// About
+
+#about-me {
+    background: #0B233D;
+
+    h2, h3 {
+        line-height: 1.201em;
+    }
+
+    main {
+        color: #fff;
+        height: 300vh;
+    }
+
+    .big-text-scroll {
+        display: block;
+        overflow-x: hidden;
+        font-size: 7em;
+        line-height: 2.8em;
+        width: 100%;      
+        margin-top: 0.4em;
+        margin-bottom: 1em;
+
+        .text-scroll-inner {
+            width: max-content;
+            padding-left: 1em;
+            padding-right: 1em;
+            margin-left: 3em;
+            background: #000;
+
+            a {
+                color: #fff;
+                transition-duration: 0.5s;
+
+                &:hover {
+                   opacity: 0.5;
+                }
+            }
+        }
+    }
+
+    #second-part {
+        position: sticky;
+        top: 15vh; // to-do: change this to vw
+    }
+
+    > section, main > section { 
+        position: relative;
+        background: inherit;
+
+        p {
+            color: #fff;
+
+            &.bigboi {
+                font-size: 2em;
+            }
+        }
+    }
+}
+
+#map-wrapper {
+    z-index: 1;
+}
+#map-aus {
+    transform: rotateX(44deg) rotateY(24deg) rotateZ(-15deg) scale(1.8);
+    perspective-origin: center;
+    transform-style: preserve-3d;
+    perspective: 800px;
+
+    * {
+        user-select: none;
+    }
+
+    #map-pin {
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform-origin: 77.455441789% 80.488572251%;
+        transform: rotateX(-90deg) scale(0.25);
+    }
+
+    #map-shadow {
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform-origin: center;
+        transform: scale(1.1) translateZ( -80px);
+        filter: blur(60px);
+    }
+    #map-shadow-2 {
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform-origin: center;
+        transform: scale(1.1) translateZ( -80px);
+        opacity: 0.2;
+    }
+
+    a {
+        color: inherit;
+        @supports (-moz-appearance:none) {
+        display: contents; }
+    }
+}
+
+#where-from-wrapper {
+    background: #fff;
+    height: 100%;
+    padding: 2em 2em 2em 10em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &:after {
+        content: "";
+        position: relative;
+        display: block;
+        background: #01579b;
+        height: 15px;
+        width: 60px;
+        margin-top: 1em;
+    }
+}
+
+
+#third-part {
+    margin-bottom: 16em;
+    padding-top: 9em;
+}
+
+#fourth-part {
+    height: 83vh;
+    p {
+        padding-top: 2em;
+    }
+
+    .grid-x {
+        justify-content: center;
+        align-content: center;
+    }
+    p.bigboi {
+        max-width: 600px;
+        text-align: center;
+    }
+}
+#fifth-part {
+    color: #fff;
+    min-height: 60vh;
+    position: relative;
+    margin-bottom: 6em;
+
+    .grid-container {
+        z-index: 1;
+        position: relative;
+    }
+
+    .bg-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+}
+
+#sixth-part {
+    margin-top: 7.5em;
+
+    p.bigboi {
+        max-width: 960px;
+    }
+    p:not(.bigboi) {
+        padding: 5em 4em;
+        max-width: 600px;
+        margin: auto;
+    }
+
+    .mt {
+        margin-top: 8em;
+    }
+
+    img {
+        border-radius: 1.2em;
+    }
+}
+
+#time-right-now {
+    padding-left: 10em;
+}
+
+.wide-image {
+    height: 59.5vh;
+    background: rgb(49, 54, 82);
+    margin-top: 3em;
+}
+
+.vert-centre {
+    display: flex;
+}
+
+.semi-wide-image {
+    background: none;
+    padding-top: 2em;
+    
+    &#first-ever-work {
+        z-index: 2;
+        #first-ever-work-svg {
+            height: calc(100vh - 100px);
+            background: rgb(49, 54, 82);
+        }
+
+        &::after {
+            background:#000;
+            height: 50%;
+            content: " ";
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            z-index: -1;
+        }
+    }
+}
+
+section.black-bg {
+    background: #000;
+}
+
+#first-piece-caption {
+    padding-top: 5em;
+}

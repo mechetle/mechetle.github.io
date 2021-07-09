@@ -1,3 +1,9 @@
 User-agent: *
 Disallow: 
 Disallow: /cgi-bin/
+
+
+User-agent: Googlebot-Image
+Disallow: /img/map.svg
+Disallow: /img/map-shadow.svg
+Disallow: /img/map-pin.svg

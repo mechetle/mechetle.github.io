@@ -9,6 +9,23 @@ a.button {
   }
 }
 
+// for row of buttons
+.button-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .inline-buttons.secondary {
+    margin-top: 0.8em;
+  }
+
+  .inline-buttons {
+    ~ .inline-buttons {
+      margin-left: 2em;
+    }
+  }
+}
+
 button, a.button {
   //Note to self: This varible affects how high the button goes up when being hovered. 
   $RiseUp: 10px;

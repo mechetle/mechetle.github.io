@@ -169,6 +169,26 @@ Navigations
   height: 55px;
   width: 100%;
   background: #fff;
+
+  // to-do: make into dark mode feature
+  #about-me & {
+    background: #0B233D;
+    box-shadow: 0px 5px 29px 0px rgb(4 14 25 / 40%);
+
+    &.nav-header-main {
+      background: 0 0;
+      box-shadow: none;
+    }
+
+    .nav-megaDropdown-bg li a {
+      color: #000;
+      
+      &:hover {
+        color: #d81b60;
+      }
+    }
+  }
+
   box-shadow: 0px 5px 29px 0px rgba(11, 35, 61, 0.18);
 
   .fix-shadow {
@@ -186,6 +206,23 @@ Navigations
     transition-delay: 1.2s;
     transition-timing-function: $easing-main;
     transition-delay: 0.25s;
+  }
+
+  #about-me & {
+    // background: #0B233D;
+    .navigation-button-wrap, .fix-shadow {
+      background: #0B233D;
+      
+      a {
+        color: #fff;
+        &:after {
+          border-color: #6c757d;
+        }
+      }
+    }
+    .logo-text {
+      color: #fff;
+    }
   }
 
   //&.nav-v2 {
@@ -381,6 +418,7 @@ ul li ul li {
 
 .nav-header-main .logo-space img {
   transform: translate(10px, -3px) scale(1);
+  pointer-events: none;
 }
 
 .logo-space {
@@ -485,7 +523,7 @@ a.nav-button {
   }
 
 
-  &:hover:before {
+  &:hover:before, &.on:before {
     transform: scaleX(0.5);
   }
 

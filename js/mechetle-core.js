@@ -147,7 +147,7 @@ window.onload = function() {
 
 
 
-//// Nortifications:
+//// Nortification (notification oops mis-spelling):
 function nortification(details = "This is a nortification", type = "normal",  timeout = 3000) {
     var elementNortifDetails = document.getElementById("nortification_details");
     var elementNortifWrap = document.getElementsByClassName("nortification-pullup")[0];
@@ -155,7 +155,7 @@ function nortification(details = "This is a nortification", type = "normal",  ti
             
     elementNortifDetails.innerHTML = details;
 
-    console.log("💬 " + details);
+    console.group("💬 " + details);
 
     setTimeout(function(){
         // todo: if nort-push-active is still there => do not remove
@@ -171,7 +171,8 @@ function nortification(details = "This is a nortification", type = "normal",  ti
     switch (type) {
         case "success":
             elementNortifDetails.className += " nortification_success";
-            console.log(type);
+            console.log("Type:", type);
+            console.groupEnd();
 
             setTimeout(function(){
                 elementNortifDetails.classList.remove("nortification_success");
@@ -180,7 +181,9 @@ function nortification(details = "This is a nortification", type = "normal",  ti
 
         case "warning":
             elementNortifDetails.className += " nortification_warning";
-            console.log(type);
+            console.log("Type:", type);
+            console.groupEnd();
+
             setTimeout(function(){
                 elementNortifDetails.classList.remove("nortification_warning");
             }, timeout_colour);
@@ -188,7 +191,9 @@ function nortification(details = "This is a nortification", type = "normal",  ti
 
         case "error":
             elementNortifDetails.className += " nortification_error";
-            console.log(type);
+            console.log("Type:", type);
+            console.groupEnd();
+
             setTimeout(function(){
                 elementNortifDetails.classList.remove("nortification_error");
             }, timeout_colour);
@@ -196,7 +201,9 @@ function nortification(details = "This is a nortification", type = "normal",  ti
 
         default:
             elementNortifDetails.className += " nortification_normal";
-            console.log(type);
+            console.log("Type:", type);
+            console.groupEnd();
+
             setTimeout(function(){
                 elementNortifDetails.classList.remove("nortification_normal");
             }, timeout_colour);
@@ -390,15 +397,20 @@ var windows = document.querySelectorAll(".window");
 var headerImage = document.querySelector(".image-header");
 
 // if no support:
-Modernizr.on('webplossless,webp-lossless', function(result) {
-    if (result) {
-      // supported
-    } else {
-      // not-supported
-      console.log("webp lossless is supported");
-      headerImage.querySelector("img").src = headerImageSrc.replace("webp", "png");
-    }
- });
+try {
+    Modernizr.on('webplossless,webp-lossless', function(result) {
+        if (result) {
+          // supported
+        } else {
+          // not-supported
+          console.log("webp lossless is supported");
+          headerImage.querySelector("img").src = headerImageSrc.replace("webp", "png");
+        }
+     });
+
+} catch {
+    console.log("Modernizr not active on this page");
+}
 
 // Header image load
 //
@@ -416,8 +428,13 @@ function loaded() {
 
 }
 
-if (checkImg.complete) {
-    loaded()
-} else {
-    checkImg.addEventListener("load", loaded);
+try {
+    if (checkImg.complete) {
+        loaded()
+    } else {
+        checkImg.addEventListener("load", loaded);
+    }
+
+} catch {
+    console.log("lol no header images on this page")
 }
