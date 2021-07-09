@@ -1,4 +1,8 @@
 {
     "dartsass.targetDirectory": "~/../css/",
+<<<<<<< HEAD
     "discord.lowerDetailsEditing": "Workspace: mechetle.com - Beta",
+=======
+    "discord.lowerDetailsEditing": "Workspace: mache.mechetle.com"
+>>>>>>> a9fcc386c2de2dbe41d291bf86da083f02cc10c4
 }

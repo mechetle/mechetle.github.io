@@ -16,7 +16,11 @@
 @use "pages/error-404";
 @use "pages/post";
 @use "pages/contact";
+<<<<<<< HEAD
 @use "pages/about";
+=======
+@use "pages/builder";
+>>>>>>> a9fcc386c2de2dbe41d291bf86da083f02cc10c4
 
 //layout
 @use "layout/media-queries";
