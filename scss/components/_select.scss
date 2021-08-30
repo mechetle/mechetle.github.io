@@ -1,0 +1,260 @@
+/* Select */
+/* // TODO:
+    - work on accessability on these select inputs ✅
+*/
+ //@use "../vendors/foundation/util/util" as *;
+
+.select-row {
+    align-self: flex-end;
+    padding-bottom: 1.38rem;
+    height: 54px;
+    align-self: flex-end;
+    justify-self: flex-end;
+    position: relative;
+
+    .select-wrapper {
+        height: 100vh;
+        /* width: 0px; */
+        position: absolute;
+        /* float: right; */
+        /* display: inline-block; */
+        /* justify-self: flex-end; */
+        right: 0;
+    }
+    .select-relative-wrapper {
+        position: unset;
+        top: 114px;
+        margin-left: -560px;
+        z-index: 20;
+
+        /* @include breakpoint(1836px) {
+            position: sticky; 
+        } */
+    }
+    .mchtl-select, .other-inputs {
+        float: right;
+        & + & {
+            margin-left: 0;
+        }
+        margin-left: 1em;
+
+        select {
+            background: #fff;
+        }
+    }
+    .other-inputs {
+        display: none;
+        float: none;
+        > div {
+            display: flex;
+            flex-direction: row;
+            /* width: 200px; */
+            text-align: end;
+            float: right;
+        }
+
+        &.show {
+            display:block !important;
+        }
+    }
+}
+
+
+.mchtl-select {
+    display: inline-block;
+    position: relative;
+    transition-duration: 0.35s;
+
+    // select boxes after the original
+    & + & {
+        margin-left: 1em;
+    }
+
+    * {
+        transition-duration: 0.35s;
+    }    
+
+    label, select {
+        font-family: inherit;
+        font-size: inherit;
+        cursor: inherit;
+        font-weight: 700;
+        border-radius: 48px;
+        border: 6px solid #767676;
+        color: #767676;
+        padding: 0 3.2em 0 1.5em;
+    }
+
+    $normal-height: 2.25em;
+
+    label {
+        display: block;
+        line-height: $normal-height;
+        transition-duration: 0.35s;
+        cursor:pointer;
+        user-select: none;
+        
+        &:hover {
+            background-color: #000;
+            border-color: #000;
+            color: #fff;
+
+            &::after {
+                filter: invert(100%);
+                opacity: 1;
+            }
+        }
+
+        &.active::after {
+            transform: rotate(180deg) translateX(-3px);
+        }
+
+        &::after{
+            content: " ";
+            position: absolute;
+            right: 1.8em;
+            height: 78%;
+            width: 1.4em;
+            // background: #767676;
+            background: url("/img/icons/arrow-down.svg");
+            background-size: 80%;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.55;
+            transition-duration: 0.7s;
+            transition-timing-function: cubic-bezier(0.85, 0.01, 0, 0.9);
+            transform: rotate(0) translateX(3px);
+        }
+    }
+
+    @function em2px($target, $context: $base-font-size-em) {
+        @if $target == 0 { @return 0 }
+        @return ($target / 1em) * ($context / 1em) * 16 + 0px;
+     }
+
+    select {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: none;
+        line-height: inherit;
+
+        height: em2px($normal-height, 1.139em) + 12px;
+        //height: 53px;
+
+        appearance: none;
+        z-index: -1;
+        color: transparent;
+        // border-color: transparent;
+        border-width: 0px;
+        transition-property: border-width, border-color;
+        transition-delay: 0.1s;
+        opacity: 1;
+        user-select: none;
+
+/*         @include breakpoint(small only) {
+            z-index: 0;
+            display: block;*/
+
+        &:focus-within {
+            outline: 0;
+            border-width: 8px;
+            // border-color: #767676;
+
+            + .psudo-select {
+                display: block;
+    
+                > div {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+        }
+    }
+
+    .psudo-select {
+        display: none;
+        transition-delay: 0.3s;
+
+        &:hover {
+            display: block;
+        }
+
+        > div { // options drop down
+            opacity: 0;
+            transform: scale(0.7);
+            transition-delay: 0s;
+            // transform-origin: left right;
+
+            margin-top: 0.6em;
+            padding: 1.2em 0;
+            border-radius: 24px;
+            background: #fafafa;
+            position: absolute;
+            width: 100%;
+            z-index: 999;
+            user-select: none;
+
+            box-shadow:
+            0 3.4px 5.5px rgba(0, 0, 0, 0.029),
+            0 8.6px 14.1px rgba(0, 0, 0, 0.044),
+            0 22.9px 32.4px rgba(0, 0, 0, 0.056),
+            0 100px 98px rgba(0, 0, 0, 0.07)
+            ;
+        }
+        .psuedo-select-opt {
+            padding: (0.257em) 1.8em;
+            cursor: pointer;
+
+            &:hover, &.hovered {
+                background: hsla(0, 0%, 77%, 0.301);
+            }
+            &[disabled] {
+                pointer-events: none;
+                opacity: 0.6;
+                font-size: 0.7em;
+                padding: 1.7em 2.5em 0.257em !important;
+
+            }
+        }
+    }
+}
+
+h1 > .mchtl-select, h3 > .mchtl-select {
+    label, select {
+        border: 0;
+        width: 92%;
+        border-radius: 0;
+        padding: 0 0.8em 0 0em;
+        line-height: inherit;
+    }
+    label {
+        border-bottom: 7px #767676 solid;
+
+        &::after {
+            background-size: 62%;
+            right: inherit;
+        }
+        &:hover {
+            background-color: #fff;
+            border-color: #000;
+            color: #000;
+            &::after {
+                filter: none;
+                
+            }
+        }
+    }
+
+    .psudo-select {
+        > div {
+            font-size: 60%;
+            padding: 0.75em 0;
+        }
+        .psuedo-select-opt {
+            padding: 0.257em 0.85em;
+        }
+    }
+
+}

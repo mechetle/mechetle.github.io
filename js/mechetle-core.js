@@ -131,6 +131,192 @@ if (typeof (Storage) !== "undefined") {
 }
 
 
+// wraps element
+function wrap(el, wrapper) {
+    el.parentNode.insertBefore(wrapper, el);
+    wrapper.appendChild(el);
+}                
+
+
+//// psuedo - <Select> input box
+const selectWrapper = document.querySelectorAll(".mchtl-select")
+selectWrapper.forEach(element => { // for every selectWrapper
+    console.log("Selects identified as custom:", element);
+
+    // get select element
+    let select = element.getElementsByTagName("select")[0];
+    // get label element
+    let label = element.getElementsByTagName("label")[0];
+    // take label and put a span in it this will be a placeholder for values
+    label.innerHTML += "<span class='select-value'> " + select.value + "</span>";
+    let labelValue = label.querySelectorAll(".select-value")[0];
+
+    selectCloned = select.cloneNode(true) // .cloneNode(true) allows the selct wrapper to clone 
+    element.appendChild(selectCloned);
+
+    var selectClonedWrapper = document.createElement("div");
+    wrap(selectCloned, selectClonedWrapper); // wrap selectCloned elements with a div. 
+    selectClonedWrapper.className = "psudo-select";
+    
+    // renaming element tags
+    console.log("selectClonedWrapper:", selectClonedWrapper);
+    let clonedSelect = selectClonedWrapper.querySelectorAll("select")[0];
+    let divSelect = document.createElement("div") // the div element
+    let index;
+    // Copy the children
+    while (clonedSelect.firstChild) {
+        divSelect.appendChild(clonedSelect.firstChild); // *Moves* the child
+    }
+    // Copy the attributes
+    for (index = clonedSelect.attributes.length - 1; index >= 0; --index) {
+        divSelect.attributes.setNamedItem(clonedSelect.attributes[index].cloneNode());
+    }
+    // Replace it
+    clonedSelect.parentNode.replaceChild(divSelect, clonedSelect);
+
+    // replacing options
+    var divSelectOptions = divSelect.querySelectorAll("option");
+/*     divSelectOptions.forEach(options => {
+        options.className = "psuedo-select-opt";
+        options.outerHTML = options.outerHTML.replace(/value/g,"data-value").replace(/option/g,"div");
+    }); */
+    divSelectOptions.forEach(options => {
+        options.className = "psuedo-select-opt";
+        options.outerHTML = options.outerHTML.replace(/value/g,"data-value").replace(/option/g,"div");
+    });
+    
+    // swapping values
+    // detect what is clicked
+    let dataValue;
+    var psudoOptions = element.querySelectorAll(".psuedo-select-opt");
+    // adding even listeners
+    for (let i = 0; i < psudoOptions.length; i++) {
+        psudoOptions[i].addEventListener("click", (e) => {
+            dataValue = e.target.getAttribute("data-value");
+            console.log("index:", i, "          value:", dataValue);
+
+            changeValueLabel(dataValue);
+            changeValueSelect(i);
+            
+            begoneHover();
+            changeHoveredState();
+        });
+    }
+
+    function changeValueSelect(num) {
+        select.selectedIndex = num;
+    }
+    function changeValueLabel(value) {
+        labelValue.innerHTML = " " + value; 
+    }
+    function begoneHover(){
+        selectClonedWrapper.style.pointerEvents = "none";
+        setTimeout(function() {
+            selectClonedWrapper.style.pointerEvents = "auto";
+
+            // TODO: unfocus selector
+            // https://www.w3schools.com/jsref/met_html_blur.asp
+            select.blur();
+            divSelect.blur();
+            psudoOptions.forEach(pOption => {
+                pOption.blur();
+            });
+        }, 150);
+    }
+    function changeHoveredState() {
+        let j = select.selectedIndex; // the index of select
+        console.log("~~~ index: " + j);
+        
+        psudoOptions.forEach(element => {
+            element.classList.remove("hovered");
+        });
+        psudoOptions[j].classList.add("hovered");
+
+        if (select.id == "compare-what") {
+            const comparePanel = document.querySelector(".compare-panel");
+
+            if (select.selectedIndex == 0) {
+                comparePanel.querySelector("h3").innerText = "Comparing with similar countries";
+                comparePanel.querySelector("p").innerText = "Insert a country in, and the system will automatically pick countries to compare based on similarities";
+                comparePanel.querySelector("#countries-input").placeholder = "Enter any country here";
+                //comparePanel.querySelector("#countries-input").list = "countries";
+                comparePanel.querySelector("#countries-input").setAttribute("list", "countries")
+            } else {
+                comparePanel.querySelector("h3").innerText = "Comparing with similar regions";
+                comparePanel.querySelector("p").innerText = "Insert a region in, and the system will automatically pick regions of that country to compare based on similarities";
+                comparePanel.querySelector("#countries-input").placeholder = "Enter any region here";
+                comparePanel.querySelector("#countries-input").setAttribute("list", "regions");
+            }
+
+        } else {
+            if (select.value != "Custom") {
+                setTimeout(function() {
+                    submitForm();
+                }, 350);
+            } else { //if custom is selected
+                const otherIn = document.querySelector(".other-inputs");
+
+                otherIn.classList.add("show")
+            }
+        }
+    }
+
+    select.addEventListener('change',(e) => {
+        console.log("selector changed");
+        changeValueLabel(select.value); 
+        changeHoveredState();
+        
+    });
+    
+    select.addEventListener('click',(e) => {
+        console.log("selector pressed with the id '" + e.target.id + "'");
+        label.classList = "active";
+    });
+
+    // let focussed = false;
+    select.addEventListener('focus', (event) => {
+        if (label.classList == "active") {
+            begoneHover();
+        } else {
+            label.classList = "active";
+        }
+        // focussed = true;
+        divSelect.style.display = "block";
+    });
+
+    select.addEventListener("keydown", (e) => {
+        switch (e.key) {
+            case "Enter" :
+                e.preventDefault();
+                console.log("pressed enter in select");
+                begoneHover();
+            break;
+
+            default:
+                console.log("pressed any other key other than enter in select");
+                // changed = false;
+        }
+    });
+      
+    select.addEventListener('blur', (event) => {
+        label.classList = "";
+        if(window.matchMedia("(pointer: coarse)").matches) { // touchscreen
+            setTimeout(function() {
+                divSelect.style.display = "none";
+            }, 360);
+        }
+        
+    });
+
+    if (select.value == "Custom") { 
+        const otherIn = document.querySelector(".other-inputs");
+        otherIn.classList.add("show")
+    }
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/Element/focus_event
+
+});
+
 
 //// Disable navigation buttons
 window.onload = function() {
@@ -438,3 +624,73 @@ try {
 } catch {
     console.log("lol no header images on this page")
 }
+
+
+
+//// Portfolio page:
+const port_page = document.querySelector("#work");
+const port_section = port_page.querySelectorAll(".design-field");
+const sidebar_links = document.querySelectorAll(".nav-sidebar li");
+
+function resetSidebarIndicator() {
+    sidebar_links.forEach(el => {
+        el.classList = "";
+    })
+}
+
+// indicator background that moves:
+const marker = document.querySelector("#indicator-marker") 
+function indicatorBG(e) {
+    marker.style.top = e.offsetTop + 'px';
+    marker.style.width = e.offsetWidth + 'px'; 
+}
+    
+// Scroll event listener:
+var runOnScroll = function(evt) {
+    let scrollPos = window.scrollY;
+
+    // Detect which section is being scrolled into when window scroll detected
+    port_section.forEach(el => {
+        let section_top_bound = el.getBoundingClientRect().top
+        let section_bottom_bound = el.getBoundingClientRect().bottom
+
+        console.group(el.id + ":", section_top_bound)
+        console.log(el)
+
+        if (scrollPos <= document.querySelector(".image-header").getBoundingClientRect().bottom - 80) {
+            resetSidebarIndicator()
+            marker.style.width = "0px";
+        }
+
+        else if ((section_top_bound <= 200) && (section_bottom_bound >= 0)) {
+            console.log("entered top bound")
+            console.log("bottom bound:", section_bottom_bound)
+
+            // add a fill to the hyperlink element via the el.id
+            let navLink = document.querySelector(`[href="#${el.id}"]`);
+            let navLinkWrap = navLink.parentNode;
+
+            console.log(navLink)
+
+            // remove all current active clast lists form nav
+            resetSidebarIndicator()
+
+            // make li "active"
+            navLinkWrap.classList = "active";
+
+            // update position of the indicator background:
+            indicatorBG(navLinkWrap);
+        }
+
+        console.groupEnd();
+
+    });
+
+
+};
+
+window.addEventListener("scroll", runOnScroll);
+
+
+/* if (port_page.length == 1) {
+} */
