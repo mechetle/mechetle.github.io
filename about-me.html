@@ -418,8 +418,8 @@
         // scroll events:
         var runOnScroll =  function(evt) {
             var scrollPos = window.scrollY;
-            const el = second.querySelector("#what-i-do");
-            el.scroll({
+            const wid = second.querySelector("#what-i-do");
+            wid.scroll({
                 left: scrollPos * 0.9 - 800
             });
 

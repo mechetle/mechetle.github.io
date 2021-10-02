@@ -1931,6 +1931,7 @@ section #wai-wrapper {
   transform-origin: center;
   transform: scale(1.1) translateZ(-80px);
   filter: blur(60px);
+  z-index: -1;
 }
 #map-aus #map-shadow-2 {
   position: absolute;
@@ -1939,6 +1940,7 @@ section #wai-wrapper {
   transform-origin: center;
   transform: scale(1.1) translateZ(-80px);
   opacity: 0.2;
+  z-index: -1;
 }
 #map-aus a {
   color: inherit;
