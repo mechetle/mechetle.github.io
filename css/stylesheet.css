@@ -1922,7 +1922,8 @@ section #wai-wrapper {
   top: 0;
   right: 0;
   transform-origin: 77.455441789% 80.488572251%;
-  transform: rotateX(-90deg) scale(0.25);
+  transform: rotateX(-43deg) rotateZ(26deg) scale(0.25);
+  transform-style: preserve-3d;
 }
 #map-aus #map-shadow {
   position: absolute;
@@ -2138,6 +2139,10 @@ section.black-bg {
   margin-left: -1.25em;
   padding-right: 1.8rem;
   padding-left: 0;
+}
+#work h2 {
+  z-index: 100;
+  position: relative;
 }
 #work #work-header {
   min-height: initial;
@@ -2543,6 +2548,62 @@ header .border-top-naturalize {
   body {
     font-size: 1.65rem;
   }
+
+  #work .card-wrapper {
+    height: auto;
+  }
+  #work .card#pinned-card {
+    transform: translateY(3vh);
+  }
+  #work .header-post-image {
+    position: absolute;
+  }
+  #work .nav-sidebar-wrap {
+    height: unset;
+    width: 100%;
+    padding-left: 0 !important;
+    bottom: 0;
+    transform: translateY(2em);
+  }
+  #work .nav-sidebar-wrap .nav-sidebar {
+    height: auto;
+    width: auto;
+    margin-top: 0;
+  }
+  #work .nav-sidebar-wrap .nav-sidebar ul {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  #work .nav-sidebar-wrap .nav-sidebar ul li {
+    width: 75px;
+  }
+  #work .nav-sidebar-wrap .nav-sidebar ul li span {
+    display: none;
+  }
+  #work .nav-sidebar-wrap .nav-sidebar ul li:nth-of-type(2) {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+  }
+  #work #header-work-content {
+    position: relative;
+  }
+  #work #header-work-content .title {
+    padding-left: 0;
+  }
+  #work #header-work-content .title h1 {
+    font-size: 4.209em;
+  }
+  #work > .grid-container.full .full {
+    margin-left: 0;
+    padding-right: 1.8rem;
+    padding-left: 1.8rem;
+  }
+  #work > .grid-container.full {
+    padding-left: 0;
+  }
 }
 /* Medium and up */
 /* nav break point */
@@ -2585,6 +2646,10 @@ header .border-top-naturalize {
 
   .lets-talk-wrapper {
     text-align: right;
+  }
+
+  #work .settings-row .mchtl-select {
+    display: none;
   }
 }
 /* Large and up */

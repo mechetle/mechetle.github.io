@@ -461,7 +461,7 @@
             xMap -= mX / (windowH_h / 3);
 
             map.style.transform = `rotateX( ${yMap}deg) rotateY(${xMap}deg) rotateZ(-15deg) scale(1.8)`;
-            mapPin.style.transform = `rotateX( -70deg) rotateY(-${90 - xMap * 2}deg) scale(0.25)`;
+            mapPin.style.transform = `rotateX(-20deg) rotateZ(30deg) rotateY(-${180 - xMap}deg) scale(0.25)`;
         }
         document.addEventListener('mousemove', mousePal);
 

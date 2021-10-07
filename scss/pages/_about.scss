@@ -76,7 +76,8 @@
         top: 0;
         right: 0;
         transform-origin: 77.455441789% 80.488572251%;
-        transform: rotateX(-90deg) scale(0.25);
+        transform: rotateX(-43deg) rotateZ(26deg) scale(0.25);
+        transform-style: preserve-3d;
     }
 
     #map-shadow {

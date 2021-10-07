@@ -137,6 +137,9 @@ function wrap(el, wrapper) {
     wrapper.appendChild(el);
 }                
 
+//// Media queries
+const smallOnly = window.matchMedia('(max-width: 39.9375em)')
+
 
 //// psuedo - <Select> input box
 const selectWrapper = document.querySelectorAll(".mchtl-select")
@@ -639,9 +642,26 @@ function resetSidebarIndicator() {
 }
 
 // indicator background that moves:
-const marker = document.querySelector("#indicator-marker") 
+const marker = document.querySelector("#indicator-marker")
+// reset the indicator offset 
+function resetMarkerOffset() {
+    marker.style.left = 'unset'
+    marker.style.top = 'unset'
+}
+resetMarkerOffset()
+// reset the indicator offset when window is rescaled
+window.addEventListener('resize', (e) => {
+    resetMarkerOffset()
+    runOnScroll()
+});
+
 function indicatorBG(e) {
-    marker.style.top = e.offsetTop + 'px';
+    if (smallOnly.matches) {
+        marker.style.left = e.offsetLeft + 'px';
+    } else {
+        marker.style.top = e.offsetTop + 'px';
+    }
+
     marker.style.width = e.offsetWidth + 'px'; 
 }
     
