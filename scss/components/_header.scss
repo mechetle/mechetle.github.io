@@ -152,6 +152,11 @@ header {
     transition-timing-function: cubic-bezier(0.88, 0.13, 0.13, 0.96);
     transition-property: opacity;
 
+    .grid-y {
+      height: 200vh;
+      padding-top: 9vh;
+    }
+
     &.post {
       // margin-top: 10vh;
       padding-left: 0rem;

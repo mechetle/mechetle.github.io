@@ -242,8 +242,27 @@
     //   transition-delay: 0s;
     //   transition-duration: 0s;
     // }
-    header .text-wrapper h1.post {
-      font-size: 4.6em !important;
+    #post{ 
+      #wai-wrapper {
+        margin-top: 0;
+        padding-top: 0 !important;
+      }
+      header {
+        min-height: auto;
+        
+        #header-wrapper {
+          height: calc(80vh - 40px);
+        }
+      }
+    }
+
+    header .text-wrapper { 
+      h1.post {
+        font-size: 4.6em !important;
+      }
+      .grid-y {
+        padding-top: 28vh;
+      }
     }
 
     #contact {
@@ -333,10 +352,18 @@
       }
     }
 
+    
+
   }
   
   /* Medium and up */
-  @media screen and (min-width: 40em) {}
+  @media screen and (min-width: 40em) {
+    header .text-wrapper.post .lower .video-wrapper {
+      aspect-ratio: unset;
+      height: 40vh;
+    }
+
+  }
   
   /* nav break point */
   /*before it breaks (normal state)*/

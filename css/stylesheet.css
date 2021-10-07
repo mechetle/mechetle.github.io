@@ -877,6 +877,10 @@ header .text-wrapper {
   transition-timing-function: cubic-bezier(0.88, 0.13, 0.13, 0.96);
   transition-property: opacity;
 }
+header .text-wrapper .grid-y {
+  height: 200vh;
+  padding-top: 9vh;
+}
 header .text-wrapper.post {
   padding-left: 0rem;
 }
@@ -2530,8 +2534,22 @@ header .border-top-naturalize {
     padding-left: 2.5rem;
   }
 
+  #post #wai-wrapper {
+    margin-top: 0;
+    padding-top: 0 !important;
+  }
+  #post header {
+    min-height: auto;
+  }
+  #post header #header-wrapper {
+    height: calc(80vh - 40px);
+  }
+
   header .text-wrapper h1.post {
     font-size: 4.6em !important;
+  }
+  header .text-wrapper .grid-y {
+    padding-top: 28vh;
   }
 
   #contact #contact-letter {
@@ -2606,6 +2624,12 @@ header .border-top-naturalize {
   }
 }
 /* Medium and up */
+@media screen and (min-width: 40em) {
+  header .text-wrapper.post .lower .video-wrapper {
+    aspect-ratio: unset;
+    height: 40vh;
+  }
+}
 /* nav break point */
 /*before it breaks (normal state)*/
 @media only screen and (min-width: 40em) and (max-width: 1300px) {
