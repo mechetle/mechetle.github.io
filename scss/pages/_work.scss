@@ -42,6 +42,14 @@
         h1 {
             font-size: 7.209em;
             z-index: 1;
+
+            > * {
+                font-family: Sen,sans-serif;
+            }
+
+            #work {
+                display: none;
+            }
         }
     } 
     .header-post-image {

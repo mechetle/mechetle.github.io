@@ -209,7 +209,7 @@
 
     <section id="fourth-part">
         <div class="grid-container">
-            <div class="grid-x grid-margin-x">
+            <div class="grid-x grid-margin-x hover-fx">
                 <p class="bigboi">My hobbies include reading books, <a href="#">sketching & drawing</a>, <a href="#">painting</a> (sometimes) and <a href="#">coding</a></p>
             </div>
         </div>
@@ -226,7 +226,7 @@
                         <a class="button" onclick="scrollHdigh()">Let's scroll</a> 
                         </div>
                         
-                        <div class="inline-buttons secondary">
+                        <div class="inline-buttons secondary hover-fx">
                             <a href="#i-really-dont-ya-know" onclick="iDontCar()">I don't care</a>
                         </div>
                     </div>
@@ -573,7 +573,7 @@
         const time = document.getElementById("trn-insert");
         const tFormat = { weekday: "long", hour: "numeric", minute: "numeric", second: "numeric" };
         function MelbClock() {
-            let offset = "+10";
+            let offset = "+11";
 
             var d = new Date();
             var utc = d.getTime() + (d.getTimezoneOffset() * 60000);

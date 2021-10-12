@@ -2166,6 +2166,12 @@ section.black-bg {
   font-size: 7.209em;
   z-index: 1;
 }
+#work #work-header h1 > * {
+  font-family: Sen, sans-serif;
+}
+#work #work-header h1 #work {
+  display: none;
+}
 #work .header-post-image {
   padding-right: 33px;
   padding-top: 33px;
@@ -2673,7 +2679,19 @@ header .border-top-naturalize {
   }
 
   #work .settings-row .mchtl-select {
-    display: none;
+    z-index: 2;
+  }
+  #work .settings-row.tags {
+    width: fit-content;
+  }
+  #work .header-post-image {
+    position: absolute;
+  }
+  #work #header-work-content {
+    position: relative;
+  }
+  #work #header-work-content #pinned-card {
+    transform: translateY(0);
   }
 }
 /* Large and up */
@@ -2743,6 +2761,14 @@ header .border-top-naturalize {
 @media (hover: hover) and (pointer: fine) {
   .nav-break {
     overflow-x: hidden;
+  }
+}
+@media screen and (min-width: 39.9375em) and (max-width: 1615px) {
+  h1 #port {
+    display: none;
+  }
+  h1 #work {
+    display: inline !important;
   }
 }
 

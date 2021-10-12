@@ -426,9 +426,24 @@
     #work {
       .settings-row {
         .mchtl-select {
-          display: none;
+          //display: none;
+          z-index: 2;
+        }
+        &.tags {
+          width: fit-content;
         }
       }
+      .header-post-image {
+        position: absolute;
+      }
+      #header-work-content {
+        position: relative;
+        #pinned-card {
+          transform: translateY(0);
+        }
+
+      }
+
     }
   
   }
@@ -541,6 +556,17 @@
   @media (hover: hover) and (pointer: fine) {
     .nav-break {
       overflow-x: hidden;
+    }
+  }
+
+  @media screen and (min-width: 39.9375em) and (max-width: 1615px) {
+    h1 {
+      #port {
+        display: none;
+      }
+      #work {
+        display: inline !important;
+      }
     }
   }
 
