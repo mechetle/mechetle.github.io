@@ -15,7 +15,7 @@ cellContainer.forEach (element => {
     let cells = element.querySelectorAll(".cell");
     let mediumCellSizes = [];
     let cl = cells.length;
-    console.log("cl:", cl)
+    console.log("cl:", cl);
 
     // allocate values into mediumCellSizes
     for (let i = 0; i < cl; i++) {
@@ -58,10 +58,12 @@ cellContainer.forEach (element => {
      * - colForRow (an array) = array[i].length ✔️
      * - remove old one
      */
+
+
+    // Grid to array (gta)
     let gtaInput = mediumCellSizes;
     let gtaArray = [];
     let gtaIndex = 0;
-
     while (gtaIndex < gtaInput.length) {
         subArray = [];
     
@@ -69,10 +71,9 @@ cellContainer.forEach (element => {
     
         while (g != 12) {
             subArray.push(gtaInput[gtaIndex]);
-            g += gtaInput[gtaIndex]
-            gtaIndex++
+            g += gtaInput[gtaIndex];
+            gtaIndex++;
         }
-    
         // put new sub array into array
         gtaArray.push(subArray);
     }
@@ -86,8 +87,6 @@ cellContainer.forEach (element => {
 
     console.group("Number of rows - medium:", countRowsMedium);
     console.log("Number of collumns for rows:", colForRow);
-
-
     console.groupEnd();
 
     // creating elements:
@@ -96,15 +95,16 @@ cellContainer.forEach (element => {
     wrapper.className = "sliders";
     element.appendChild(wrapper);
 
-    let height;
-
+    
     // get highest height of cells:
+    // This is used for setting the height of the sliders
+    let height;
     function getHeight(int) {
         height = cells[int].offsetHeight;
         console.log("height", height);
     }
     
-    // creating indevidual slider:
+    // creating individual sliders for each cell:
     var template = document.querySelector('#productrow');
     let heightAddup = 0;
     for (let k = 0; k < countRowsMedium; k++) {
@@ -145,7 +145,7 @@ cellContainer.forEach (element => {
 
 
     // for every slider with .slider-overlay
-    const colSlider = element.querySelectorAll(".slider-overlay")
+    const colSlider = element.querySelectorAll(".slider-overlay");
     colSlider.forEach(elSlider => {
         let cells = elSlider.parentElement.parentElement.parentElement.getElementsByClassName("cell");
         let valueChange;
@@ -154,125 +154,95 @@ cellContainer.forEach (element => {
 
         /* collumnChange() - changes collumn size (only temporary)
         * TODO:
-        * - Clean up code,
-        * - Reduce redundancy by replacing them with variables,
-        * - Make it scalable,
+        * - Clean up code, 🚧
+        * - Reduce redundancy by replacing them with variables, 🚧
+        * - Make it scalable, 🚧
+        * - remove el_i it's always going to be 0 from now on 🚧
+        * - rename el_el_i --> handle_i ✅
         */
-        function collumnChange(el_i, el_el_i, change) {
+        function collumnChange(el_i, handle_i, change) {
             const sliderByIndex = elSlider.parentNode.children;
             console.log("el_i", el_i);
+            
+            let otherCell = null;
+            let mainCell = null;
 
-            if (colForRow[el_i] == 3) { // if current collumns = 3
-                if (colForRow[el_i - 1] == null || colForRow[el_i - 1] == 3) { 		// no row above it or if the above row = 3
-                    let extraReturn = null;
+            last_cell = cells.length - 1;
 
-                    if (sliderByIndex[el_el_i  + 1] != null) {    // if this is not the last cursor interacted
-                        // 2nd - 1st =
-                        let difference = sliderByIndex[el_el_i  + 1].value - sliderByIndex[el_el_i].value;
+            if (colForRow[0] == 3) { // if current collumns = 3
+                if (sliderByIndex[handle_i  + 1] != null) {    // if this is not the last cursor interacted
+                    // 2nd slider value - 1st slider value = difference
+                    let difference = sliderByIndex[handle_i + 1].value - sliderByIndex[handle_i].value;
+                    // check if the change in value is 0 or below, if so disable handle movement:
+                    if (difference <= 0) {
+                        difference = 1;
+                        change = change - 1;
 
-                        // check if it is 0 or below:
-                        if (difference <= 0) {
-                            difference = 1;
-                            change = change - 1;
+                        elSlider.value = parseInt(sliderByIndex[handle_i + 1].value) - 1;
 
-                            elSlider.value = parseInt(sliderByIndex[el_el_i  + 1].value) - 1;
-
-                            elSlider.disabled = true;
-                            setTimeout(function() {
-                                elSlider.disabled = false;
-                                console.groupEnd();
-                            }, 1);
-
-                        }
-
-                        extraReturn = cells[1 + el_i * 3].className = cells[1 + el_i * 3].className.replace(regexQuery, "medium-" + difference);
-                    } else {    // if this is the last cursor interacted
-                        let difference = 12 - elSlider.value;
-
-                        extraReturn = cells[2 + el_i * 3].className = cells[2 + el_i * 3].className.replace(regexQuery, "medium-" + difference);
+                        elSlider.disabled = true;
+                        setTimeout(function() {
+                            elSlider.disabled = false;
+                            console.groupEnd();
+                        }, 1);
                     }
 
-                    // normal
-                    return cells[0 + el_i * 3 + el_el_i].className = cells[0 + el_i * 3 + el_el_i].className.replace(regexQuery, "medium-" + change), 
-                    // middle
-                    extraReturn
-                }
-                else if (colForRow[el_i - 1] == 2) { 	// if the above row has 2 columns
-                    let extraReturn = null;
-
-                    if (sliderByIndex[el_el_i  + 1] != null) {    // if this is not the last cursor interacted
-                        // 2nd - 1st =
-                        let difference = sliderByIndex[el_el_i  + 1].value - sliderByIndex[el_el_i].value;
-                        // check if it is 0 or below:
-                        if (difference <= 0) {
-                            difference = 1;
-                            change = change - 1;
-
-                            elSlider.value = parseInt(sliderByIndex[el_el_i  + 1].value) - 1;
-
-                            elSlider.disabled = true;
-                            setTimeout(function() {
-                                elSlider.disabled = false;
-                                console.groupEnd();
-                            }, 1);
-
-                        }
-
-                        extraReturn = cells[1 + el_i * 2].className = cells[1 + el_i * 2].className.replace(regexQuery, "medium-" + difference);
-                    } else {    // if this is the last cursor interacted
-                        let difference = 12 - elSlider.value;
-                        extraReturn = cells[2 + el_i * 2].className = cells[2 + el_i * 2].className.replace(regexQuery, "medium-" + difference);
-                    }
-
-                    return cells[0 + el_i * 2 + el_el_i].className = cells[0 + el_i * 2 + el_el_i].className.replace(regexQuery, "medium-" + change), extraReturn; 
-                
-                }
-            } else if (colForRow[el_i] == 2) { 
-
-                //let fullCell = [];
-                //let fullCellSub = [];
-                let oneCell = 0; 
-
-                function checkForTwelve() {
-                    oneCell = 0;
-                    // start from el_i
-                    // length = el_i
-                    for (let g = el_i; g >= 0; g--) {
-                        if (colForRow[g] == 1) { // if first row is 1 collumn
-                            oneCell++;
-                        }
-                    }
-                }
-
-                checkForTwelve();
-
-                //console.log("fullCellSub", fullCellSub);
-                //console.log("fullCell", fullCell);
-                console.log("oneCell", oneCell);
-
-                if (colForRow[el_i - 1] == 1 && colForRow[el_i - oneCell - 1] == 2) {
-                    console.log("testing fskjeifjsifej");
-                    oneCell = oneCell + el_i - (oneCell - 3);
-                    console.log("new onecell", oneCell);
+                    otherCell = cells[1].className = cells[1].className.replace(regexQuery, "medium-" + difference);
+                    
+                } else {    // if this is the last cursor interacted
+                    otherCell = cells[last_cell].className = cells[last_cell].className.replace(regexQuery, "medium-" + (12 - elSlider.value));
                 }
                 
-                if (colForRow[el_i - 1] == 1) {
-                    return cells[0 + oneCell].className = cells[0 + oneCell].className.replace(regexQuery, "medium-" + change)
+                mainCell = cells[handle_i].className = cells[handle_i].className.replace(regexQuery, "medium-" + change);
+
+            } else if (colForRow[0] == 2) { 
+                mainCell = cells[0].className = cells[0].className.replace(regexQuery, "medium-" + change);
+                otherCell = cells[last_cell].className = cells[last_cell].className.replace(regexQuery, "medium-" + (12 - elSlider.value));
+            } else if (colForRow[0] == 4) { 
+                if (sliderByIndex[handle_i  + 1] != null) {    // if this is not the last cursor interacted
+                    // 2nd slider value - 1st slider value = difference
+                    let difference = sliderByIndex[handle_i + 1].value - sliderByIndex[handle_i].value;
+                    // check if the change in value is 0 or below, if so disable handle movement:
+                    if (difference <= 0) {
+                        difference = 1;
+                        change = change - 1;
+
+                        elSlider.value = parseInt(sliderByIndex[handle_i + 1].value) - 1;
+
+                        elSlider.disabled = true;
+                        setTimeout(function() {
+                            elSlider.disabled = false;
+                            console.groupEnd();
+                        }, 1);
+                    }
+
+                    otherCell = cells[handle_i + 1].className = cells[handle_i + 1].className.replace(regexQuery, "medium-" + difference);
+                    mainCell = cells[handle_i].className = cells[handle_i].className.replace(regexQuery, "medium-" + change);
+
+                } else {    // if this is the last cursor interacted
+                    let difference = sliderByIndex[handle_i].value - sliderByIndex[handle_i - 1].value;
+                    // check if the change in value is 0 or below, if so disable handle movement:
+                    if (difference <= 0) {
+                        difference = 1;
+                        
+                        elSlider.value = parseInt(sliderByIndex[handle_i].value) + 1;
+                        
+                        elSlider.disabled = true;
+                        setTimeout(function() {
+                            elSlider.disabled = false;
+                            console.groupEnd();
+                        }, 1);
+                    }
                     
-                    ,cells[1 + oneCell].className = cells[1 + oneCell].className.replace(regexQuery, "medium-" + (12 - change));
-                }
-                else if (colForRow[el_i - 1] == null || colForRow[el_i - 1] == 2) {
-                    // normal
-                    return cells[0 + el_i * 2 - oneCell].className = cells[0 + el_i * 2 - oneCell].className.replace(regexQuery, "medium-" + change),
-                    
-                    cells[1 + el_i * 2 - oneCell].className = cells[1 + el_i * 2 - oneCell].className.replace(regexQuery, "medium-" + (12 - change));
-                }
-                else if (colForRow[el_i - 1] == 3) {
-                    return cells[0 + el_i * 3].className = cells[0 + el_i * 3].className.replace(regexQuery, "medium-" + change),
-                    
-                    cells[1 + el_i * 3].className = cells[1 + el_i * 3].className.replace(regexQuery, "medium-" + (12 - change));
+                    otherCell = cells[handle_i + 1].className = cells[handle_i + 1].className.replace(regexQuery, "medium-" + (12 - elSlider.value));
+                    mainCell = cells[handle_i].className = cells[handle_i].className.replace(regexQuery, "medium-" + difference);
                 }
             }
+            
+            /* Note: It returns two values because it only 
+             * changes 2 columns in between the handle.
+             */
+            return mainCell, otherCell;
         }
 
 
@@ -307,14 +277,14 @@ cellContainer.forEach (element => {
 
             //slider cursor- index 
             el_el_i = Array.from(elSlider.parentNode.children).indexOf(elSlider) // TODO: use this to add to retun in function
-            console.log("Slider index:", el_el_i);
+            console.log("Slider index (el_el_i):", el_el_i);
 
             if (el_el_i > 0) {
-                console.group("Cursor values:")
+                console.group("Cursor values:");
 
                 let firstCursorVal = parseInt(elSlider.parentNode.children[0].value);
-                console.log("first cursor value", firstCursorVal)
-                console.log("second cursor value", valueChange)
+                console.log("first cursor value", firstCursorVal);
+                console.log("second cursor value", valueChange);
 
                 // new valueChange:
                 valueChange = valueChange - firstCursorVal;
